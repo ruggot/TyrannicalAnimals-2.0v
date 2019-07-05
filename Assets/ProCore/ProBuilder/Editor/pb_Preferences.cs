@@ -66,7 +66,7 @@ public class pb_Preferences : Editor
 	static pb_Shortcut[] defaultShortcuts;
 
 	[PreferenceItem(pb_Constant.PRODUCT_NAME)]
-	private static void PreferencesGUI ()
+    private static void PreferencesGUI ()
 	{
 		// Load the preferences
 		if (!prefsLoaded) {

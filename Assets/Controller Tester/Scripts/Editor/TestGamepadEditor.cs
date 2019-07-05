@@ -2,14 +2,17 @@
 using UnityEditor;
 using System.Collections;
 
+
 [InitializeOnLoad]
 public static class TestGamepadEditor
 {
-
+    [System.Obsolete]
     static TestGamepadEditor()
     {
         EditorApplication.hierarchyChanged += OnHierarchyChange;
     }
+
+    [System.Obsolete]
     static void OnHierarchyChange()
     {
 
@@ -582,7 +585,7 @@ public static class TestGamepadEditor
 
 
             //we only need to execute once on our scenes            
-            EditorApplication.hierarchyWindowChanged -= OnHierarchyChange;
+            EditorApplication.hierarchyChanged -= OnHierarchyChange;
         }
 
     }

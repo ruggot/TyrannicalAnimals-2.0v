@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Utility
             Invoke("DestroyNow", m_TimeOut);
         }
 
-
+        [Obsolete]
         private void DestroyNow()
         {
             if (m_DetachChildren)

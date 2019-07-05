@@ -81,12 +81,14 @@ namespace ProBuilder2.EditorCommon
 	#endregion
 
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Repair/Repair Missing Script References")]
-		public static void MenuRepairMissingScriptReferences()
+        [System.Obsolete]
+        public static void MenuRepairMissingScriptReferences()
 		{
 			FixAllScriptReferencesInScene();
 		}
 
-		static void FixAllScriptReferencesInScene()
+        [System.Obsolete]
+        static void FixAllScriptReferencesInScene()
 		{
 			EditorApplication.ExecuteMenuItem("Window/Inspector");
 
@@ -113,10 +115,11 @@ namespace ProBuilder2.EditorCommon
 			}
 		}
 
-		/**
+        /**
 		 * Advance to the next gameobject with missing components.  If none are found, display dialog and exit.
 		 */
-		static void Next()
+        [System.Obsolete]
+        static void Next()
 		{
 			bool earlyExit = false;
 
@@ -215,7 +218,8 @@ namespace ProBuilder2.EditorCommon
 		// Prevents ArgumentException after displaying 'Done' dialog.  For some reason the Event loop skips layout phase after DisplayDialog.
 		private static bool skipEvent = false;
 
-		public override void OnInspectorGUI()
+        [System.Obsolete]
+        public override void OnInspectorGUI()
 		{
 			if(skipEvent && Event.current.type == EventType.Repaint)
 			{

@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour
     // players character
     public GameObject chicken;
     public GameObject shadowChicken;
-    public string playerone;
+    public string playerOne;
 
 
     // Start is called before the first frame update

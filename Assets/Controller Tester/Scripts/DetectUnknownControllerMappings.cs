@@ -61,7 +61,6 @@ public class DetectUnknownControllerMappings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
         //axis
 
         if (SimpleInput.GetAxis("Axis 1") > 0f)
@@ -262,102 +261,102 @@ public class DetectUnknownControllerMappings : MonoBehaviour {
 
 
         //buttons
-        if (SimpleInput.GetKey(KeyCode.JoystickButton0) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton0))
             button0Value.text = "pressed";
         else
             button0Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton1) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton1))
             button1Value.text = "pressed";
         else
             button1Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton2) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton2))
             button2Value.text = "pressed";
         else
             button2Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton3) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton3))
             button3Value.text = "pressed";
         else
             button3Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton4) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton4))
             button4Value.text = "pressed";
         else
             button4Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton5) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton5))
             button5Value.text = "pressed";
         else
             button5Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton6) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton6))
             button6Value.text = "pressed";
         else
             button6Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton7) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton7))
             button7Value.text = "pressed";
         else
             button7Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton8) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton8))
             button8Value.text = "pressed";
         else
             button8Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton9) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton9))
             button9Value.text = "pressed";
         else
             button9Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton10) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton10))
             button10Value.text = "pressed";
         else
             button10Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton11) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton11))
             button11Value.text = "pressed";
         else
             button11Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton12) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton12))
             button12Value.text = "pressed";
         else
             button12Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton13) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton13))
             button13Value.text = "pressed";
         else
             button13Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton14) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton14))
             button14Value.text = "pressed";
         else
             button14Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton15) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton15))
             button15Value.text = "pressed";
         else
             button15Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton16) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton16))
             button16Value.text = "pressed";
         else
             button16Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton17) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton17))
             button17Value.text = "pressed";
         else
             button17Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton18) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton18))
             button18Value.text = "pressed";
         else
             button18Value.text = "";
 
-        if (SimpleInput.GetKey(KeyCode.JoystickButton19) == true)
+        if (SimpleInput.GetKey(KeyCode.JoystickButton19))
             button19Value.text = "pressed";
         else
             button19Value.text = "";

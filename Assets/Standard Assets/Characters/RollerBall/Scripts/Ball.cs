@@ -43,5 +43,11 @@ namespace UnityStandardAssets.Vehicles.Ball
                 m_Rigidbody.AddForce(Vector3.up*m_JumpPower, ForceMode.Impulse);
             }
         }
+
+        public void Attack(bool light, bool heavy, bool special)
+        {
+            
+            return;
+        }
     }
 }

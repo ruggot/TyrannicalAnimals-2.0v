@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Ball
 {
     public class PlayerControl : MonoBehaviour
     {
-        private Ball ball; // Reference to the ball controller.
+        private Ball player; // Reference to the ball controller.
 
         private Vector3 move;
         // the world-relative desired move direction, calculated from the camForward and user input.
@@ -14,14 +14,17 @@ namespace UnityStandardAssets.Vehicles.Ball
         private Transform cam; // A reference to the main camera in the scenes transform
         private Vector3 camForward; // The current forward direction of the camera
         private bool jump; // whether the jump button is currently pressed
-        
+        private bool lightAttack;
+        private bool heavyAttack;
+        private bool specialAttack;
+
         [SerializeField] private string inputJoystick; // The joystick to listen to
 
 
         private void Awake()
         {
             // Set up the reference.
-            ball = GetComponent<Ball>();
+            player = GetComponent<Ball>();
 
 
             // get the transform of the main camera
@@ -45,18 +48,22 @@ namespace UnityStandardAssets.Vehicles.Ball
             float h = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Horizontal");
             float v = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Vertical");
             jump = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Jump");
+            lightAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Light");
+            heavyAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Heavy");
+            specialAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Special");
+
 
             // calculate move direction
             if (cam != null)
             {
                 // calculate camera relative direction to move:
                 camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-                move = (v*camForward + h*cam.right).normalized;
+                move = (v * camForward + h * cam.right).normalized;
             }
             else
             {
                 // we use world-relative directions in the case of no main camera
-                move = (v*Vector3.forward + h*Vector3.right).normalized;
+                move = (v * Vector3.forward + h * Vector3.right).normalized;
             }
         }
 
@@ -64,7 +71,8 @@ namespace UnityStandardAssets.Vehicles.Ball
         private void FixedUpdate()
         {
             // Call the Move function of the ball controller
-            ball.Move(move, jump);
+            player.Move(move, jump);
+            player.Attack(lightAttack, heavyAttack, specialAttack);
             jump = false;
         }
     }

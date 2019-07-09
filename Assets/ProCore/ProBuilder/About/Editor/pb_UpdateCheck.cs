@@ -13,10 +13,12 @@ namespace ProBuilder2.EditorCommon
 	{
 		const string PROBUILDER_VERSION_URL = "http://procore3d.github.io/probuilder2/current.txt";
 		const string pbLastWebVersionChecked = "pbLastWebVersionChecked";
-		static WWW updateQuery;
+        [System.Obsolete]
+        static WWW updateQuery;
 		static bool calledFromMenu = false;
 
-		static pb_UpdateCheck()
+        [System.Obsolete]
+        static pb_UpdateCheck()
 		{
 			if(pb_PreferencesInternal.GetBool(pb_Constant.pbCheckForProBuilderUpdates))
 			{
@@ -26,13 +28,15 @@ namespace ProBuilder2.EditorCommon
 		}
 
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Check for Updates", false, pb_Constant.MENU_ABOUT + 1)]
-		static void MenuCheckForUpdate()
+        [System.Obsolete]
+        static void MenuCheckForUpdate()
 		{
 			calledFromMenu = true;
 			CheckForUpdate();
 		}
 
-		public static void CheckForUpdate()
+        [System.Obsolete]
+        public static void CheckForUpdate()
 		{
 			if(updateQuery == null)
 			{
@@ -41,7 +45,8 @@ namespace ProBuilder2.EditorCommon
 			}
 		}
 
-		static void Update()
+        [System.Obsolete]
+        static void Update()
 		{
 			if (updateQuery != null)
 			{

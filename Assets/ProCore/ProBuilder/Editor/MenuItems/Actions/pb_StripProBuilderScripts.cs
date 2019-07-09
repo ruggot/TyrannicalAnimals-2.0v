@@ -10,7 +10,8 @@ namespace ProBuilder2.Actions
 	public class pb_StripProBuilderScripts : Editor
 	{
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Actions/Strip All ProBuilder Scripts in Scene")]
-		public static void StripAllScenes()
+        [System.Obsolete]
+        public static void StripAllScenes()
 		{
 
 			if(!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts in the scene.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
@@ -28,7 +29,8 @@ namespace ProBuilder2.Actions
 		}
 
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Actions/Strip ProBuilder Scripts in Selection")]
-		public static void StripAllSelected()
+        [System.Obsolete]
+        public static void StripAllSelected()
 		{
 			if(!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts on the selected objects.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
 				return;
@@ -40,7 +42,8 @@ namespace ProBuilder2.Actions
 			}
 		}
 
-		public static void Strip(pb_Object[] all)
+        [System.Obsolete]
+        public static void Strip(pb_Object[] all)
 		{
 				for(int i = 0; i < all.Length; i++)
 				{
@@ -60,8 +63,8 @@ namespace ProBuilder2.Actions
 				pb_Editor.instance.UpdateSelection();
 		}
 
-
-		public static void DoStrip(pb_Object pb)
+        [System.Obsolete]
+        public static void DoStrip(pb_Object pb)
 		{
 			try
 			{

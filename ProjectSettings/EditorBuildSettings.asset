@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/My scenes/Menu.unity
+    path: Assets/_MyScenes/Menu.unity
     guid: f31de920ab1114849b1c502d553293bc
   - enabled: 1
-    path: Assets/My scenes/CharacterSelect.unity
+    path: Assets/_MyScenes/CharacterSelect.unity
     guid: 973bb99889f507247a1d7f8d91413957
   - enabled: 1
     path: Assets/My scenes/Level_1.unity
@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/My scenes/Level_2.unity
     guid: d33ae0fd9e208f4409b8bffda4960255
   - enabled: 1
-    path: Assets/My scenes/LevelSelect.unity
+    path: Assets/_MyScenes/LevelSelect.unity
     guid: d406a1edec335f8498b5cb194a633108
   - enabled: 1
-    path: Assets/My scenes/Options.unity
+    path: Assets/_MyScenes/Options.unity
     guid: 196b8b299616bed4aad9e803a1359fff
   m_configObjects: {}

@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66ab67005225c04e98f70452ca48165, type: 3}
   m_Name: KeyBindings
   m_EditorClassIdentifier: 
-  inputs: []
+  inputs:
+  - Name: 
+    UniqueName: 
+    Type: 0
+    Positive:
+      Primary: 0
+      Secondary: 0
+    Negative:
+      Primary: 0
+      Secondary: 0
+    targetController: 0
+    Axis: 0
+    Invert: 0
+    Sensitivity: 1
+    val: 0
   rebindRemoveKey: 27
   forceResetInEditor: 1

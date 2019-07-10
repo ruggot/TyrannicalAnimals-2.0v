@@ -7,8 +7,15 @@ public class CharacterManager : MonoBehaviour
     // players character
     public GameObject chicken;
     public GameObject shadowChicken;
+
     // HEAD:Assets/My Scripts/CharacterManager.cs
     // string that saves what the player selected as a string
+
+
+    // string that saves what the player selected as a string
+
+    public string playerOne;
+
 
     private int playerSelection;
 

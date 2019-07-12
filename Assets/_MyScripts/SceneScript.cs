@@ -10,9 +10,9 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 {
 
     public GameObject Play;
-    // Begins the level after Character Select
+    // Disables Level Select
     public GameObject DynamicCamera;
-    // For changing the Main Camera from Character Select to playing the level.
+    // Enables Dynamic Camera
 
     public void Quit() => Application.Quit();
 
@@ -30,6 +30,8 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void BeginLevel() {
         Play.SetActive(false);
         DynamicCamera.SetActive(true);
+
     }
+    // Begins the level and ends Character Select
 
 }

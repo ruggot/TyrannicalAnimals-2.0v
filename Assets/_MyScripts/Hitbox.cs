@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private GameObject mainCamera;
-    
     // Start is called before the first frame update
     void Start()
     {

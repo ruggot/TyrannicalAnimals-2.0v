@@ -7,14 +7,14 @@ public class CharacterManager : MonoBehaviour
     // players character
     public GameObject chicken;
     public GameObject shadowChicken;
-    public string playerOne;
+
+    // HEAD:Assets/My Scripts/CharacterManager.cs
+    // string that saves what the player selected as a string
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // string that saves what the player selected as a string
+
+    private int playerSelection;
 
     public void SpawnChicken ()
     {
@@ -26,10 +26,5 @@ public class CharacterManager : MonoBehaviour
     {
         chicken.SetActive(false);
         shadowChicken.SetActive(true);
-    }
-
-    public void Play()
-    {
-
     }
 }

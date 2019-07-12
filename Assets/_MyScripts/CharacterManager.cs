@@ -14,9 +14,6 @@ public class CharacterManager : MonoBehaviour
 
     // string that saves what the player selected as a string
 
-    public string playerOne;
-
-
     private int playerSelection;
 
     public void SpawnChicken ()

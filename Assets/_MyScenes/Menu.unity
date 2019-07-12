@@ -360,7 +360,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1104799100}
-        m_MethodName: Quiting
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -992,6 +992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deef89d82347b71419ae3a2653b14979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Play: {fileID: 0}
+  DynamicCamera: {fileID: 0}
 --- !u!4 &1104799101
 Transform:
   m_ObjectHideFlags: 0
@@ -1190,7 +1192,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1104799100}
-        m_MethodName: Play
+        m_MethodName: LevelOne
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1322,7 +1324,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1104799100}
-        m_MethodName: Option
+        m_MethodName: Options
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

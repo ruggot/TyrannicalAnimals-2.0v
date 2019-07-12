@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         pDist = Vector3.Distance(player1.position, player2.position);
-        offset.Set(offset.x, pDist/2, offset.z);
+        offset.Set(offset.x, pDist/3, -pDist);
         midpoint = (player1.position + player2.position) / 2;
         mainCamera.SetPositionAndRotation(midpoint + offset, mainCamera.rotation);
         mainCamera.LookAt(midpoint);

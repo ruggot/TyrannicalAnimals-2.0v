@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 300;
     public float timeBeforeNextJump = 1.2f;
     private float canJump = 0f;
+    [SerializeField] private string player;
     Animator anim;
     Rigidbody rb;
     
@@ -25,8 +26,8 @@ public class PlayerController : MonoBehaviour
 
     void ControllPlayer()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_360");
+        float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_360");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
+        if (Input.GetButtonDown("J" + player + "_Jump_360") && Time.time > canJump)
         {
                 rb.AddForce(0, jumpForce, 0);
                 canJump = Time.time + timeBeforeNextJump;
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         // linus added this
         // need some fixing
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("J" + player + "_Light_360"))
         {
             anim.SetTrigger("Peck");
         }

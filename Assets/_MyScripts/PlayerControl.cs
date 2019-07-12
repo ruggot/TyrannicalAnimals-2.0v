@@ -19,6 +19,7 @@ namespace UnityStandardAssets.Vehicles.Ball
         private bool specialAttack;
 
         [SerializeField] private string inputJoystick; // The joystick to listen to
+        [SerializeField] private string gampadType;
 
 
         private void Awake()
@@ -45,12 +46,12 @@ namespace UnityStandardAssets.Vehicles.Ball
         {
             // Get the axis and jump input.
 
-            float h = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Vertical");
-            jump = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Jump");
-            lightAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Light");
-            heavyAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Heavy");
-            specialAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Special");
+            float h = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Horizontal_" + gampadType);
+            float v = CrossPlatformInputManager.GetAxis("J" + inputJoystick + "_Vertical_" + gampadType);
+            jump = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Jump_" + gampadType);
+            lightAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Light_" + gampadType);
+            heavyAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Heavy_" + gampadType);
+            specialAttack = CrossPlatformInputManager.GetButton("J" + inputJoystick + "_Special_" + gampadType);
 
 
             // calculate move direction

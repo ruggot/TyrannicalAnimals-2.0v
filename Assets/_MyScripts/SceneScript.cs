@@ -14,6 +14,23 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     [SerializeField] private GameObject mainCamera;
     // Enables Dynamic Camera
     [SerializeField] private string primaryGampadType;
+    // Finds Character Select Object
+    [SerializeField] private GameObject characterSelect;
+    
+    public GameObject[] array = GameObject.FindGameObjectsWithTag("CharacterSelect");
+
+    private void Start()
+    {
+        // ensure correct objects are disabled
+        GameObject.Find("Main Camera").SetActive(false);
+        GameObject.Find("Chicken_P1").SetActive(false);
+        GameObject.Find("Chicken_P2").SetActive(false);
+        GameObject.Find("HUD").SetActive(false);
+        GameObject.Find("EGO Night_Object").SetActive(false);
+        GameObject.Find("EGO Day_Object").SetActive(true);
+
+        foreach (GameObject i in array) { i.SetActive(false); }
+    }
 
     public string PrimaryGampadType { get => primaryGampadType; set => primaryGampadType = value; }
 

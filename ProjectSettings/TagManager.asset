@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Player 1
   - Player 2
+  - CharacterSelect
   layers:
   - Default
   - TransparentFX

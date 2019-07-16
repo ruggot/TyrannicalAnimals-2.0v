@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Vehicles.Ball {
-    public class PlayerControl : MonoBehaviour {
+    public class PlayerInputTest : MonoBehaviour {
         private Ball player; // Reference to the ball controller.
 
         private Vector3 move;

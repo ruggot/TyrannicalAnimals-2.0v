@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    // players character
-    public GameObject chicken;
-    public GameObject shadowChicken;
-
     // HEAD:Assets/My Scripts/CharacterManager.cs
-    // string that saves what the player selected as a string
+    // int that saves what the player selected as a string
+    public int player1Selection = 0;
+    public int player2Selection = 0;
 
-
-    // string that saves what the player selected as a string
-
-    private int playerSelection;
-
-    public void SpawnChicken ()
+    public int GetPlayer2Selection()
     {
-        shadowChicken.SetActive(false);
-        chicken.SetActive(true);
+        return player2Selection;
     }
 
-    public void SpawnShadowChicken()
+    public void SetPlayer2Selection(int value)
     {
-        chicken.SetActive(false);
-        shadowChicken.SetActive(true);
+        player2Selection = value;
+    }
+
+    public int GetPlayer1Selection()
+    {
+        return player1Selection;
+    }
+
+    public void SetPlayer1Selection(int value)
+    {
+        player1Selection = value;
     }
 }

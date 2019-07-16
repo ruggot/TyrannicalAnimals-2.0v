@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneScritp -> SceneScript
 {
 
-    public GameObject Play;
+    [SerializeField] private GameObject characterSelectPerspective;
     // Disables Level Select
-    public GameObject DynamicCamera;
+    [SerializeField] private GameObject mainCamera;
     // Enables Dynamic Camera
+    [SerializeField] private string primaryGampadType;
+
+    public string PrimaryGampadType { get => primaryGampadType; set => primaryGampadType = value; }
 
     public void Quit() => Application.Quit();
 
@@ -27,10 +30,10 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void LevelOne() => SceneManager.LoadScene("Level_1"); // Convention -- Avoid using spaces when naming scenes, objects, etc.; they can cause issues. Using integers instead of words will keep the files in order no matter how many there are 
     // Convention -- Pascal case
 
-    public void BeginLevel() {
-        Play.SetActive(false);
-        DynamicCamera.SetActive(true);
-
+    public void BeginLevel()
+    {
+        characterSelectPerspective.SetActive(false);
+        mainCamera.SetActive(true);
     }
     // Begins the level and ends Character Select
 

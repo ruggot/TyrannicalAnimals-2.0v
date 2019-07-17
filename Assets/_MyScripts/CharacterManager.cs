@@ -6,26 +6,15 @@ public class CharacterManager : MonoBehaviour
 {
     // HEAD:Assets/My Scripts/CharacterManager.cs
     // int that saves what the player selected as a string
-    public int player1Selection = 0;
-    public int player2Selection = 0;
+    public static int player1Selection = 0;
+    public static int player2Selection = 1; 
 
-    public int GetPlayer2Selection()
-    {
-        return player2Selection;
-    }
+    // P1 getter + setter
+    public int GetPlayer1Selection() => player1Selection;
+    public void SetPlayer1Selection(int value) => player1Selection = value;
 
-    public void SetPlayer2Selection(int value)
-    {
-        player2Selection = value;
-    }
+    // P2 getter + setter
+    public int GetPlayer2Selection() => player2Selection;
+    public void SetPlayer2Selection(int value) => player2Selection = value;
 
-    public int GetPlayer1Selection()
-    {
-        return player1Selection;
-    }
-
-    public void SetPlayer1Selection(int value)
-    {
-        player1Selection = value;
-    }
 }

@@ -26,6 +26,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         GameObject.Find("HUD").SetActive(false);
         GameObject.Find("EGO Day_Object").SetActive(true);
         GameObject.Find("EGO Night_Object").SetActive(false);
+		Cursor.visible = false; //This hides the cursor upon the game opening
     }
 
     public string PrimaryGampadType { get => primaryGampadType; set => primaryGampadType = value; }

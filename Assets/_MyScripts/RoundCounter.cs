@@ -42,16 +42,16 @@ public class RoundCounter : MonoBehaviour
             playerTwoPoints++;
             SceneManager.LoadScene("Level_1");
         }
-        if (playerOnePoints <= 3) {
+        if (playerOnePoints >= 3) {
             WinGame();
             // add UI for this that says that player won this round
         }
-        if (playerTwoPoints <= 3) {
+        if (playerTwoPoints >= 3) {
             WinGame();
             // add UI for this that says that player won this round
         }
         void WinGame() {
-            chickenMovement.enabled = true;
+            chickenMovement.enabled = false;
         }
     }
 }

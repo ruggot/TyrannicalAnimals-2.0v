@@ -33,7 +33,6 @@ public class CameraController : MonoBehaviour
         pDist = Vector3.Distance(player1.position, player2.position);
         offset.Set(offset.x, pDist / 3, -pDist);
         midpoint = (player1.position + player2.position) / 2;
-        Debug.Log("Player 1 pos: " + player1.position.ToString() + "\nPlayer 2 pos: " + player2.position.ToString());
     }
 
     void UpdateCamraPos()

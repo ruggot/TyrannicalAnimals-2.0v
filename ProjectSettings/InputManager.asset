@@ -900,7 +900,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 1
   - serializedVersion: 3
     m_Name: J1_Start_NSPC
     descriptiveName: 
@@ -916,7 +916,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 3
+    joyNum: 1
   - serializedVersion: 3
     m_Name: J2_Start_XBO
     descriptiveName: 
@@ -932,13 +932,45 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 3
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: J3_Jump_NSPC
+    m_Name: J2_Start_360
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 3 button 0
+    positiveButton: joystick 2 button 7
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.04
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: J2_Start_NSPC
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 7
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.04
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: J3_Start_XBO
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 3 button 7
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -950,11 +982,11 @@ InputManager:
     axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: J3_Jump_NSPC
+    m_Name: J3_Start_360
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 3 button 0
+    positiveButton: joystick 3 button 7
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -966,43 +998,11 @@ InputManager:
     axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: J3_Jump_NSPC
+    m_Name: J3_Start_NSPC
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 3 button 0
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.04
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 3
-  - serializedVersion: 3
-    m_Name: J3_Jump_NSPC
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick 3 button 0
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.04
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 3
-  - serializedVersion: 3
-    m_Name: J3_Jump_NSPC
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick 3 button 0
+    positiveButton: joystick 3 button 7
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

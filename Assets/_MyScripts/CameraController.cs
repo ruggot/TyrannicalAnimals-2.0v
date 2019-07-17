@@ -13,10 +13,11 @@ public class CameraController : MonoBehaviour
 
     private Vector3 midpoint;
     private float pDist;
+    private Vector3 newCamPos;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -37,7 +38,8 @@ public class CameraController : MonoBehaviour
 
     void UpdateCamraPos()
     {
-        mainCamera.SetPositionAndRotation(midpoint + offset, mainCamera.rotation);
+        newCamPos = midpoint + offset;
+        mainCamera.SetPositionAndRotation(newCamPos, mainCamera.rotation);
         mainCamera.LookAt(midpoint);
     }
 }

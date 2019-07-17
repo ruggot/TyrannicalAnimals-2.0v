@@ -3,10 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class DetectUnknownControllerMappings : MonoBehaviour
-{
+public class DetectUnknownControllerMappings : MonoBehaviour {
 
-    //axes
+    //axes    
     public Text axis1Value;
     public Text axis2Value;
     public Text axis3Value;
@@ -27,14 +26,14 @@ public class DetectUnknownControllerMappings : MonoBehaviour
     public Text axis18Value;
     public Text axis19Value;
     public Text axis20Value;
-    public Text axis21Value;
-    public Text axis22Value;
-    public Text axis23Value;
-    public Text axis24Value;
-    public Text axis25Value;
-    public Text axis26Value;
-    public Text axis27Value;
-    public Text axis28Value;
+	public Text axis21Value;
+	public Text axis22Value;
+	public Text axis23Value;
+	public Text axis24Value;
+	public Text axis25Value;
+	public Text axis26Value;
+	public Text axis27Value;
+	public Text axis28Value;
 
     //buttons
     public Text button0Value;
@@ -58,11 +57,11 @@ public class DetectUnknownControllerMappings : MonoBehaviour
     public Text button18Value;
     public Text button19Value;
 
+	
+	// Update is called once per frame
+	void Update () {
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        
         //axis
 
         if (Input.GetAxis("Axis 1") > 0f)
@@ -205,165 +204,162 @@ public class DetectUnknownControllerMappings : MonoBehaviour
         else
             axis20Value.text = "";
 
-        if (Input.GetAxis("Axis 21") > 0f)
-            axis21Value.text = "positive";
-        else if (Input.GetAxis("Axis 21") < 0f)
-            axis21Value.text = "negative";
-        else
-            axis21Value.text = "";
-
-        if (Input.GetAxis("Axis 22") > 0f)
-            axis22Value.text = "positive";
-        else if (Input.GetAxis("Axis 22") < 0f)
-            axis22Value.text = "negative";
-        else
-            axis22Value.text = "";
-
-        if (Input.GetAxis("Axis 23") > 0f)
-            axis23Value.text = "positive";
-        else if (Input.GetAxis("Axis 23") < 0f)
-            axis23Value.text = "negative";
-        else
-            axis23Value.text = "";
-
-        if (Input.GetAxis("Axis 24") > 0f)
-            axis24Value.text = "positive";
-        else if (Input.GetAxis("Axis 24") < 0f)
-            axis24Value.text = "negative";
-        else
-            axis24Value.text = "";
-
-        if (Input.GetAxis("Axis 25") > 0f)
-            axis25Value.text = "positive";
-        else if (Input.GetAxis("Axis 25") < 0f)
-            axis25Value.text = "negative";
-        else
-            axis25Value.text = "";
-
-        if (Input.GetAxis("Axis 26") > 0f)
-            axis26Value.text = "positive";
-        else if (Input.GetAxis("Axis 26") < 0f)
-            axis26Value.text = "negative";
-        else
-            axis26Value.text = "";
-
-        if (Input.GetAxis("Axis 27") > 0f)
-            axis27Value.text = "positive";
-        else if (Input.GetAxis("Axis 27") < 0f)
-            axis27Value.text = "negative";
-        else
-            axis27Value.text = "";
-
-        if (Input.GetAxis("Axis 28") > 0f)
-            axis28Value.text = "positive";
-        else if (Input.GetAxis("Axis 28") < 0f)
-            axis28Value.text = "negative";
-        else
-            axis28Value.text = "";
+		if (Input.GetAxis("Axis 21") > 0f)
+			axis21Value.text = "positive";
+		else if (Input.GetAxis("Axis 21") < 0f)
+			axis21Value.text = "negative";
+		else
+			axis21Value.text = "";
+		
+		if (Input.GetAxis("Axis 22") > 0f)
+			axis22Value.text = "positive";
+		else if (Input.GetAxis("Axis 22") < 0f)
+			axis22Value.text = "negative";
+		else
+			axis22Value.text = "";
+		
+		if (Input.GetAxis("Axis 23") > 0f)
+			axis23Value.text = "positive";
+		else if (Input.GetAxis("Axis 23") < 0f)
+			axis23Value.text = "negative";
+		else
+			axis23Value.text = "";
+		
+		if (Input.GetAxis("Axis 24") > 0f)
+			axis24Value.text = "positive";
+		else if (Input.GetAxis("Axis 24") < 0f)
+			axis24Value.text = "negative";
+		else
+			axis24Value.text = "";
+		
+		if (Input.GetAxis("Axis 25") > 0f)
+			axis25Value.text = "positive";
+		else if (Input.GetAxis("Axis 25") < 0f)
+			axis25Value.text = "negative";
+		else
+			axis25Value.text = "";
+		
+		if (Input.GetAxis("Axis 26") > 0f)
+			axis26Value.text = "positive";
+		else if (Input.GetAxis("Axis 26") < 0f)
+			axis26Value.text = "negative";
+		else
+			axis26Value.text = "";
+		
+		if (Input.GetAxis("Axis 27") > 0f)
+			axis27Value.text = "positive";
+		else if (Input.GetAxis("Axis 27") < 0f)
+			axis27Value.text = "negative";
+		else
+			axis27Value.text = "";
+		
+		if (Input.GetAxis("Axis 28") > 0f)
+			axis28Value.text = "positive";
+		else if (Input.GetAxis("Axis 28") < 0f)
+			axis28Value.text = "negative";
+		else
+			axis28Value.text = "";
 
 
         //buttons
-        if (Input.GetKey(KeyCode.JoystickButton0))
+        if (Input.GetKey(KeyCode.JoystickButton0) == true)
             button0Value.text = "pressed";
         else
             button0Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton1))
+        if (Input.GetKey(KeyCode.JoystickButton1) == true)
             button1Value.text = "pressed";
         else
             button1Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton2))
+        if (Input.GetKey(KeyCode.JoystickButton2) == true)
             button2Value.text = "pressed";
         else
             button2Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton3))
+        if (Input.GetKey(KeyCode.JoystickButton3) == true)
             button3Value.text = "pressed";
         else
             button3Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton4))
+        if (Input.GetKey(KeyCode.JoystickButton4) == true)
             button4Value.text = "pressed";
         else
             button4Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton5))
+        if (Input.GetKey(KeyCode.JoystickButton5) == true)
             button5Value.text = "pressed";
         else
             button5Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton6))
+        if (Input.GetKey(KeyCode.JoystickButton6) == true)
             button6Value.text = "pressed";
         else
             button6Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton7))
+        if (Input.GetKey(KeyCode.JoystickButton7) == true)
             button7Value.text = "pressed";
         else
             button7Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton8))
+        if (Input.GetKey(KeyCode.JoystickButton8) == true)
             button8Value.text = "pressed";
         else
             button8Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton9))
+        if (Input.GetKey(KeyCode.JoystickButton9) == true)
             button9Value.text = "pressed";
         else
             button9Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton10))
+        if (Input.GetKey(KeyCode.JoystickButton10) == true)
             button10Value.text = "pressed";
         else
             button10Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton11))
+        if (Input.GetKey(KeyCode.JoystickButton11) == true)
             button11Value.text = "pressed";
         else
             button11Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton12))
+        if (Input.GetKey(KeyCode.JoystickButton12) == true)
             button12Value.text = "pressed";
         else
             button12Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton13))
+        if (Input.GetKey(KeyCode.JoystickButton13) == true)
             button13Value.text = "pressed";
         else
             button13Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton14))
+        if (Input.GetKey(KeyCode.JoystickButton14) == true)
             button14Value.text = "pressed";
         else
             button14Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton15))
+        if (Input.GetKey(KeyCode.JoystickButton15) == true)
             button15Value.text = "pressed";
         else
             button15Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton16))
+        if (Input.GetKey(KeyCode.JoystickButton16) == true)
             button16Value.text = "pressed";
         else
             button16Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton17))
+        if (Input.GetKey(KeyCode.JoystickButton17) == true)
             button17Value.text = "pressed";
         else
             button17Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton18))
+        if (Input.GetKey(KeyCode.JoystickButton18) == true)
             button18Value.text = "pressed";
         else
             button18Value.text = "";
 
-        if (Input.GetKey(KeyCode.JoystickButton19))
+        if (Input.GetKey(KeyCode.JoystickButton19) == true)
             button19Value.text = "pressed";
         else
-            button19Value.text = "";
-
-
-
-    }
+            button19Value.text = "";	
+	}
 }

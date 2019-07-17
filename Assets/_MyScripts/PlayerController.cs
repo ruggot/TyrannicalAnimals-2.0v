@@ -27,34 +27,37 @@ public class PlayerController : MonoBehaviour
 
     void ControlPlayer()
     {
-        float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
-        float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        if (movement != Vector3.zero)
+        if (!SceneScript.paused)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
-            anim.SetInteger("Walk", 1);
-        }
-        else
-        {
-            anim.SetInteger("Walk", 0);
-        }
+            float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
+            float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);
 
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > canJump)
-        {
-            rb.AddForce(0, jumpForce, 0);
-            canJump = Time.time + timeBeforeNextJump;
-            anim.SetTrigger("Jump");
-        }
-        // linus added this
-        // need some fixing
-        if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
-        {
-            anim.SetTrigger("Peck");
+            if (movement != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+                anim.SetInteger("Walk", 1);
+            }
+            else
+            {
+                anim.SetInteger("Walk", 0);
+            }
+
+            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+
+            if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > canJump)
+            {
+                rb.AddForce(0, jumpForce, 0);
+                canJump = Time.time + timeBeforeNextJump;
+                anim.SetTrigger("Jump");
+            }
+            // linus added this
+            // need some fixing
+            if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
+            {
+                anim.SetTrigger("Peck");
+            }
         }
     }
 }

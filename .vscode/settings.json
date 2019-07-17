@@ -64,6 +64,10 @@
     "Assembly-CSharp-firstpass.csproj": true,
     "Assembly-CSharp.csproj": true,
     "Assets\\_Shaders": true,
-    "Assets\\_MyPrefabs": true
+    "Assets\\_MyPrefabs": true,
+    "Packages": true,
+    "Tyranical Animals_Data": true,
+    "Assets\\HardShellStudios": true,
+    "Assets\\Standard Assets": true
   }
 }

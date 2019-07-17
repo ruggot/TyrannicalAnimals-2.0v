@@ -8,6 +8,8 @@ public class CharacterManager : MonoBehaviour
     // int that saves what the player selected as a string
     public static int player1Selection = 0;
     public static int player2Selection = 1; 
+    public static string player1Gamepad = "360";
+    public static string player2Gamepad = "360";
 
     // P1 getter + setter
     public int GetPlayer1Selection() => player1Selection;

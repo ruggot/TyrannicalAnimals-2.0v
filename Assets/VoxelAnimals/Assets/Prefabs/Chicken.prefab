@@ -407,11 +407,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  p1LightHit: {fileID: 0}
-  p1HeavyHit: {fileID: 0}
-  p1Specialhit: {fileID: 0}
+  lightHit: {fileID: 0}
+  heavyHit: {fileID: 0}
+  specialHit: {fileID: 0}
+  utilityHit: {fileID: 0}
+  bodyCollider: {fileID: 0}
   jumpForce: 300
-  timeBeforeNextJump: 1.2
+  lastJump: 0
+  lastLight: 0
+  lastHeavy: 0
+  lastUtility: 0
+  lastSpecial: 0
   player: 2
   gPad: 360
 --- !u!1 &5544144602472229201
@@ -440,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 5544144602472229201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0028699993, y: 0.00296, z: 0.00212}
-  m_LocalScale: {x: 0.0100000035, y: 0.01, z: 0.0100000035}
+  m_LocalScale: {x: 0.010737799, y: 0.015037, z: 0.02}
   m_Children: []
   m_Father: {fileID: 4431355569897286}
   m_RootOrder: 0

@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
             {
                 anim.SetTrigger("Peck");
+                p1LightHit.SetActive(true);
 
             }
             if (Input.GetButtonDown("J" + player + "_Special_" + gPad))
@@ -71,6 +72,13 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Heavy");
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            Debug.Log("Player Hit");
         }
     }
 }

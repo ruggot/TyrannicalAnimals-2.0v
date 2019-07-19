@@ -17,15 +17,18 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateVars();
-        UpdateCamraPos();
-        midpointBlock.SetPositionAndRotation(midpoint, midpointBlock.rotation);
+        {
+            UpdateCameraPos();
+            midpointBlock.SetPositionAndRotation(midpoint, midpointBlock.rotation);
+        }
+        mainCamera.LookAt(midpoint);
     }
 
     void UpdateVars()
@@ -35,10 +38,14 @@ public class CameraController : MonoBehaviour
         midpoint = (player1.position + player2.position) / 2;
     }
 
-    void UpdateCamraPos()
+    void UpdateCameraPos()
     {
         newCamPos = midpoint + offset;
+        if (Vector3.Distance(mainCamera.position, midpoint) > 10)
+        {
+            newCamPos.x = Mathf.Clamp(newCamPos.x, -50f, 50f);
+            newCamPos.z = Mathf.Clamp(newCamPos.z, -50f, 50f);
+        }
         mainCamera.SetPositionAndRotation(newCamPos, mainCamera.rotation);
-        mainCamera.LookAt(midpoint);
     }
 }

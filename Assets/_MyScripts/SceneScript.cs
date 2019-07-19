@@ -15,6 +15,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     /// Character Selection camera
     [SerializeField] private GameObject characterSelectPerspective;
     /// Character Selection object
+    
     [SerializeField] private GameObject characterSelect;
     /// Pause Screen panel
     [SerializeField] private GameObject pausePanel;
@@ -26,8 +27,8 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public static bool paused = false;
     public static bool inGame = false;
 
-    public string Player2Gampad { get => player2Gamepad; set => player2Gamepad = value; }
     public string Player1Gampad { get => player1Gamepad; set => player1Gamepad = value; }
+    public string Player2Gampad { get => player2Gamepad; set => player2Gamepad = value; }
 
     private void Start()
     {

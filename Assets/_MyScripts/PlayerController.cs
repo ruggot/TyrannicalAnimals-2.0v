@@ -6,13 +6,18 @@ public class PlayerController : MonoBehaviour
 {
 
     public float movementSpeed = 3;
+    // collider for p1
+    public GameObject p1LightHit;
+    public GameObject p1HeavyHit;
+    public GameObject p1Specialhit;
+
     public float jumpForce = 300;
     public float timeBeforeNextJump = 1.2f;
     private float canJump = 0f;
-    [SerializeField] private string player;
-    [SerializeField] private string gPad;
-    Animator anim;
-    Rigidbody rb;
+    [SerializeField] protected string player;
+    [SerializeField] protected string gPad;
+    protected Animator anim;
+    protected Rigidbody rb;
 
     void Start()
     {
@@ -25,7 +30,7 @@ public class PlayerController : MonoBehaviour
         ControlPlayer();
     }
 
-    void ControlPlayer()
+    protected void ControlPlayer()
     {
         if (!SceneScript.paused)
         {
@@ -52,11 +57,19 @@ public class PlayerController : MonoBehaviour
                 canJump = Time.time + timeBeforeNextJump;
                 anim.SetTrigger("Jump");
             }
-            // linus added this
-            // need some fixing
+
             if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
             {
                 anim.SetTrigger("Peck");
+
+            }
+            if (Input.GetButtonDown("J" + player + "_Special_" + gPad))
+            {
+                anim.SetTrigger("Special");
+            }
+            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad))
+            {
+                anim.SetTrigger("Heavy");
             }
         }
     }

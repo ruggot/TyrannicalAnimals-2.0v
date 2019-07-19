@@ -57,6 +57,20 @@ public class PlayerController : MonoBehaviour
                 canJump = Time.time + timeBeforeNextJump;
                 anim.SetTrigger("Jump");
             }
+
+            if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
+            {
+                anim.SetTrigger("Peck");
+
+            }
+            if (Input.GetButtonDown("J" + player + "_Special_" + gPad))
+            {
+                anim.SetTrigger("Special");
+            }
+            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad))
+            {
+                anim.SetTrigger("Heavy");
+            }
         }
     }
 }

@@ -7,15 +7,35 @@ public class PlayerController : MonoBehaviour
 
     public float movementSpeed = 3;
     // collider for p1
-    public GameObject p1LightHit;
-    public GameObject p1HeavyHit;
-    public GameObject p1Specialhit;
+    [SerializeField] protected BoxCollider lightHit;
+    [SerializeField] protected BoxCollider heavyHit;
+    [SerializeField] protected BoxCollider specialHit;
+    [SerializeField] protected BoxCollider utilityHit;
+    [SerializeField] protected BoxCollider bodyCollider;
 
-    public float jumpForce = 300;
-    public float timeBeforeNextJump = 1.2f;
-    private float canJump = 0f;
+    [SerializeField] protected float jumpForce;
+
+    private float jumpCool = 1f;
+    private float lightCool = 0.3f;
+    private float heavyCool = 1.2f;
+    private float utilityCool = 1.2f;
+    private float specialCool = 1.2f;
+
+    public float lastJump = 0f;
+    public float lastLight = 0f;
+    public float lastHeavy = 0f;
+    public float lastUtility = 0f;
+    public float lastSpecial = 0f;
+
+    private bool canJump = true;
+    private bool canLight = true;
+    private bool canHeavy = true;
+    private bool canUtility = true;
+    private bool canSpecial = true;
+
     [SerializeField] protected string player;
     [SerializeField] protected string gPad;
+
     protected Animator anim;
     protected Rigidbody rb;
 
@@ -44,40 +64,77 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
                 anim.SetInteger("Walk", 1);
             }
-            else
-            {
-                anim.SetInteger("Walk", 0);
-            }
+            else anim.SetInteger("Walk", 0);
 
-            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            rb.AddForce(movement * movementSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
 
-            if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > canJump)
+            if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > jumpCool && canJump)
             {
                 rb.AddForce(0, jumpForce, 0);
-                canJump = Time.time + timeBeforeNextJump;
+                lastJump = Time.time + jumpCool;
                 anim.SetTrigger("Jump");
+                canJump = false;
             }
 
-            if (Input.GetButtonDown("J" + player + "_Light_" + gPad))
+            if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight)
             {
                 anim.SetTrigger("Peck");
-                p1LightHit.SetActive(true);
+                lastLight = Time.time + lightCool;
+                lightHit.enabled = true;
+                canLight = false;
+            }
 
-            }
-            if (Input.GetButtonDown("J" + player + "_Special_" + gPad))
-            {
-                anim.SetTrigger("Special");
-            }
-            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad))
+            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.deltaTime > heavyCool && canHeavy)
             {
                 anim.SetTrigger("Heavy");
+                lastHeavy = Time.time + heavyCool;
+                heavyHit.enabled = true;
+                canHeavy = false;
             }
+
+            /// Utility attack
+            // Uncomment when utility added
+            //            if (Input.GetButtonDown("J" + player + "_Utility_" + gPad) && Time.time > utilityDelay && canUtility)
+            //            {
+            //                anim.SetTrigger("Utility");
+            //                sinceUtility = Time.time + utilityDelay;
+            //            }
+
+            if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial)
+            {
+                anim.SetTrigger("Special");
+                lastSpecial = Time.time + specialCool;
+                specialHit.enabled = true;
+            }
+
+            FastFall();
+            ResetAbilities();
         }
+    }
+
+    private void FastFall()
+    {
+        if (rb.velocity.y < -0.01) { rb.AddForce(Vector3.down * 30, ForceMode.Acceleration); }
+        //        else { rb.mass = 1f; }
+    }
+
+    private void ResetAbilities()
+    {
+        if (Time.time  >=  lastLight + lightCool) { lightHit.enabled = false; canLight = true; }
+        if (Time.time  >=  lastHeavy + heavyCool) { heavyHit.enabled = false; canHeavy = true; }
+        if (Time.time  >=  lastUtility + utilityCool) { utilityHit.enabled = false; canUtility = true; }
+        if (Time.time  >=  lastSpecial + specialCool) { specialHit.enabled = false; canSpecial = true; }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        canJump = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player")
+        {
             Debug.Log("Player Hit");
         }
     }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class RoundCounter : MonoBehaviour
 {
+    public PlayerController playercontroller;
     // countdown and roundtimmer
     public float roundTimer = 400f;
     public float countDowner = 3f;    // points for the players

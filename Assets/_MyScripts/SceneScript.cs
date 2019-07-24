@@ -69,15 +69,18 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     // Convention -- Methods should be named in Pascal case i.e. CapitaliseEveryWord()
     /// Load Level_1.unity
     public void LevelOne() => SceneManager.LoadScene("Level_1");
-    // Convention -- Avoid using spaces when naming scenes, objects, etc.; they can cause issues. Using integers instead of words will keep the files in order no matter how many there are 
-    // Convention -- Pascal case
+	// Convention -- Avoid using spaces when naming scenes, objects, etc.; they can cause issues. Using integers instead of words will keep the files in order no matter how many there are 
+	// Convention -- Pascal case
+	public void HowToPlay() => SceneManager.LoadScene("HowToPlay");
+	// Access tutorial from menu
 
-    /// End Character Select and begin the level  
-    public void BeginLevel()
+	/// End Character Select and begin the level  
+	public void BeginLevel()
     {
         characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);
-        inGame = true;
+		GameObject.Find("HUD").SetActive(true);
+		inGame = true;
     }
 
     public void Pause()

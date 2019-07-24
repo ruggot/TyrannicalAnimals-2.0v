@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected float jumpForce;
 
+    private float Player1HP = 1f;
+    private float Player2HP = 1f;
+
     private float jumpCool = 1f;
     private float lightCool = 0.3f;
     private float heavyCool = 1.2f;
@@ -136,6 +139,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player Hit");
+            if (gameObject.name == "Chicken_P1") {
+                
+            }
         }
     }
 }

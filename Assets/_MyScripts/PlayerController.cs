@@ -16,16 +16,19 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected float jumpForce;
 
+    // Setting player starting Health Points
     private float Player1HP = 1f;
     private float Player2HP = 1f;
-
+    // Defining players health bars
+    public Image Player1HPbar;
+    public Image Player2HPbar;
     // Cooldown for player ablitys
     private float jumpCool = 1f;
     private float lightCool = 0.3f;
     private float heavyCool = 1.2f;
     private float utilityCool = 1.2f;
     private float specialCool = 1.2f;
-    // how long it has been sens the player push that button
+    // how long it has been since the player push that button
     public float lastJump = 0f;
     public float lastLight = 0f;
     public float lastHeavy = 0f;
@@ -143,14 +146,19 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player Hit");
-            if (gameObject.name == "Chicken_P1") {
-                
+            if (other.gameObject.name == "Chicken_P2") {
+                Player2HP -= 0.06f;
+                Player2HPbar.fillAmount = Player2HP;
+            }
+            if (other.gameObject.name == "Chicken_P1") {
+                Player1HP -= 0.06f;
+                Player1HPbar.fillAmount = Player1HP;
             }
         }
     }
 
     private void CooldownForSkillOne()
     {
-        skillOne.fillAmount -= 1 / lightCool * Time.deltaTime;
+        skillOne.fillAmount += 1  * Time.deltaTime;
     }
 }

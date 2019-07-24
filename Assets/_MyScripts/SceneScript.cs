@@ -79,7 +79,6 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     {
         characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);
-		GameObject.Find("HUD").SetActive(true);
 		inGame = true;
     }
 

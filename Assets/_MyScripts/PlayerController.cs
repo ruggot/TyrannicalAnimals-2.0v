@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    
     public float movementSpeed = 3;
-    // collider for p1
+    // collider for players
     [SerializeField] protected BoxCollider lightHit;
     [SerializeField] protected BoxCollider heavyHit;
     [SerializeField] protected BoxCollider specialHit;
@@ -18,18 +19,19 @@ public class PlayerController : MonoBehaviour
     private float Player1HP = 1f;
     private float Player2HP = 1f;
 
+    // Cooldown for player ablitys
     private float jumpCool = 1f;
     private float lightCool = 0.3f;
     private float heavyCool = 1.2f;
     private float utilityCool = 1.2f;
     private float specialCool = 1.2f;
-
+    // how long it has been sens the player push that button
     public float lastJump = 0f;
     public float lastLight = 0f;
     public float lastHeavy = 0f;
     public float lastUtility = 0f;
     public float lastSpecial = 0f;
-
+    // bool to check if the player can do the input
     private bool canJump = true;
     private bool canLight = true;
     private bool canHeavy = true;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected string player;
     [SerializeField] protected string gPad;
+    [SerializeField] protected Image skillOne;
 
     protected Animator anim;
     protected Rigidbody rb;
@@ -85,6 +88,7 @@ public class PlayerController : MonoBehaviour
                 lastLight = Time.time + lightCool;
                 lightHit.enabled = true;
                 canLight = false;
+                CooldownForSkillOne();
             }
 
             if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.deltaTime > heavyCool && canHeavy)
@@ -143,5 +147,10 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+    }
+
+    private void CooldownForSkillOne()
+    {
+        skillOne.fillAmount -= 1 / lightCool * Time.deltaTime;
     }
 }

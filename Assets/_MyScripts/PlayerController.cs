@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected float jumpForce;
 
+    private float timerDown = 1f;
+    public bool cooldownIsDown;
     // Setting player starting Health Points
     private float Player1HP = 1f;
     private float Player2HP = 1f;
@@ -91,7 +93,6 @@ public class PlayerController : MonoBehaviour
                 lastLight = Time.time + lightCool;
                 lightHit.enabled = true;
                 canLight = false;
-                CooldownForSkillOne();
             }
 
             if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.deltaTime > heavyCool && canHeavy)
@@ -115,6 +116,10 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("Special");
                 lastSpecial = Time.time + specialCool;
                 specialHit.enabled = true;
+            }
+                if (cooldownIsDown == true)
+            {
+                skillOne.fillAmount += 1.0f / timerDown  * Time.deltaTime;
             }
 
             FastFall();
@@ -155,10 +160,5 @@ public class PlayerController : MonoBehaviour
                 Player1HPbar.fillAmount = Player1HP;
             }
         }
-    }
-
-    private void CooldownForSkillOne()
-    {
-        skillOne.fillAmount += 1  * Time.deltaTime;
     }
 }

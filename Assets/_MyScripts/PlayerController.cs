@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float jumpForce;
 
     private float timerDown = 1f;
-    public bool cooldownIsDown;
     // Setting player starting Health Points
     private float Player1HP = 1f;
     private float Player2HP = 1f;
@@ -41,11 +40,14 @@ public class PlayerController : MonoBehaviour
     private bool canLight = true;
     private bool canHeavy = true;
     private bool canUtility = true;
-    private bool canSpecial = true;
+    public bool canSpecial = true;
 
     [SerializeField] protected string player;
     [SerializeField] protected string gPad;
-    [SerializeField] protected Image skillOne;
+    [SerializeField] protected Image lightAttack;
+    [SerializeField] protected Image heavyAttack;
+    [SerializeField] protected Image utilityAttack;
+    [SerializeField] protected Image specialAttack;
 
     protected Animator anim;
     protected Rigidbody rb;
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 canLight = false;
             }
 
-            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.deltaTime > heavyCool && canHeavy)
+            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy)
             {
                 anim.SetTrigger("Heavy");
                 lastHeavy = Time.time + heavyCool;
@@ -115,12 +117,68 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Special");
                 lastSpecial = Time.time + specialCool;
-                specialHit.enabled = true;
+                //specialHit.enabled = true;
+                canSpecial = false;
             }
-                if (cooldownIsDown == true)
+
+            // starts timer for light attack
+            if (canLight == false)
             {
-                skillOne.fillAmount += 1.0f / timerDown  * Time.deltaTime;
+                lightAttack.fillAmount += 1.0f / lightCool  * Time.deltaTime;
             }
+
+            if (canHeavy == false)
+            {
+                heavyAttack.fillAmount += 1.0f / heavyCool * Time.deltaTime;
+            }
+
+            // Actived when utility attack is working
+            //if (canUtility == false)
+            //{
+            //    utilityAttack.fillAmount += 1.0f / utilityCool * Time.deltaTime;
+            //}
+
+            if (canSpecial == false)
+            {
+                specialAttack.fillAmount += 1.0f / specialCool * Time.deltaTime;
+            }
+
+            if (lightAttack.fillAmount >= 1)
+            {
+                lightAttack.fillAmount = 0;
+                canLight = true;
+            }
+
+            if (heavyAttack.fillAmount >= 1)
+            {
+                heavyAttack.fillAmount = 0;
+                canHeavy = true;
+            }
+
+            // Actived when utility attack is working
+            //if (utilityAttack.fillAmount >= 1)
+            //{
+            //    utilityAttack.fillAmount = 0;
+            //    canUtility = true;
+            //}
+
+            if (specialAttack.fillAmount >= 1)
+            {
+                specialAttack.fillAmount = 0;
+                canSpecial = true;
+            }
+
+            //if (utilityAttack.fillAmount >= 1)
+            //{
+            //    utilityAttack.fillAmount = 0;
+            //    canUtility = true;
+            //}
+
+            //if (specialAttack.fillAmount >= 1)
+            //{
+            //    specialAttack.fillAmount = 0;
+            //    canSpecial = true;
+            //}
 
             FastFall();
             ResetAbilities();

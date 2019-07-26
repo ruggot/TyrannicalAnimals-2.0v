@@ -16,12 +16,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected float jumpForce;
 
-    // Setting player starting Health Points
-    private float Player1HP = 1f;
-    private float Player2HP = 1f;
-    // Defining players health bars
-    public Image Player1HPbar;
-    public Image Player2HPbar;
     // Cooldown for player ablitys
     private float jumpCool = 1f;
     private float lightCool = 0.3f;
@@ -139,22 +133,6 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         canJump = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Player Hit");
-            if (other.gameObject.name == "Chicken_P2") {
-                Player2HP -= 0.06f;
-                Player2HPbar.fillAmount = Player2HP;
-            }
-            if (other.gameObject.name == "Chicken_P1") {
-                Player1HP -= 0.06f;
-                Player1HPbar.fillAmount = Player1HP;
-            }
-        }
     }
 
     private void CooldownForSkillOne()

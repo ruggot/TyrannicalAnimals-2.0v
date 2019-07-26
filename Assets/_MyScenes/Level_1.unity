@@ -1327,7 +1327,7 @@ PrefabInstance:
     - target: {fileID: 5571203927569775671, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
       propertyPath: m_Name
-      value: Legs
+      value: P1HeavyHit
       objectReference: {fileID: 0}
     - target: {fileID: 5571203927569775671, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
@@ -1337,7 +1337,7 @@ PrefabInstance:
     - target: {fileID: 5544144602472229201, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
       propertyPath: m_Name
-      value: ChickenP1PeckHit
+      value: P1LightHit
       objectReference: {fileID: 0}
     - target: {fileID: 5544144602472229201, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
@@ -2867,7 +2867,8 @@ PrefabInstance:
       propertyPath: gPad
       value: 360
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2732641472674163318, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
 --- !u!1 &278377682 stripped
 GameObject:
@@ -3436,7 +3437,8 @@ PrefabInstance:
       propertyPath: skillOne
       value: 
       objectReference: {fileID: 214655585}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2732641472674163318, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
 --- !u!1001 &413164175
 PrefabInstance:
@@ -5840,8 +5842,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: SetPlayer1Selection
-        m_Mode: 3
+        m_MethodName: ChickenP1
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7108,6 +7110,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1276928793}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1003771241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003771240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a276df72b3e0f419d96bd0980c29c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1HPbar: {fileID: 1262619672}
+  Player2HPbar: {fileID: 923672912}
+  Player1Furybar: {fileID: 480937915}
+  Player2Furybar: {fileID: 220807519}
 --- !u!65 &1003771242 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 65706843018012252, guid: aa3784adb6428184e991be2d60ee0cb2,
@@ -7126,6 +7144,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 132667515}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012759650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012759649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a276df72b3e0f419d96bd0980c29c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1HPbar: {fileID: 1262619672}
+  Player2HPbar: {fileID: 923672912}
+  Player1Furybar: {fileID: 480937915}
+  Player2Furybar: {fileID: 220807519}
 --- !u!65 &1012759651 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 65706843018012252, guid: aa3784adb6428184e991be2d60ee0cb2,
@@ -9409,7 +9443,7 @@ PrefabInstance:
     - target: {fileID: 5571203927569775671, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
       propertyPath: m_Name
-      value: Legs
+      value: P2HeavyHit
       objectReference: {fileID: 0}
     - target: {fileID: 5544144602472229201, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
@@ -9420,6 +9454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544144602472229201, guid: aa3784adb6428184e991be2d60ee0cb2,
+        type: 3}
+      propertyPath: m_Name
+      value: P2LightHit
       objectReference: {fileID: 0}
     - target: {fileID: 8384647245734105419, guid: aa3784adb6428184e991be2d60ee0cb2,
         type: 3}
@@ -9989,8 +10028,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: SetPlayer1Selection
-        m_Mode: 3
+        m_MethodName: LionP1
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11780,7 +11819,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4bcf71fe0061cb74c9b6921b7f891a8f, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2732641472674163318, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
 --- !u!1001 &1591740667
 PrefabInstance:
@@ -12283,8 +12323,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: SetPlayer2Selection
-        m_Mode: 3
+        m_MethodName: LionP2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14882,8 +14922,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: SetPlayer2Selection
-        m_Mode: 3
+        m_MethodName: ChickenP2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15132,7 +15172,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4bcf71fe0061cb74c9b6921b7f891a8f, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2732641472674163318, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
 --- !u!1 &5544144602472229201 stripped
 GameObject:

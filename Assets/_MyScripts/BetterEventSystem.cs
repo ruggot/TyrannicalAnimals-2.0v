@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BetterEventSystem : EventSystem
 {
-
     protected override void OnEnable()
     {
         base.OnEnable();

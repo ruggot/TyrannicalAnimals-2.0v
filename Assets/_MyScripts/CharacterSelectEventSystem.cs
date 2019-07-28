@@ -10,26 +10,31 @@ public class CharacterSelectEventSystem : EventSystem
     Selectable[] currentSelectedObjects = new Selectable[2];
     bool[] selectionConfirmed = new bool[2];
 
-    public void SetSelected(int index, Selectable selected) {
+    public void SetSelected(int index, Selectable selected)
+    {
         currentSelectedObjects[index] = selected;
         lastSelectionSet = index;
     }
 
-    public Selectable GetSelected(int index) {
+    public Selectable GetSelected(int index)
+    {
         return currentSelectedObjects[index];
     }
 
-    public void ConfirmSelection(int index) {
+    public void ConfirmSelection(int index)
+    {
         selectionConfirmed[index] = true;
         lastConfirmChanged = index;
     }
 
-    public void CancelSelection(int index) {
+    public void CancelSelection(int index)
+    {
         selectionConfirmed[index] = false;
         lastConfirmChanged = index;
     }
 
-    public bool ConfirmedSelection(int index) {
+    public bool ConfirmedSelection(int index)
+    {
         return selectionConfirmed[index];
     }
 }

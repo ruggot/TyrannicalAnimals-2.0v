@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     public float movementSpeed = 3;
     // collider for players
     [SerializeField] protected BoxCollider lightHit;
@@ -23,27 +23,28 @@ public class PlayerController : MonoBehaviour
     private float utilityCool = 1.2f;
     private float specialCool = 1.2f;
     // how long it has been since the player push that button
-    public float lastJump = 0f;
-    public float lastLight = 0f;
-    public float lastHeavy = 0f;
-    public float lastUtility = 0f;
-    public float lastSpecial = 0f;
+    private float lastJump = 0f;
+    private float lastLight = 0f;
+    private float lastHeavy = 0f;
+    private float lastUtility = 0f;
+    private float lastSpecial = 0f;
     // bool to check if the player can do the input
     private bool canJump = true;
     private bool canLight = true;
     private bool canHeavy = true;
     private bool canUtility = true;
-    public bool canSpecial = true;
+    private bool canSpecial = true;
 
     [SerializeField] protected string player;
     [SerializeField] protected string gPad;
-    [SerializeField] protected Image lightAttack;
-    [SerializeField] protected Image heavyAttack;
-    [SerializeField] protected Image utilityAttack;
-    [SerializeField] protected Image specialAttack;
+    [SerializeField] protected Image lightUI;
+    [SerializeField] protected Image heavyUI;
+    [SerializeField] protected Image utilityUI;
+    [SerializeField] protected Image specialUI;
 
     protected Animator anim;
     protected Rigidbody rb;
+
 
     void Start()
     {
@@ -51,14 +52,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+
     void Update()
     {
         ControlPlayer();
     }
 
+
     protected void ControlPlayer()
     {
-        if (!SceneScript.paused)
+        if (SceneScript.inGame)
         {
             float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
             float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
 
             /// Utility attack
-            // Uncomment when utility added
+            // NOTE  Uncomment when utility added
             //            if (Input.GetButtonDown("J" + player + "_Utility_" + gPad) && Time.time > utilityDelay && canUtility)
             //            {
             //                anim.SetTrigger("Utility");
@@ -117,12 +120,12 @@ public class PlayerController : MonoBehaviour
             // starts timer for light attack
             if (canLight == false)
             {
-                lightAttack.fillAmount += 1.0f / lightCool  * Time.deltaTime;
+                lightUI.fillAmount += 1f / lightCool * Time.deltaTime;
             }
 
             if (canHeavy == false)
             {
-                heavyAttack.fillAmount += 1.0f / heavyCool * Time.deltaTime;
+                heavyUI.fillAmount += 1f / heavyCool * Time.deltaTime;
             }
 
             // Actived when utility attack is working
@@ -133,18 +136,18 @@ public class PlayerController : MonoBehaviour
 
             if (canSpecial == false)
             {
-                specialAttack.fillAmount += 1.0f / specialCool * Time.deltaTime;
+                specialUI.fillAmount += 1f / specialCool * Time.deltaTime;
             }
 
-            if (lightAttack.fillAmount >= 1)
+            if (lightUI.fillAmount >= 1)
             {
-                lightAttack.fillAmount = 0;
+                lightUI.fillAmount = 0;
                 canLight = true;
             }
 
-            if (heavyAttack.fillAmount >= 1)
+            if (heavyUI.fillAmount >= 1)
             {
-                heavyAttack.fillAmount = 0;
+                heavyUI.fillAmount = 0;
                 canHeavy = true;
             }
 
@@ -155,9 +158,9 @@ public class PlayerController : MonoBehaviour
             //    canUtility = true;
             //}
 
-            if (specialAttack.fillAmount >= 1)
+            if (specialUI.fillAmount >= 1)
             {
-                specialAttack.fillAmount = 0;
+                specialUI.fillAmount = 0;
                 canSpecial = true;
             }
 
@@ -186,10 +189,10 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAbilities()
     {
-        if (Time.time  >=  lastLight + lightCool) { lightHit.enabled = false; canLight = true; }
-        if (Time.time  >=  lastHeavy + heavyCool) { heavyHit.enabled = false; canHeavy = true; }
-        if (Time.time  >=  lastUtility + utilityCool) { utilityHit.enabled = false; canUtility = true; }
-        if (Time.time  >=  lastSpecial + specialCool) { specialHit.enabled = false; canSpecial = true; }
+        if (Time.time >= lastLight + lightCool) { lightHit.enabled = false; canLight = true; }
+        if (Time.time >= lastHeavy + heavyCool) { heavyHit.enabled = false; canHeavy = true; }
+        if (Time.time >= lastUtility + utilityCool) { utilityHit.enabled = false; canUtility = true; }
+        if (Time.time >= lastSpecial + specialCool) { specialHit.enabled = false; canSpecial = true; }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -199,6 +202,6 @@ public class PlayerController : MonoBehaviour
 
     private void CooldownForSkillOne()
     {
-        skillOne.fillAmount += 1  * Time.deltaTime;
+        // FIXME skillOne.fillAmount += 1 * Time.deltaTime;
     }
 }

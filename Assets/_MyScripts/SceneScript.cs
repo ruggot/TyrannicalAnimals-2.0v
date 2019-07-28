@@ -15,7 +15,6 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     /// Character Selection camera
     [SerializeField] private GameObject characterSelectPerspective;
     /// Character Selection object
-    
     [SerializeField] private GameObject characterSelect;
     /// Pause Screen panel
     [SerializeField] private GameObject pausePanel;
@@ -32,13 +31,13 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 
     private void Start()
     {
-        // ensure correct objects are disabled
-        mainCamera.SetActive(false);
-        GameObject.Find("Chicken_P1").SetActive(false);
-        GameObject.Find("Chicken_P2").SetActive(false);
-        GameObject.Find("HUD").SetActive(false);
-        GameObject.Find("EGO DayObject").SetActive(true);
-        GameObject.Find("EGO NightObject").SetActive(false);
+        // ensure correct objects are disabled/enabled
+        if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
+        if (GameObject.Find("Chicken_P1").activeInHierarchy) GameObject.Find("Chicken_P1").SetActive(false);
+        if (GameObject.Find("Chicken_P2").activeInHierarchy) GameObject.Find("Chicken_P2").SetActive(false);
+        if (GameObject.Find("HUD").activeInHierarchy) GameObject.Find("HUD").SetActive(false);
+        if (GameObject.Find("EGO DayObject").activeInHierarchy == false) GameObject.Find("EGO DayObject").SetActive(true);
+        if (GameObject.Find("EGO NightObject").activeInHierarchy) GameObject.Find("EGO NightObject").SetActive(false);
         Cursor.visible = false; //This hides the cursor upon the game opening
     }
 
@@ -58,28 +57,26 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void Quit() => Application.Quit();
     /// Load Options.unity
     public void Options() => SceneManager.LoadScene("Options");
-    // English -- The plural "options" is usually used for this
+
     /// Load LevelSelect.unity
     public void Level() => SceneManager.LoadScene("LevelSelect");
-    // Convention -- Pascal case (see below) 
-    // Consistency/convention -- The rest of the methods were named for their destination (e.g. Options() instead of GoToOptions()), this one should be as well. This also keeps the name appropriately descriptive if you want to use the method from elsewhere
+
     /// Load Menu.unity
     public void Menu() => SceneManager.LoadScene("Menu");
-    // English -- Just a spelling mistake: meny -> menu 
-    // Convention -- Methods should be named in Pascal case i.e. CapitaliseEveryWord()
+
     /// Load Level_1.unity
     public void LevelOne() => SceneManager.LoadScene("Level_1");
-	// Convention -- Avoid using spaces when naming scenes, objects, etc.; they can cause issues. Using integers instead of words will keep the files in order no matter how many there are 
-	// Convention -- Pascal case
-	public void HowToPlay() => SceneManager.LoadScene("HowToPlay");
-	// Access tutorial from menu
 
-	/// End Character Select and begin the level  
-	public void BeginLevel()
+    /// Load HowToPlay.unity
+    public void HowToPlay() => SceneManager.LoadScene("HowToPlay");
+    // Access tutorial from menu
+
+    /// End Character Select and begin the level  
+    public void BeginLevel()
     {
         characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);
-		inGame = true;
+        inGame = true;
     }
 
     public void Pause()

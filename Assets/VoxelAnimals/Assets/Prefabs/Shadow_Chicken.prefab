@@ -103,12 +103,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467294106347906}
-  m_LocalRotation: {x: 0.0000000515792, y: -0.7740031, z: 0.00000006305054, w: 0.63318187}
-  m_LocalPosition: {x: -0.15, y: -0.36, z: 0.28}
-  m_LocalScale: {x: 100.000046, y: 100, z: 100.000046}
+  m_LocalRotation: {x: 0.000000051579192, y: -0.7740031, z: 0.00000006305055, w: 0.63318187}
+  m_LocalPosition: {x: -0.15000008, y: -0.36, z: 0.28}
+  m_LocalScale: {x: 100.000015, y: 100, z: 100.00002}
   m_Children: []
   m_Father: {fileID: 6890231040382423240}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33910132354422980
 MeshFilter:
@@ -257,12 +257,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650127720286380}
-  m_LocalRotation: {x: 0.0000000515792, y: -0.7740031, z: 0.00000006305054, w: 0.63318187}
-  m_LocalPosition: {x: -0.03, y: -0.36, z: -0.28}
-  m_LocalScale: {x: 100.000046, y: 100, z: 100.000046}
+  m_LocalRotation: {x: 0.000000051579192, y: -0.7740031, z: 0.00000006305055, w: 0.63318187}
+  m_LocalPosition: {x: -0.030000001, y: -0.36, z: -0.28000006}
+  m_LocalScale: {x: 100.000015, y: 100, z: 100.00002}
   m_Children: []
   m_Father: {fileID: 6890231040382423240}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33922833276370558
 MeshFilter:
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 65706843018012252}
   - component: {fileID: 2732641472674163318}
   m_Layer: 0
-  m_Name: Chicken
+  m_Name: Shadow_Chicken
   m_TagString: Player 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6890231040382423240}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 79.1, z: 0}
 --- !u!65 &4371495299504127071
 BoxCollider:
@@ -535,9 +535,9 @@ Transform:
   m_LocalPosition: {x: -0.016648099, y: 0.86153805, z: -0.08234673}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
+  - {fileID: 6279893216368063364}
   - {fileID: 4701122132943260}
   - {fileID: 4656303906886512}
-  - {fileID: 6279893216368063364}
   m_Father: {fileID: 4292928448873590}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

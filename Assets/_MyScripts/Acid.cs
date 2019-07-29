@@ -13,6 +13,9 @@ public class Acid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Translate(Vector3.up * Time.deltaTime);
+        if (transform.position.y < 6)
+        {
+            gameObject.transform.Translate(Vector3.up * Time.deltaTime);
+        }
     }
 }

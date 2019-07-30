@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// NOTE What's this for? It seems to be redundant in the current build
+
 public class CharacterSelectEventSystem : EventSystem
 {
     public int lastSelectionSet { get; private set; }

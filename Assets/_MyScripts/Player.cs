@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private string pLog = "P1: ";
+    [SerializeField] protected Player self;
     [SerializeField] protected Player enemyPlayer;
 
+    [SerializeField] protected int fighter;
     [SerializeField] protected Image playerHpBar;
     [SerializeField] protected Image playerFuryBar;
 
-    protected float playerHp = 1f;
+    private string pLog;
+    protected float playerHp = 10f;
     protected float playerFury = 0f;
 
     private float lightDmg;
@@ -19,6 +21,13 @@ public class Player : MonoBehaviour
     private float specialDmg;
     private float lightFury;
     private float heavyFury;
+
+    private bool canJump = true;
+    private bool canLight = true;
+    private bool canHeavy = true;
+    private bool canUtility = true;
+    private bool canSpecial = true;
+
 
     // constructor
     /// 1 = Chicken; 2 = Lion; 3 = Penguin
@@ -43,7 +52,7 @@ public class Player : MonoBehaviour
                     specialDmg = 0.00f;
                     lightFury = 0.15f;
                     heavyFury = 0.25f;
-                    Debug.Log("Lion selected");
+                    Debug.Log(pLog + ": Lion selected");
                     break;
                 }
             case 3:
@@ -53,16 +62,19 @@ public class Player : MonoBehaviour
                     specialDmg = 0.10f;
                     lightFury = 0.20f;
                     heavyFury = 0.30f;
-                    Debug.Log("Penguin selected");
+                    Debug.Log(pLog + ": Penguin selected");
                     break;
                 }
-            default: Debug.Log("Player must be constructed with a fighter value;"); break;
+            default: Debug.Log(pLog + ": Player must be constructed with a fighter value;"); break;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        self = new Player(fighter);
+        pLog = self.name.Remove(0, 6);
+        Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);
         if (CharacterManager.player1Selection == 0)
         {
             // TODO
@@ -73,25 +85,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ReenableHitboxes();
     }
 
 
     public void TakeDamage(string furyType, float dmg)
     {
         playerHp -= dmg;
-        playerHpBar.fillAmount = playerHp;
+        playerHpBar.fillAmount = 1 / playerHp;
         switch (furyType)
         {
-            case "light": TakeFury(lightFury); break;
-            case "heavy": TakeFury(heavyFury); break;
+            case "light": BuildFury(lightFury); break;
+            case "heavy": BuildFury(heavyFury); break;
             case "special": break;
-            default: Debug.Log("TakeDamage(string furyType) invalid"); break;
+            default: Debug.Log(pLog + ": TakeDamage(string furyType) invalid"); break;
         }
     }
 
 
-    private void TakeFury(float fury)
+    private void BuildFury(float fury)
     {
         playerFury += fury;
         playerFuryBar.fillAmount = playerFury;
@@ -100,16 +112,52 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player Hit");
-        if (other.gameObject.tag == "Player")
+        if (other.isTrigger)
         {
-            switch (gameObject.name)
+            Debug.Log(pLog + ": Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
+            if (other.tag == enemyPlayer.tag)
             {
-                case "LightHit": enemyPlayer.TakeDamage("light", lightDmg); break;
-                case "HeavyHit": enemyPlayer.TakeDamage("heavy", heavyDmg); break;
-                case "SpecialHit": enemyPlayer.TakeDamage("special", specialDmg); break;
-                default: Debug.Log("Not a damage dealing hitbox"); break;
+                Debug.Log(pLog + ": Player hit");
+                switch (other.name)
+                {
+                    case "LightHit":
+                        if (canLight)
+                        {
+                            TakeDamage("light", lightDmg);
+                            Debug.Log(pLog + ": Light damage taken");
+                            canLight = false;
+                        }
+                        break;
+                    case "HeavyHit":
+                        if (canHeavy)
+                        {
+                            TakeDamage("heavy", heavyDmg);
+                            Debug.Log(pLog + ": Heavy damage taken");
+                            canHeavy = false;
+                        }
+                        break;
+                    case "SpecialHit":
+                        if (canSpecial)
+                        {
+                            TakeDamage("special", specialDmg);
+                            Debug.Log(pLog + ": Special damage taken");
+                            canSpecial = false;
+                        }
+                        break;
+                    default:
+                        Debug.Log(pLog + ": Not a damage dealing hitbox");
+                        break;
+                }
             }
         }
     }
+
+
+    private void ReenableHitboxes()
+    {
+        if (self.GetComponent<PlayerController>().LastLight < Time.time + 0.2f) { canLight = true; }
+        if (self.GetComponent<PlayerController>().LastHeavy < Time.time + 0.2f) { canHeavy = true; }
+        if (self.GetComponent<PlayerController>().LastSpecial < Time.time + 0.2f) { canSpecial = true; }
+    }
+
 }

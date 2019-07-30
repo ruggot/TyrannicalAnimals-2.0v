@@ -409,8 +409,6 @@ MonoBehaviour:
   movementSpeed: 3
   lightHit: {fileID: 0}
   heavyHit: {fileID: 0}
-  specialHit: {fileID: 0}
-  utilityHit: {fileID: 0}
   bodyCollider: {fileID: 0}
   jumpForce: 300
   player: 2

@@ -31,8 +31,8 @@ public class RoundCounter : MonoBehaviour
         // sets player points to 0
         playerOnePoints = 0;
         playerTwoPoints = 0;    // sets player health to 1
-        playerOneHealth = 1f;
-        playerTwoHealth = 1f;   // refrence the playermovement script
+        playerOneHealth = 10f;
+        playerTwoHealth = 10f;   // refrence the playermovement script
     }    // Update is called once per frame
 
 

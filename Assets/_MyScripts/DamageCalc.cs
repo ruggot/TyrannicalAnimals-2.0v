@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete("DamageCalc.cs is deprecated, please use Player.cs instead.")]
 public class DamageCalc : MonoBehaviour
 {
     // Setting player starting Health Points
@@ -34,58 +34,67 @@ public class DamageCalc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnTriggerEnter(Collider other) { // Checking for any trigger collision with other objects
+    private void OnTriggerEnter(Collider other)
+    { // Checking for any trigger collision with other objects
         Debug.Log("Player Hit");
-        if (other.gameObject.tag == "Player") { // On the event of ANY player collision
+        if (other.gameObject.tag == "Player")
+        { // On the event of ANY player collision
             Debug.Log("Player Hit A Player");
             //Player Light attack damage
-            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1LightHit") { // If the enemy is Player 2 and the collider that hit was Light, Deal player 1's Light damage
+            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1LightHit")
+            { // If the enemy is Player 2 and the collider that hit was Light, Deal player 1's Light damage
                 Player2HP -= P1Light;
                 Player2HPbar.fillAmount = Player2HP;
                 Player1Fury += P1LightFuryGen;
                 Player1Furybar.fillAmount = Player1Fury;
             }
-            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2LightHit") {
+            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2LightHit")
+            {
                 Player1HP -= P2Light;
                 Player1HPbar.fillAmount = Player1HP;
                 Player2Fury += P2LightFuryGen;
                 Player2Furybar.fillAmount = Player2Fury;
             }
             // Player Heavy attack damage
-            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1HeavyHit") { // If the enemy is Player 2 and the collider that hit was Heavy, Deal player 1's Heavy damage
+            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1HeavyHit")
+            { // If the enemy is Player 2 and the collider that hit was Heavy, Deal player 1's Heavy damage
                 Player2HP -= P1Heavy;
                 Player2HPbar.fillAmount = Player2HP;
                 Player1Fury += P1HeavyFuryGen;
                 Player1Furybar.fillAmount = Player1Fury;
             }
-            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2HeavyHit") {
+            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2HeavyHit")
+            {
                 Player1HP -= P2Heavy;
                 Player1HPbar.fillAmount = Player1HP;
                 Player2Fury += P2HeavyFuryGen;
                 Player2Furybar.fillAmount = Player2Fury;
             }
             // Player Special attack damage
-            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1SpecialHit") { // If the enemy is Player 2 and the collider that hit was Special, Deal player 1's Special damage.
+            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1SpecialHit")
+            { // If the enemy is Player 2 and the collider that hit was Special, Deal player 1's Special damage.
                 Player2HP -= P1Special;
                 Player2HPbar.fillAmount = Player2HP;
             }
-            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2SpecialHit") {
+            if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2SpecialHit")
+            {
                 Player1HP -= P2Special;
                 Player1HPbar.fillAmount = Player1HP;
             }
         }
     }
 
-    public void ChickenP1() {
+    public void ChickenP1()
+    {
         P1Light = 0.06f;
         P1Heavy = 0.11f;
         P1Special = 0.08f;
@@ -93,7 +102,8 @@ public class DamageCalc : MonoBehaviour
         P1HeavyFuryGen = 0.65f;
         Debug.Log("ChickenP1 Selected");
     }
-    public void ChickenP2() {
+    public void ChickenP2()
+    {
         P2Light = 0.06f;
         P2Heavy = 0.11f;
         P2Special = 0.08f;
@@ -101,7 +111,8 @@ public class DamageCalc : MonoBehaviour
         P2HeavyFuryGen = 0.65f;
         Debug.Log("ChickenP2 Selected");
     }
-    public void LionP1() {
+    public void LionP1()
+    {
         P1Light = 0.08f;
         P1Heavy = 0.13f;
         P1Special = 0.0f;
@@ -109,7 +120,8 @@ public class DamageCalc : MonoBehaviour
         P1HeavyFuryGen = 0.25f;
         Debug.Log("LionP1 Selected");
     }
-    public void LionP2() {
+    public void LionP2()
+    {
         P2Light = 0.08f;
         P2Heavy = 0.13f;
         P2Special = 0.0f;
@@ -117,14 +129,16 @@ public class DamageCalc : MonoBehaviour
         P2HeavyFuryGen = 0.25f;
         Debug.Log("LionP2 Selected");
     }
-    public void PenguinP1() {
+    public void PenguinP1()
+    {
         P1Light = 0.07f;
         P1Heavy = 0.12f;
         P1Special = 0.10f;
         P1LightFuryGen = 0.20f;
         P1HeavyFuryGen = 0.30f;
     }
-    public void PenguinP2() {
+    public void PenguinP2()
+    {
         P2Light = 0.07f;
         P2Heavy = 0.12f;
         P2Special = 0.10f;

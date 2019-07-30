@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform mainCamera;
     [SerializeField] private Transform player1;
     [SerializeField] private Transform player2;
-    [SerializeField] private Transform midpointBlock;
 
     private Vector3 offset = new Vector3(0, 20, -20);
 
+    private Vector3 lastOffset;
     private Vector3 midpoint;
     private float pDist;
     private Vector3 newCamPos;
@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
         UpdateVars();
         {
             UpdateCameraPos();
-            midpointBlock.SetPositionAndRotation(midpoint, midpointBlock.rotation);
         }
         mainCamera.LookAt(midpoint);
     }
@@ -34,18 +33,19 @@ public class CameraController : MonoBehaviour
     void UpdateVars()
     {
         pDist = Vector3.Distance(player1.position, player2.position);
+        lastOffset = offset;
         offset.Set(offset.x, pDist / 3, -pDist);
         midpoint = (player1.position + player2.position) / 2;
     }
 
     void UpdateCameraPos()
     {
-        newCamPos = midpoint + offset;
-        if (Vector3.Distance(mainCamera.position, midpoint) > 10)
+        // newCamPos = midpoint + offset;
+        if (Vector3.Distance(midpoint + offset, midpoint) < 10)
         {
-            newCamPos.x = Mathf.Clamp(newCamPos.x, -50f, 50f);
-            newCamPos.z = Mathf.Clamp(newCamPos.z, -50f, 50f);
+            offset = lastOffset;
         }
+        newCamPos = midpoint + offset;
         mainCamera.SetPositionAndRotation(newCamPos, mainCamera.rotation);
     }
 }

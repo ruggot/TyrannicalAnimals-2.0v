@@ -36,8 +36,9 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         if (GameObject.Find("Chicken_P1").activeInHierarchy) GameObject.Find("Chicken_P1").SetActive(false);
         if (GameObject.Find("Chicken_P2").activeInHierarchy) GameObject.Find("Chicken_P2").SetActive(false);
         if (GameObject.Find("HUD").activeInHierarchy) GameObject.Find("HUD").SetActive(false);
-        if (!GameObject.Find("EGO DayObject").activeInHierarchy) GameObject.Find("EGO DayObject").SetActive(true);
         if (GameObject.Find("EGO NightObject").activeInHierarchy) GameObject.Find("EGO NightObject").SetActive(false);
+        if (GameObject.Find("EGO DayObject").activeInHierarchy == false) GameObject.Find("EGO DayObject").SetActive(true);
+        if (GameObject.Find("EGO Character_Select").activeInHierarchy == false) GameObject.Find("EGO Character_Select").SetActive(true);
         Cursor.visible = false; //This hides the cursor upon the game opening
     }
 

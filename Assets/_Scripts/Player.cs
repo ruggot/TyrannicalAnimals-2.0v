@@ -65,7 +65,14 @@ public class Player : MonoBehaviour
                     Debug.Log(pLog + ": Penguin selected");
                     break;
                 }
-            default: Debug.Log(pLog + ": Player must be constructed with a fighter value;"); break;
+            default:
+                Debug.Log(pLog + ": Player must be constructed with a fighter value;");
+                lightDmg = 0f;
+                heavyDmg = 0f;
+                specialDmg = 0f;
+                lightFury = 0f;
+                heavyFury = 0f;
+                break;
         }
     }
 

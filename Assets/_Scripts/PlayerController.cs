@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Peck");
                 lastLight = Time.time;
-                lightHit.isTrigger = true;
+                lightHit.enabled = true;
                 canLight = false;
             }
 
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Heavy");
                 lastHeavy = Time.time;
-                heavyHit.isTrigger = true;
+                heavyHit.enabled = true;
                 canHeavy = false;
             }
 
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetTrigger("Special");
                 lastSpecial = Time.time;
-                //specialHit.isTrigger= true;
+                //specialHit.enabled= true;
                 canSpecial = false;
             }
 
@@ -161,10 +161,10 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAbilities()
     {
-        if (Time.time >= lastLight + lightCool) { lightHit.isTrigger = false; canLight = true; }
-        if (Time.time >= lastHeavy + heavyCool) { heavyHit.isTrigger = false; canHeavy = true; }
-        // if (Time.time >= lastSpecial + specialCool) { specialHit.isTrigger = false; canSpecial = true; }
-        // if (Time.time >= lastUtility + utilityCool) { utilityHit.isTrigger= false; canUtility = true; }
+        if (Time.time >= lastLight + lightCool) { lightHit.enabled = false; canLight = true; }
+        if (Time.time >= lastHeavy + heavyCool) { heavyHit.enabled = false; canHeavy = true; }
+        // if (Time.time >= lastSpecial + specialCool) { specialHit.enabled = false; canSpecial = true; }
+        // if (Time.time >= lastUtility + utilityCool) { utilityHit.enabled= false; canUtility = true; }
     }
 
     private void OnCollisionEnter(Collision collision)

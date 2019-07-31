@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[Obsolete("DamageCalc.cs is deprecated, please use Player.cs instead.")]
+[Obsolete("DamageCalc.cs is deprecated, please use Player.cs instead.", true)]
 public class DamageCalc : MonoBehaviour
 {
     // Setting player starting Health Points

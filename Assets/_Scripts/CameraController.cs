@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform mainCamera;
-    [SerializeField] private Transform player1;
-    [SerializeField] private Transform player2;
+    [SerializeField] protected Transform mainCamera;
+    [SerializeField] protected Transform player1;
+    [SerializeField] protected Transform player2;
 
     private Vector3 offset = new Vector3(0, 20, -20);
 

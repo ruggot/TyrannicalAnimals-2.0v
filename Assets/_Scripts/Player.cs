@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,17 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] protected Player self;
-    [SerializeField] protected Player enemyPlayer;
+    private Player enemyPlayer;
 
-    [SerializeField] protected int fighter;
-    [SerializeField] protected Image playerHpBar;
-    [SerializeField] protected Image playerFuryBar;
+    [SerializeField] private int fighter;
+    private Image playerHpBar;
+    private Image playerFuryBar;
+
+    private PlayerController controller;
+    private int playerVal;
 
     private string pLog;
-    protected float playerHp = 10f;
+    protected float playerHp;
     protected float playerFury = 0f;
 
     private float lightDmg;
@@ -28,11 +32,43 @@ public class Player : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
+    internal int Fighter { get => fighter; set => fighter = value; }
+    internal int PlayerVal { get => playerVal; set => playerVal = value; }
+    internal Player EnemyPlayer { get => enemyPlayer; set => enemyPlayer = value; }
+    public Image PlayerHpBar { get => playerHpBar; set => playerHpBar = value; }
+    public Image PlayerFuryBar { get => playerFuryBar; set => playerFuryBar = value; }
 
-    // constructor
-    /// 1 = Chicken; 2 = Lion; 3 = Penguin
-    public Player(int fighter)
+    private void Awake()
     {
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        controller = self.GetComponent<PlayerController>();
+        playerVal = controller.player;      
+        // playerHp = DataManager.Hp[playerVal - 1];
+        pLog = "P" + playerVal;
+        Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!Fighter.Equals(DataManager.PlayerSelection[playerVal - 1]))
+        {
+            Fighter = DataManager.PlayerSelection[playerVal - 1];
+            SetFighter(Fighter);
+        }
+        UpdateData();
+        ReenableHitboxes();
+    }
+
+    void SetFighter(int fighter)
+    {
+        /// 1 = Chicken; 2 = Lion; 3 = Penguin
         switch (fighter)
         {
             case 1:
@@ -74,32 +110,18 @@ public class Player : MonoBehaviour
                 heavyFury = 0f;
                 break;
         }
+
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void UpdateData()
     {
-        self = new Player(fighter);
-        pLog = self.name.Remove(0, 6);
-        Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);
-        if (CharacterManager.player1Selection == 0)
-        {
-            // TODO
-            // Take player choice from main menu and update player values to match
-        }
+        // DataManager.Hp[playerVal - 1] = playerHp;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ReenableHitboxes();
-    }
-
 
     public void TakeDamage(string furyType, float dmg)
     {
         playerHp -= dmg;
-        playerHpBar.fillAmount = 1 / playerHp;
+        PlayerHpBar.fillAmount = (1 / playerHp) * playerHp;
         switch (furyType)
         {
             case "light": BuildFury(lightFury); break;
@@ -159,12 +181,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void ReenableHitboxes()
     {
-        if (self.GetComponent<PlayerController>().LastLight < Time.time + 0.2f) { canLight = true; }
-        if (self.GetComponent<PlayerController>().LastHeavy < Time.time + 0.2f) { canHeavy = true; }
-        if (self.GetComponent<PlayerController>().LastSpecial < Time.time + 0.2f) { canSpecial = true; }
+        if (controller.LastLight < Time.time + 0.2f) { canLight = true; }
+        if (controller.LastHeavy < Time.time + 0.2f) { canHeavy = true; }
+        if (controller.LastSpecial < Time.time + 0.2f) { canSpecial = true; }
     }
-
 }

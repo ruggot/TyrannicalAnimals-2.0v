@@ -10,11 +10,9 @@ public class PlayerController : MonoBehaviour
     // collider for players
     [SerializeField] protected BoxCollider lightHit;
     [SerializeField] protected BoxCollider heavyHit;
-    /*[SerializeField]*/
-    protected BoxCollider specialHit;
-    /*[SerializeField]*/
-    protected BoxCollider utilityHit; //uncomment [SerializeField] when hitboxes are made
-    [SerializeField] protected BoxCollider bodyCollider;
+    [SerializeField] protected BoxCollider specialHit;
+    [SerializeField] protected BoxCollider utilityHit;
+    [SerializeField] protected BoxCollider hurtBox;
     [SerializeField] protected float jumpForce;
 
     // Cooldown for player ablitys
@@ -36,12 +34,12 @@ public class PlayerController : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
-    [SerializeField] protected string player;
+    [SerializeField] internal int player;
     [SerializeField] protected string gPad;
-    [SerializeField] protected Image lightUI;
-    [SerializeField] protected Image heavyUI;
-    [SerializeField] protected Image utilityUI;
-    [SerializeField] protected Image specialUI;
+    [SerializeField] private Image lightUI;
+    [SerializeField] private Image heavyUI;
+    [SerializeField] private Image utilityUI;
+    [SerializeField] private Image specialUI;
 
     protected Animator anim;
     protected Rigidbody rb;
@@ -51,6 +49,10 @@ public class PlayerController : MonoBehaviour
     public float LastHeavy { get => lastHeavy; set => lastHeavy = value; }
     public float LastUtility { get => lastUtility; set => lastUtility = value; }
     public float LastSpecial { get => lastSpecial; set => lastSpecial = value; }
+    public Image LightUI { get => lightUI; set => lightUI = value; }
+    public Image HeavyUI { get => heavyUI; set => heavyUI = value; }
+    public Image UtilityUI { get => utilityUI; set => utilityUI = value; }
+    public Image SpecialUI { get => specialUI; set => specialUI = value; }
 
     void Start()
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
@@ -19,32 +20,42 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     /// Pause Screen panel
     [SerializeField] private GameObject pausePanel;
     /// Gamepad currently in use
-    [SerializeField] private string player1Gamepad;
-    [SerializeField] private string player2Gamepad;
+
+    [SerializeField] public GameObject egoP1;
+    [SerializeField] public GameObject egoP2;
+
+    private string[] playerGamepad = new string[2];
+
+    public GameObject playerOne;
+    public GameObject playerTwo;
+    public GameObject[] players;
 
     public UnityEvent onStartButton;
     public static bool paused = false;
     public static bool inGame = false;
 
-    public string Player1Gampad { get => player1Gamepad; set => player1Gamepad = value; }
-    public string Player2Gampad { get => player2Gamepad; set => player2Gamepad = value; }
+    public string[] PlayerGamepad { get => playerGamepad; set => playerGamepad = value; }
+
+    private void Awake()
+    {
+        // ensure correct objects are disabled/enabled
+        players = new GameObject[2] { playerOne, playerTwo };
+        if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
+        if (GameObject.Find("GUI").activeInHierarchy) GameObject.Find("GUI").SetActive(false);
+        if (GameObject.Find("EGO DayObject").activeInHierarchy == false) GameObject.Find("EGO DayObject").SetActive(true);
+        if (GameObject.Find("EGO Character_Select").activeInHierarchy == false) GameObject.Find("EGO Character_Select").SetActive(true);
+        Cursor.visible = false; // Hides the cursor upon the game opening
+    }
 
     private void Start()
     {
-        // ensure correct objects are disabled/enabled
-        if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
-        if (GameObject.Find("Chicken_P1").activeInHierarchy) GameObject.Find("Chicken_P1").SetActive(false);
-        if (GameObject.Find("Chicken_P2").activeInHierarchy) GameObject.Find("Chicken_P2").SetActive(false);
-        if (GameObject.Find("HUD").activeInHierarchy) GameObject.Find("HUD").SetActive(false);
-        if (GameObject.Find("EGO NightObject").activeInHierarchy) GameObject.Find("EGO NightObject").SetActive(false);
-        if (GameObject.Find("EGO DayObject").activeInHierarchy == false) GameObject.Find("EGO DayObject").SetActive(true);
-        if (GameObject.Find("EGO Character_Select").activeInHierarchy == false) GameObject.Find("EGO Character_Select").SetActive(true);
-        Cursor.visible = false; //This hides the cursor upon the game opening
+        playerGamepad[0] = DataManager.PlayerGamepad[0];
+        playerGamepad[1] = DataManager.PlayerGamepad[1];
     }
 
     void Update()
     {
-        if ((Input.GetButtonDown("J1_Start_" + player1Gamepad) || Input.GetButtonDown("J2_Start_" + player2Gamepad)) && inGame)
+        if ((Input.GetButtonDown("J1_Start_" + playerGamepad[0]) || Input.GetButtonDown("J2_Start_" + playerGamepad[1])) && inGame)
         {
             UnityEvent temp = onStartButton;
             if (temp != null)
@@ -52,10 +63,13 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
                 temp.Invoke();
             }
         }
+        playerOne = DataManager.Players[0];
+        playerTwo = DataManager.Players[1];
     }
 
     /// Quit application
     public void Quit() => Application.Quit();
+
     /// Load Options.unity
     public void Options() => SceneManager.LoadScene("Options");
 
@@ -72,12 +86,55 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void HowToPlay() => SceneManager.LoadScene("HowToPlay");
     // Access tutorial from menu
 
-    /// End Character Select and begin the level  
+    /// End Character Selection and begin the level  
     public void BeginLevel()
     {
-        characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);
+        FinaliseCharacterModels();
+        characterSelectPerspective.SetActive(false);
         inGame = true;
+    }
+
+    private void FinaliseCharacterModels()
+    {
+        int i = 0;
+        Player[] tempList = new Player[1];
+        foreach (var pl in players)
+        {
+            Debug.Log(pl.GetComponents<GameObject>().ToString());
+
+            foreach (var model in pl.GetComponents<GameObject>())
+            {
+                Player p = model.GetComponent<Player>();
+                if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
+                {
+                    model.SetActive(true);
+                    tempList[i] = p;
+                    i++;
+                }
+            }
+        }
+
+        tempList[0].EnemyPlayer = tempList[1];
+        tempList[1].EnemyPlayer = tempList[0];
+        i = 0;
+        foreach (var ego in GameObject.Find("GUI").GetComponents<GameObject>())
+        {
+            Player p = players[i].GetComponent<Player>();
+            PlayerController c = players[i].GetComponent<PlayerController>();
+            p.PlayerHpBar = ego.GetComponentsInChildren<GameObject>()[2].GetComponent<Image>();
+            p.PlayerFuryBar = ego.GetComponentsInChildren<GameObject>()[5].GetComponent<Image>();
+            c.LightUI = ego.GetComponentsInChildren<GameObject>()[6].GetComponent<Image>();
+            c.HeavyUI = ego.GetComponentsInChildren<GameObject>()[8].GetComponent<Image>();
+            c.UtilityUI = ego.GetComponentsInChildren<GameObject>()[10].GetComponent<Image>();
+            c.SpecialUI = ego.GetComponentsInChildren<GameObject>()[12].GetComponent<Image>();
+            i++;
+        }
+    }
+
+    void DisableCam()
+    {
+        mainCamera.SetActive(false);
     }
 
     public void Pause()
@@ -97,6 +154,23 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         inGame = true;
         paused = false;
 
+    }
+
+    public void UpdateP1Fighter(int fighter)
+    {
+        DataManager.PlayerSelection[0] = fighter;
+        Debug.Log(egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1].ToString());
+        DataManager.Players[0] = egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1];
+        mainCamera.gameObject.GetComponent<CameraController>().Player1 = playerOne; 
+
+    }
+
+    public void UpdateP2Fighter(int fighter)
+    {
+        DataManager.PlayerSelection[1] = fighter;
+        DataManager.Players[1] = egoP2.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1];
+        Debug.Log(egoP2.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1].ToString());
+        mainCamera.gameObject.GetComponent<CameraController>().Player2 = playerTwo; 
     }
 
     /// Toggle Pause state between <see cref="Pause"/> and <see cref="Unpause"/> 

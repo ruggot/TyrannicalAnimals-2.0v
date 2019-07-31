@@ -152,8 +152,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         Time.timeScale = 1;
         pausePanel.SetActive(false);
         inGame = true;
-        paused = false;
-
+        paused = false;=
     }
 
     public void UpdateP1Fighter(int fighter)
@@ -161,7 +160,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         DataManager.PlayerSelection[0] = fighter;
         Debug.Log(egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1].ToString());
         DataManager.Players[0] = egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1];
-        mainCamera.gameObject.GetComponent<CameraController>().Player1 = playerOne; 
+        mainCamera.gameObject.GetComponent<CameraController>().Player1 = playerOne;
 
     }
 

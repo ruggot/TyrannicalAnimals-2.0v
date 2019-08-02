@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool canSpecial = true;
 
     [SerializeField] internal int player;
+    
     [SerializeField] protected string gPad;
     [SerializeField] private Image lightUI;
     [SerializeField] private Image heavyUI;

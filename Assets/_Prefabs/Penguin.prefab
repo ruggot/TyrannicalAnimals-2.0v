@@ -259,7 +259,7 @@ MonoBehaviour:
   utilityHit: {fileID: 0}
   hurtBox: {fileID: 1253893970357735744}
   jumpForce: 300
-  player: 3
+  player: 0
   gPad: 360
   lightUI: {fileID: 0}
   heavyUI: {fileID: 0}

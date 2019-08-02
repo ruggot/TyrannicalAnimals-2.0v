@@ -8,20 +8,22 @@ public static class DataManager
     // HEAD:Assets/My Scripts/CharacterManager.cs
 
     // int that saves what the player selected as a string
-    private static int[] playerSelection = new int[2];
-    private static float[] hp = new float[2] { 0f, 0f };
-    private static GameObject[] players = new GameObject[2];
+    private static int[] playerSelection = new int[2] { 1, 1 };
+    private static float[] hp = new float[2] { 10f, 10f };
+    private static GameObject[] players;
     private static string[] playerGamepad = new string[2] { "360", "360" };
 
-    public static int KillsP1 { get => killsP1; set => killsP1 = value; }
-    public static int KillsP2 { get => killsP2; set => killsP2 = value; }
-    public static int DeathsP1 { get => deathsP1; set => deathsP1 = value; }
-    public static int DeathsP2 { get => deathsP2; set => deathsP2 = value; }
-    public static int Round { get => round; set => round = value; }
+    public static int KillsP1 { get; set; }
+    public static int KillsP2 { get; set; }
+    public static int DeathsP1 { get; set; }
+    public static int DeathsP2 { get; set; }
+    public static int Round { get; set; }
 
     /// 1 = Chicken, 2 = Lion, 3 = Penguin
-    public static int[] PlayerSelection { get => playerSelection; set => playerSelection = value; }
-    public static string[] PlayerGamepad { get => playerGamepad; set => playerGamepad = value; }
-    public static float[] Hp { get => hp; set => hp = value; }
-    public static GameObject[] Players { get => players; set => players = value; }
+    public static int[] PlayerSelection { get; set; }
+    public static string[] PlayerGamepad { get; set; }
+    public static float[] Hp { get; set; }
+    public static GameObject[] Players { get; set; }
+
+    public static GameObject Player(int p) => Players[PlayerSelection[p]];
 }

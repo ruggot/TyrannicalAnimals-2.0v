@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] protected Player self;
-    private Player enemyPlayer;
+    protected Player enemyPlayer;
 
     [SerializeField] private int fighter;
     private Image playerHpBar;
@@ -32,11 +32,11 @@ public class Player : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
-    internal int Fighter { get => fighter; set => fighter = value; }
-    internal int PlayerVal { get => playerVal; set => playerVal = value; }
-    internal Player EnemyPlayer { get => enemyPlayer; set => enemyPlayer = value; }
-    public Image PlayerHpBar { get => playerHpBar; set => playerHpBar = value; }
-    public Image PlayerFuryBar { get => playerFuryBar; set => playerFuryBar = value; }
+    internal int Fighter { get; set; }
+    internal int PlayerVal { get; set; }
+    internal Player EnemyPlayer { get; set; }
+    public Image PlayerHpBar { get; set; }
+    public Image PlayerFuryBar { get; set; }
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = self.GetComponent<PlayerController>();
-        playerVal = controller.player;      
+        playerVal = controller.player;
         // playerHp = DataManager.Hp[playerVal - 1];
         pLog = "P" + playerVal;
         Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System.Drawing;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -19,38 +21,37 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     [SerializeField] private GameObject characterSelect;
     /// Pause Screen panel
     [SerializeField] private GameObject pausePanel;
-    /// Gamepad currently in use
+    /// In-Game GUI
+    [SerializeField] private GameObject gui;
 
-    [SerializeField] public GameObject egoP1;
-    [SerializeField] public GameObject egoP2;
+    [SerializeField] private GameObject egoP1;
+    [SerializeField] private GameObject egoP2;
 
-    private string[] playerGamepad = new string[2];
+    private string[] playerGamepad;
 
-    public GameObject playerOne;
-    public GameObject playerTwo;
-    public GameObject[] players;
+    protected GameObject[] player;
 
     public UnityEvent onStartButton;
     public static bool paused = false;
     public static bool inGame = false;
 
-    public string[] PlayerGamepad { get => playerGamepad; set => playerGamepad = value; }
-
     private void Awake()
     {
-        // ensure correct objects are disabled/enabled
-        players = new GameObject[2] { playerOne, playerTwo };
-        if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
-        if (GameObject.Find("GUI").activeInHierarchy) GameObject.Find("GUI").SetActive(false);
-        if (GameObject.Find("EGO DayObject").activeInHierarchy == false) GameObject.Find("EGO DayObject").SetActive(true);
-        if (GameObject.Find("EGO Character_Select").activeInHierarchy == false) GameObject.Find("EGO Character_Select").SetActive(true);
-        Cursor.visible = false; // Hides the cursor upon the game opening
+        DataManager.Players = new GameObject[2] { egoP1, egoP2 };
+        player = new GameObject[2] { DataManager.Players[0], DataManager.Players[1] };
+        // Debug.Log("\n\tPlayer 1 EGO: " + DataManager.Players[1] + "\n\tPlayer 2 EGO: " + DataManager.Players[1]);
     }
 
     private void Start()
     {
+
+        if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
+        if (gui.activeInHierarchy) gui.SetActive(false);
+
         playerGamepad[0] = DataManager.PlayerGamepad[0];
         playerGamepad[1] = DataManager.PlayerGamepad[1];
+
+        Cursor.visible = false; // Hides the cursor upon the game opening
     }
 
     void Update()
@@ -63,8 +64,6 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
                 temp.Invoke();
             }
         }
-        playerOne = DataManager.Players[0];
-        playerTwo = DataManager.Players[1];
     }
 
     /// Quit application
@@ -90,45 +89,46 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void BeginLevel()
     {
         mainCamera.SetActive(true);
-        FinaliseCharacterModels();
+        //FinaliseCharacterModels();
         characterSelectPerspective.SetActive(false);
         inGame = true;
     }
 
     private void FinaliseCharacterModels()
     {
-        int i = 0;
-        Player[] tempList = new Player[1];
-        foreach (var pl in players)
-        {
-            Debug.Log(pl.GetComponents<GameObject>().ToString());
+        player[0] = DataManager.Player(0);
+        player[1] = DataManager.Player(1);
+        PlayerOf(0).EnemyPlayer = PlayerOf(1);
+        PlayerOf(1).EnemyPlayer = PlayerOf(0);
 
-            foreach (var model in pl.GetComponents<GameObject>())
+        int i = 0;
+        Player[] tempList = new Player[2];
+        foreach (var pl in player)
+        {
+            foreach (var trans in ExclusiveChildrenOf(pl))
             {
-                Player p = model.GetComponent<Player>();
+                Player p = PlayerOf(trans.gameObject);
                 if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
                 {
-                    model.SetActive(true);
-                    tempList[i] = p;
-                    i++;
+                    trans.gameObject.SetActive(true);
+                    if (p.PlayerVal.Equals(1))
+                        i++;
                 }
             }
         }
 
-        tempList[0].EnemyPlayer = tempList[1];
-        tempList[1].EnemyPlayer = tempList[0];
         i = 0;
-        foreach (var ego in GameObject.Find("GUI").GetComponents<GameObject>())
+        foreach (var ego in gui.GetComponents<Transform>().Where(t => t.name.Substring(0, 3).Equals("EGO")))
         {
-            Player p = players[i].GetComponent<Player>();
-            PlayerController c = players[i].GetComponent<PlayerController>();
-            p.PlayerHpBar = ego.GetComponentsInChildren<GameObject>()[2].GetComponent<Image>();
-            p.PlayerFuryBar = ego.GetComponentsInChildren<GameObject>()[5].GetComponent<Image>();
-            c.LightUI = ego.GetComponentsInChildren<GameObject>()[6].GetComponent<Image>();
-            c.HeavyUI = ego.GetComponentsInChildren<GameObject>()[8].GetComponent<Image>();
-            c.UtilityUI = ego.GetComponentsInChildren<GameObject>()[10].GetComponent<Image>();
-            c.SpecialUI = ego.GetComponentsInChildren<GameObject>()[12].GetComponent<Image>();
-            i++;
+            Player p = player[i].GetComponent<Player>();
+            PlayerController c = player[i].GetComponent<PlayerController>();
+            p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
+            p.PlayerFuryBar = ego.GetChild(5).GetComponent<Image>();
+            c.LightUI = ego.GetChild(6).GetComponent<Image>();
+            c.HeavyUI = ego.GetChild(8).GetComponent<Image>();
+            c.SpecialUI = ego.GetChild(1).GetComponent<Image>();
+            c.UtilityUI = ego.GetChild(1).GetComponent<Image>();
+            Debug.Log($"GUI Finalised {++i} time(s)");
         }
     }
 
@@ -152,24 +152,23 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         Time.timeScale = 1;
         pausePanel.SetActive(false);
         inGame = true;
-        paused = false;=
+        paused = false;
     }
 
     public void UpdateP1Fighter(int fighter)
     {
+        fighter--;
         DataManager.PlayerSelection[0] = fighter;
-        Debug.Log(egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1].ToString());
-        DataManager.Players[0] = egoP1.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1];
-        mainCamera.gameObject.GetComponent<CameraController>().Player1 = playerOne;
-
+        Debug.Log(egoP1.transform.GetChild(fighter).gameObject.ToString());
+        DataManager.Players[0] = egoP1.transform.GetChild(fighter).gameObject;
     }
 
     public void UpdateP2Fighter(int fighter)
     {
+        fighter--;
         DataManager.PlayerSelection[1] = fighter;
-        DataManager.Players[1] = egoP2.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1];
-        Debug.Log(egoP2.gameObject.GetComponentsInChildren<GameObject>(true)[fighter-1].ToString());
-        mainCamera.gameObject.GetComponent<CameraController>().Player2 = playerTwo; 
+        Debug.Log(egoP2.transform.GetChild(fighter).gameObject.ToString());
+        DataManager.Players[1] = egoP2.transform.GetChild(fighter).gameObject;
     }
 
     /// Toggle Pause state between <see cref="Pause"/> and <see cref="Unpause"/> 
@@ -186,4 +185,33 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
             Pause();
         }
     }
+
+    Player PlayerOf(int p)
+    {
+        return player[p].GetComponent<Player>();
+    }
+
+    Player PlayerOf(GameObject p)
+    {
+        return p.GetComponent<Player>();
+    }
+
+    Transform[] ExclusiveChildrenOf(Transform parent)
+    {
+        return parent.gameObject.GetComponentsInChildren<Transform>().Where(tf => tf.parent.Equals(parent.gameObject)) as Transform[];
+    }
+
+    Transform[] ExclusiveChildrenOf(GameObject parent)
+    {
+        return parent.gameObject.GetComponentsInChildren<Transform>().Where(tf => tf.parent.Equals(parent.gameObject)) as Transform[];
+    }
+
+    // Transform[] ExclusiveChildrenOf(GameObject parent)
+    // {
+
+    //     var tList = from t in parent.GetComponentsInChildren<Transform>()
+    //                 where t.parent.Equals(parent)
+    //                 select t;
+    //     return tList;
+    // }
 }

@@ -27,7 +27,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     [SerializeField] private GameObject egoP1;
     [SerializeField] private GameObject egoP2;
 
-    private string[] playerGamepad;
+    private string[] playerGamepad = new string[2] { "360", "360" };
 
     protected GameObject[] player;
 
@@ -38,6 +38,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     private void Awake()
     {
         DataManager.Players = new GameObject[2] { egoP1, egoP2 };
+        DataManager.PlayerGamepad = new string[2] { playerGamepad[0], playerGamepad[1] };
         player = new GameObject[2] { DataManager.Players[0], DataManager.Players[1] };
         // Debug.Log("\n\tPlayer 1 EGO: " + DataManager.Players[1] + "\n\tPlayer 2 EGO: " + DataManager.Players[1]);
     }
@@ -47,9 +48,6 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 
         if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
         if (gui.activeInHierarchy) gui.SetActive(false);
-
-        playerGamepad[0] = DataManager.PlayerGamepad[0];
-        playerGamepad[1] = DataManager.PlayerGamepad[1];
 
         Cursor.visible = false; // Hides the cursor upon the game opening
     }
@@ -66,23 +64,13 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         }
     }
 
-    /// Quit application
-    public void Quit() => Application.Quit();
+    public void Quit() => Application.Quit();                       /// Quit application
+    public void Options() => SceneManager.LoadScene("Options");     /// Load Options.unity
+    public void Level() => SceneManager.LoadScene("LevelSelect");   /// Load LevelSelect.unity
+    public void Menu() => SceneManager.LoadScene("Menu");           /// Load Menu.unity
+    public void LevelOne() => SceneManager.LoadScene("Level_1");    /// Load Level_1.unity
+    public void HowToPlay() => SceneManager.LoadScene("HowToPlay"); /// Load HowToPlay.unity
 
-    /// Load Options.unity
-    public void Options() => SceneManager.LoadScene("Options");
-
-    /// Load LevelSelect.unity
-    public void Level() => SceneManager.LoadScene("LevelSelect");
-
-    /// Load Menu.unity
-    public void Menu() => SceneManager.LoadScene("Menu");
-
-    /// Load Level_1.unity
-    public void LevelOne() => SceneManager.LoadScene("Level_1");
-
-    /// Load HowToPlay.unity
-    public void HowToPlay() => SceneManager.LoadScene("HowToPlay");
     // Access tutorial from menu
 
     /// End Character Selection and begin the level  

@@ -2693,6 +2693,21 @@ PrefabInstance:
       propertyPath: player
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8243855157029143383, guid: ba2c49c048594004b97a39f127a8b73a,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243855157029143382, guid: ba2c49c048594004b97a39f127a8b73a,
+        type: 3}
+      propertyPath: m_ForceModuleActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243855157029143382, guid: ba2c49c048594004b97a39f127a8b73a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2c49c048594004b97a39f127a8b73a, type: 3}
 --- !u!1 &452346015 stripped
@@ -7398,6 +7413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fighter
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732641472674163318, guid: 61f8e874efcf4374f991fb4646216ccd,
+        type: 3}
+      propertyPath: player
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}

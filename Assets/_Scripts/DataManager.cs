@@ -7,11 +7,11 @@ public static class DataManager
     private static int killsP1, killsP2, deathsP1, deathsP2, round;
     // HEAD:Assets/My Scripts/CharacterManager.cs
 
-    // int that saves what the player selected as a string
+    //  saves what the player selected as an integer
     private static int[] playerSelection = new int[2] { 1, 1 };
     private static float[] hp = new float[2] { 10f, 10f };
     private static GameObject[] players;
-    private static string[] playerGamepad = new string[2] { "360", "360" };
+    private static string[] playerGamepad;
 
     public static int KillsP1 { get; set; }
     public static int KillsP2 { get; set; }
@@ -25,5 +25,5 @@ public static class DataManager
     public static float[] Hp { get; set; }
     public static GameObject[] Players { get; set; }
 
-    public static GameObject Player(int p) => Players[PlayerSelection[p]];
+    public static GameObject Player(int p) => Players[p].GetComponent<Transform>().GetChild(playerSelection[p]).gameObject;
 }

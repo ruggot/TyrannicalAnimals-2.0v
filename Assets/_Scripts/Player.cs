@@ -40,26 +40,25 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-
+        playerVal--;
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         controller = self.GetComponent<PlayerController>();
         playerVal = controller.player;
         // playerHp = DataManager.Hp[playerVal - 1];
-        pLog = "P" + playerVal;
-        Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);
-
+        pLog = $"P{playerVal}";
+        Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!Fighter.Equals(DataManager.PlayerSelection[playerVal - 1]))
+        if (!Fighter.Equals(DataManager.PlayerSelection[playerVal]))
         {
-            Fighter = DataManager.PlayerSelection[playerVal - 1];
+            Fighter = DataManager.PlayerSelection[playerVal];
             SetFighter(Fighter);
         }
         UpdateData();
@@ -127,7 +126,7 @@ public class Player : MonoBehaviour
             case "light": BuildFury(lightFury); break;
             case "heavy": BuildFury(heavyFury); break;
             case "special": break;
-            default: Debug.Log(pLog + ": TakeDamage(string furyType) invalid"); break;
+            default: Debug.Log($"{pLog}: TakeDamage(string furyType) invalid"); break;
         }
     }
 
@@ -143,17 +142,17 @@ public class Player : MonoBehaviour
     {
         if (other.isTrigger)
         {
-            Debug.Log(pLog + ": Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
+            Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
             if (other.tag == enemyPlayer.tag)
             {
-                Debug.Log(pLog + ": Player hit");
+                Debug.Log($"{pLog}: Player hit");
                 switch (other.name)
                 {
                     case "LightHit":
                         if (canLight)
                         {
                             TakeDamage("light", lightDmg);
-                            Debug.Log(pLog + ": Light damage taken");
+                            Debug.Log($"{pLog}: Light damage taken");
                             canLight = false;
                         }
                         break;
@@ -161,7 +160,7 @@ public class Player : MonoBehaviour
                         if (canHeavy)
                         {
                             TakeDamage("heavy", heavyDmg);
-                            Debug.Log(pLog + ": Heavy damage taken");
+                            Debug.Log($"{pLog}: Heavy damage taken");
                             canHeavy = false;
                         }
                         break;
@@ -169,12 +168,12 @@ public class Player : MonoBehaviour
                         if (canSpecial)
                         {
                             TakeDamage("special", specialDmg);
-                            Debug.Log(pLog + ": Special damage taken");
+                            Debug.Log($"{pLog}: Special damage taken");
                             canSpecial = false;
                         }
                         break;
                     default:
-                        Debug.Log(pLog + ": Not a damage dealing hitbox");
+                        Debug.Log($"{pLog}: Not a damage dealing hitbox");
                         break;
                 }
             }

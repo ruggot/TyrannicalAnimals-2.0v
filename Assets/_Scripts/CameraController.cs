@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     private float pDist;
     private Vector3 newCamPos;
     private Vector3 n;
+    [SerializeField] GameObject player1;
+    [SerializeField] GameObject player2;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class CameraController : MonoBehaviour
         pDist = Vector3.Distance(DataManager.Player(0).transform.position, DataManager.Player(1).transform.position);
         lastOffset = offset;
         offset.Set(offset.x, pDist / 3, -pDist);
-        newMidpoint = (player1.position + player2.position) / 2;
+        newMidpoint = (player1.transform.position + player2.transform.position) / 2;
         midpoint = Tween(midpoint, newMidpoint);
     }
 

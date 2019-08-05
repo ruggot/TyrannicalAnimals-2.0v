@@ -112,11 +112,12 @@ public class PlayerController : MonoBehaviour
 
             /// Utility attack
             // NOTE  Uncomment when utility added
-            //            if (Input.GetButtonDown("J" + player + "_Utility_" + gPad) && Time.time > utilityDelay && canUtility)
-            //            {
-            //                anim.SetTrigger("Utility");
-            //                sinceUtility = Time.time + utilityDelay;
-            //            }
+            if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility)
+            {
+                anim.SetTrigger("Mobility");
+                lastUtility = Time.time;
+                canUtility = false;
+            }
 
             if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial)
             {
@@ -146,11 +147,11 @@ public class PlayerController : MonoBehaviour
             }
 
             // Uncomment when utility attack is working
-            //if (canUtility == false)
-            //{
-            //    utilityAttack.fillAmount += 1.0f / utilityCool * Time.deltaTime;
-            //    if (utilityAttack.fillAmount >= 1) { utilityAttack.fillAmount = 0; canUtility = true; }
-            //}
+            if (canUtility == false)
+            {
+                utilityUI.fillAmount += 1.0f / utilityCool * Time.deltaTime;
+                if (utilityUI.fillAmount >= 1) { utilityUI.fillAmount = 0; canUtility = true; }
+            }
 
             FastFall();
             ResetAbilities();
@@ -164,10 +165,10 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAbilities()
     {
-        if (Time.time >= lastLight + lightCool) { lightHit.enabled = false; canLight = true; }
-        if (Time.time >= lastHeavy + heavyCool) { heavyHit.enabled = false; canHeavy = true; }
-        // if (Time.time >= lastSpecial + specialCool) { specialHit.enabled = false; canSpecial = true; }
-        // if (Time.time >= lastUtility + utilityCool) { utilityHit.enabled= false; canUtility = true; }
+        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; }
+        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; }
+        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; }
+        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -175,8 +176,4 @@ public class PlayerController : MonoBehaviour
         canJump = true;
     }
 
-    private void CooldownForSkillOne()
-    {
-        // FIXME skillOne.fillAmount += 1 * Time.deltaTime;
-    }
 }

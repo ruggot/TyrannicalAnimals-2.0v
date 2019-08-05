@@ -20,10 +20,11 @@ public static class DataManager
     public static int Round { get; set; }
 
     /// 1 = Chicken, 2 = Lion, 3 = Penguin
-    public static int[] PlayerSelection { get; set; }
+    public static int[] PlayerSelection = new int[2] { 0,0};
     public static string[] PlayerGamepad { get; set; }
     public static float[] Hp { get; set; }
     public static GameObject[] Players { get; set; }
 
-    public static GameObject Player(int p) => Players[p].GetComponent<Transform>().GetChild(playerSelection[p]).gameObject;
+    //public static GameObject Player(int p) => Players[p].GetComponent<Transform>().GetChild(playerSelection[p]).gameObject;
+    public static GameObject Player(int p) => Players[p];
 }

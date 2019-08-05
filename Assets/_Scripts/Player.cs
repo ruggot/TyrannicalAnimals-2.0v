@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         playerVal = controller.player;
         // playerHp = DataManager.Hp[playerVal - 1];
         pLog = $"P{playerVal}";
-        Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
+        //Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
     }
 
     // Update is called once per frame

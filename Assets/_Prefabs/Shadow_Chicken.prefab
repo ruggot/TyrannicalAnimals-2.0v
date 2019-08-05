@@ -407,11 +407,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  lightHit: {fileID: 0}
-  heavyHit: {fileID: 0}
+  lightHit: {fileID: 988284219958990419}
+  heavyHit: {fileID: 4371495299504127071}
   specialHit: {fileID: 0}
   utilityHit: {fileID: 0}
-  hurtBox: {fileID: 0}
+  hurtBox: {fileID: 65706843018012252}
   jumpForce: 300
   player: 0
   gPad: 360

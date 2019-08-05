@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Acid : MonoBehaviour
 {
+    int maxHeigh = 6;
+    int speed = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class Acid : MonoBehaviour
     {
         if (transform.position.y < 6)
         {
-            gameObject.transform.Translate(Vector3.up * Time.deltaTime);
+            gameObject.transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
     }
 }

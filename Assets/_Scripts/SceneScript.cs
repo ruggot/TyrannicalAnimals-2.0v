@@ -29,7 +29,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 
     private string[] playerGamepad = new string[2] { "360", "360" };
 
-    protected GameObject[] player;
+    [SerializeField]protected GameObject[] player;
 
     public UnityEvent onStartButton;
     public static bool paused = false;
@@ -90,17 +90,17 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         PlayerOf(1).EnemyPlayer = PlayerOf(0);
 
         Player[] tempList = new Player[2];
-        foreach (var pl in player)
-        {
-            foreach (var trans in ExclusiveChildrenOf(pl))
-            {
-                Player p = PlayerOf(trans.gameObject);
-                if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
-                {
-                    trans.gameObject.SetActive(true);
-                }
-            }
-        }
+        //foreach (var pl in player)
+        //{
+        //    foreach (var trans in ExclusiveChildrenOf(pl))
+        //    {
+        //        Player p = PlayerOf(trans.gameObject);
+        //        if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
+        //        {
+        //            trans.gameObject.SetActive(true);
+        //        }
+        //    }
+        //}
 
         int i = 0;
         foreach (var ego in gui.GetComponents<Transform>().Where(t => t.name.Substring(0, 3).Equals("EGO")))
@@ -142,16 +142,18 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 
     public void UpdateP1Fighter(int fighter)
     {
+        print(egoP1.transform.childCount);
         DataManager.PlayerSelection[0] = fighter;
-        Debug.Log(egoP1.transform.GetChild(fighter).gameObject.ToString());
-        DataManager.Players[0] = egoP1.transform.GetChild(fighter).gameObject;
+        Debug.Log(egoP1.transform.GetChild(fighter-1).gameObject.ToString());
+        DataManager.Players[0] = egoP1.transform.GetChild(fighter-1).gameObject;
+        print(DataManager.Players[0]);
     }
 
     public void UpdateP2Fighter(int fighter)
     {
         DataManager.PlayerSelection[1] = fighter;
-        Debug.Log(egoP2.transform.GetChild(fighter).gameObject.ToString());
-        DataManager.Players[1] = egoP2.transform.GetChild(fighter).gameObject;
+        Debug.Log(egoP2.transform.GetChild(fighter-1).gameObject.ToString());
+        DataManager.Players[1] = egoP2.transform.GetChild(fighter-1).gameObject;
     }
 
     /// Toggle Pause state between <see cref="Pause"/> and <see cref="Unpause"/> 

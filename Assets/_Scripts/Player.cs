@@ -10,14 +10,14 @@ public class Player : MonoBehaviour
     protected Player enemyPlayer;
 
     [SerializeField] private int fighter;
-    private Image playerHpBar;
-    private Image playerFuryBar;
+    [SerializeField] private Image playerHpBar;
+    [SerializeField] private Image playerFuryBar;
 
     private PlayerController controller;
     private int playerVal;
 
     private string pLog;
-    protected float playerHp;
+    protected float playerHp = 1;
     protected float playerFury = 0f;
 
     private float lightDmg;
@@ -37,6 +37,18 @@ public class Player : MonoBehaviour
     internal Player EnemyPlayer { get; set; }
     public Image PlayerHpBar { get; set; }
     public Image PlayerFuryBar { get; set; }
+
+    private void Start()
+    {
+        foreach (var item in FindObjectsOfType<Player>())
+        {
+            if (item != this)
+            {
+                enemyPlayer = item;
+            }
+        }
+        Debug.Log("" + enemyPlayer);
+    }
 
     private void Awake()
     {
@@ -119,8 +131,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(string furyType, float dmg)
     {
+        print(dmg);
+        print(playerFury);
         playerHp -= dmg;
         PlayerHpBar.fillAmount = (1 / playerHp) * playerHp;
+        
         switch (furyType)
         {
             case "light": BuildFury(lightFury); break;
@@ -146,9 +161,9 @@ public class Player : MonoBehaviour
             if (other.tag == enemyPlayer.tag)
             {
                 Debug.Log($"{pLog}: Player hit");
-                switch (other.name)
+                switch (controller.attackType)
                 {
-                    case "LightHit":
+                    case AttackType.LightHit:
                         if (canLight)
                         {
                             TakeDamage("light", lightDmg);
@@ -156,7 +171,7 @@ public class Player : MonoBehaviour
                             canLight = false;
                         }
                         break;
-                    case "HeavyHit":
+                    case AttackType.HeavyHit:
                         if (canHeavy)
                         {
                             TakeDamage("heavy", heavyDmg);
@@ -164,7 +179,7 @@ public class Player : MonoBehaviour
                             canHeavy = false;
                         }
                         break;
-                    case "SpecialHit":
+                    case AttackType.SpecialHit:
                         if (canSpecial)
                         {
                             TakeDamage("special", specialDmg);
@@ -174,6 +189,7 @@ public class Player : MonoBehaviour
                         break;
                     default:
                         Debug.Log($"{pLog}: Not a damage dealing hitbox");
+                        Debug.Log("" + other.tag);
                         break;
                 }
             }

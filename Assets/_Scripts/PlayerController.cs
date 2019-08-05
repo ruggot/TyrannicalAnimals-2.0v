@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+public enum AttackType {LightHit,HeavyHit,SpecialHit }
+
 public class PlayerController : MonoBehaviour
 {
+
+    public AttackType attackType;
 
     public float movementSpeed = 3;
     // collider for players
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 lastLight = Time.time;
                 lightHit.enabled = true;
                 canLight = false;
+                attackType = AttackType.LightHit;
             }
 
             if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy)
@@ -108,6 +113,7 @@ public class PlayerController : MonoBehaviour
                 lastHeavy = Time.time;
                 heavyHit.enabled = true;
                 canHeavy = false;
+                attackType = AttackType.HeavyHit;
             }
 
             /// Utility attack
@@ -125,6 +131,7 @@ public class PlayerController : MonoBehaviour
                 lastSpecial = Time.time;
                 //specialHit.enabled= true;
                 canSpecial = false;
+                attackType = AttackType.SpecialHit;
             }
 
             // starts timer for light attack

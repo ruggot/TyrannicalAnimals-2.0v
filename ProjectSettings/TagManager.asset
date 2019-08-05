@@ -8,6 +8,8 @@ TagManager:
   - Player 1
   - Player 2
   - CharacterSelect
+  - LightHit
+  - HeavyHit
   layers:
   - Default
   - TransparentFX

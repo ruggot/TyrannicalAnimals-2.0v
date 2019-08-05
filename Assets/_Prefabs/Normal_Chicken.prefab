@@ -322,8 +322,9 @@ GameObject:
   - component: {fileID: 54011750179816588}
   - component: {fileID: 65706843018012252}
   - component: {fileID: 2732641472674163318}
+  - component: {fileID: 4525523519725294567}
   m_Layer: 0
-  m_Name: Chicken 1
+  m_Name: Normal_Chicken
   m_TagString: Player 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,6 +344,7 @@ Transform:
   - {fileID: 4898895339674762}
   - {fileID: 4431355569897286}
   - {fileID: 6890231040382423240}
+  - {fileID: 615883332055797582}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -101.42901, z: 0}
@@ -392,8 +394,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.7, z: 1.1}
-  m_Center: {x: 0, y: 0.87, z: 0}
+  m_Size: {x: 1, y: 1.7, z: 1.2277805}
+  m_Center: {x: -0.0000000016328277, y: 0.87, z: -0.06389028}
 --- !u!114 &2732641472674163318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,18 +409,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  lightHit: {fileID: 0}
-  heavyHit: {fileID: 0}
+  lightHit: {fileID: 988284219958990419}
+  heavyHit: {fileID: 4371495299504127071}
   specialHit: {fileID: 0}
   utilityHit: {fileID: 0}
-  bodyCollider: {fileID: 0}
+  hurtBox: {fileID: 1132163336357350719}
   jumpForce: 300
-  player: 2
+  player: 0
   gPad: 360
   lightUI: {fileID: 0}
   heavyUI: {fileID: 0}
   utilityUI: {fileID: 0}
   specialUI: {fileID: 0}
+--- !u!114 &4525523519725294567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969419073538870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254c51d47eedaf247a985312027f4714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 4525523519725294567}
+  fighter: 1
 --- !u!1 &589829490138865844
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +475,7 @@ BoxCollider:
   m_GameObject: {fileID: 589829490138865844}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.91, y: 0.8, z: 1}
   m_Center: {x: -0.09, y: -0.74, z: -0.03}
@@ -503,7 +519,7 @@ BoxCollider:
   m_GameObject: {fileID: 5544144602472229201}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.58, y: 0.37, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
@@ -554,3 +570,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.91, y: 0.8, z: 1}
   m_Center: {x: -0.09, y: -0.74, z: -0.03}
+--- !u!1 &5802743960983020320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615883332055797582}
+  - component: {fileID: 1132163336357350719}
+  m_Layer: 0
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &615883332055797582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802743960983020320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.021, y: -0.001, z: -0.079}
+  m_LocalScale: {x: 0.932972, y: 1, z: 0.9972607}
+  m_Children: []
+  m_Father: {fileID: 4292928448873590}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1132163336357350719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802743960983020320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1214583, y: 1.9112537, z: 1.4021245}
+  m_Center: {x: -0.011314361, y: 0.8461932, z: -0.051523283}

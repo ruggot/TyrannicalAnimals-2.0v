@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,17 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] protected Player self;
-    [SerializeField] protected Player enemyPlayer;
+    protected Player enemyPlayer;
 
-    [SerializeField] protected int fighter;
-    [SerializeField] protected Image playerHpBar;
-    [SerializeField] protected Image playerFuryBar;
+    [SerializeField] private int fighter;
+    private Image playerHpBar;
+    private Image playerFuryBar;
+
+    private PlayerController controller;
+    private int playerVal;
 
     private string pLog;
-    protected float playerHp = 10f;
+    protected float playerHp;
     protected float playerFury = 0f;
 
     private float lightDmg;
@@ -28,11 +32,42 @@ public class Player : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
+    internal int Fighter { get; set; }
+    internal int PlayerVal { get; set; }
+    internal Player EnemyPlayer { get; set; }
+    public Image PlayerHpBar { get; set; }
+    public Image PlayerFuryBar { get; set; }
 
-    // constructor
-    /// 1 = Chicken; 2 = Lion; 3 = Penguin
-    public Player(int fighter)
+    private void Awake()
     {
+        playerVal--;
+    }
+
+    // Start is called before the first frame update
+    void OnEnable()
+    {
+        controller = self.GetComponent<PlayerController>();
+        playerVal = controller.player;
+        // playerHp = DataManager.Hp[playerVal - 1];
+        pLog = $"P{playerVal}";
+        Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!Fighter.Equals(DataManager.PlayerSelection[playerVal]))
+        {
+            Fighter = DataManager.PlayerSelection[playerVal];
+            SetFighter(Fighter);
+        }
+        UpdateData();
+        ReenableHitboxes();
+    }
+
+    void SetFighter(int fighter)
+    {
+        /// 1 = Chicken; 2 = Lion; 3 = Penguin
         switch (fighter)
         {
             case 1:
@@ -74,38 +109,24 @@ public class Player : MonoBehaviour
                 heavyFury = 0f;
                 break;
         }
+
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void UpdateData()
     {
-        self = new Player(fighter);
-        pLog = self.name.Remove(0, 6);
-        Debug.Log(pLog + ": enemyplayer.name = " + enemyPlayer.name);
-        if (CharacterManager.player1Selection == 0)
-        {
-            // TODO
-            // Take player choice from main menu and update player values to match
-        }
+        // DataManager.Hp[playerVal - 1] = playerHp;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ReenableHitboxes();
-    }
-
 
     public void TakeDamage(string furyType, float dmg)
     {
         playerHp -= dmg;
-        playerHpBar.fillAmount = 1 / playerHp;
+        PlayerHpBar.fillAmount = (1 / playerHp) * playerHp;
         switch (furyType)
         {
             case "light": BuildFury(lightFury); break;
             case "heavy": BuildFury(heavyFury); break;
             case "special": break;
-            default: Debug.Log(pLog + ": TakeDamage(string furyType) invalid"); break;
+            default: Debug.Log($"{pLog}: TakeDamage(string furyType) invalid"); break;
         }
     }
 
@@ -121,17 +142,17 @@ public class Player : MonoBehaviour
     {
         if (other.isTrigger)
         {
-            Debug.Log(pLog + ": Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
+            Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
             if (other.tag == enemyPlayer.tag)
             {
-                Debug.Log(pLog + ": Player hit");
+                Debug.Log($"{pLog}: Player hit");
                 switch (other.name)
                 {
                     case "LightHit":
                         if (canLight)
                         {
                             TakeDamage("light", lightDmg);
-                            Debug.Log(pLog + ": Light damage taken");
+                            Debug.Log($"{pLog}: Light damage taken");
                             canLight = false;
                         }
                         break;
@@ -139,7 +160,7 @@ public class Player : MonoBehaviour
                         if (canHeavy)
                         {
                             TakeDamage("heavy", heavyDmg);
-                            Debug.Log(pLog + ": Heavy damage taken");
+                            Debug.Log($"{pLog}: Heavy damage taken");
                             canHeavy = false;
                         }
                         break;
@@ -147,24 +168,22 @@ public class Player : MonoBehaviour
                         if (canSpecial)
                         {
                             TakeDamage("special", specialDmg);
-                            Debug.Log(pLog + ": Special damage taken");
+                            Debug.Log($"{pLog}: Special damage taken");
                             canSpecial = false;
                         }
                         break;
                     default:
-                        Debug.Log(pLog + ": Not a damage dealing hitbox");
+                        Debug.Log($"{pLog}: Not a damage dealing hitbox");
                         break;
                 }
             }
         }
     }
 
-
     private void ReenableHitboxes()
     {
-        if (self.GetComponent<PlayerController>().LastLight < Time.time + 0.2f) { canLight = true; }
-        if (self.GetComponent<PlayerController>().LastHeavy < Time.time + 0.2f) { canHeavy = true; }
-        if (self.GetComponent<PlayerController>().LastSpecial < Time.time + 0.2f) { canSpecial = true; }
+        if (controller.LastLight < Time.time + 0.2f) { canLight = true; }
+        if (controller.LastHeavy < Time.time + 0.2f) { canHeavy = true; }
+        if (controller.LastSpecial < Time.time + 0.2f) { canSpecial = true; }
     }
-
 }

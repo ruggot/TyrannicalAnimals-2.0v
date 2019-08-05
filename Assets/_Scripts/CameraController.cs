@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] protected Transform mainCamera;
-    [SerializeField] protected Transform player1;
-    [SerializeField] protected Transform player2;
 
     private Vector3 offset = new Vector3(0, 20, -20);
     public float tweenSpeed = 3;
@@ -32,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     void UpdateVars()
     {
-        pDist = Vector3.Distance(player1.position, player2.position);
+        pDist = Vector3.Distance(DataManager.Player(0).transform.position, DataManager.Player(1).transform.position);
         lastOffset = offset;
         offset.Set(offset.x, pDist / 3, -pDist);
         newMidpoint = (player1.position + player2.position) / 2;

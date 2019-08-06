@@ -22,12 +22,16 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - Vector1_2B7060A1: 7
+    - Vector1_2E20734F: 0.8
+    - Vector1_4F731820: 1.82
     - Vector1_6AA3A2CC: 5
     - Vector1_89D6A876: 7.36
-    - Vector1_8DBF5684: 1
+    - Vector1_8DBF5684: 0.5
     - Vector1_B2F80337: 0.1
     - Vector1_BAD4275B: 1
     m_Colors:
     - Color_51451502: {r: 0.4470588, g: 1.843137, b: 2, a: 0}
     - Color_A729B764: {r: 0, g: 0.72156864, b: 1, a: 1}
     - Color_B1B79DA0: {r: 0, g: 0.7342432, b: 1, a: 1}
+    - Color_DC547CF: {r: 2.670157, g: 2.670157, b: 2.670157, a: 1}
+    - Color_E1AC0BB8: {r: 0, g: 2.3765793, b: 2.670157, a: 0}

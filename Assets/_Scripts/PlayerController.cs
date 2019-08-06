@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             else anim.SetInteger("Walk", 0);
 
             rb.AddForce(movement * movementSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
-
+            // Movement ability
             if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > jumpCool && canJump)
             {
                 rb.AddForce(0, jumpForce, 0);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("Jump");
                 canJump = false;
             }
-
+            //Light attack
             if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight)
             {
                 anim.SetTrigger("Peck");
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 canLight = false;
                 attackType = AttackType.LightHit;
             }
-
+            //Heavy attack
             if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy)
             {
                 anim.SetTrigger("Heavy");

@@ -107,7 +107,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         {
             Player p = player[i].GetComponent<Player>();
             PlayerController c = player[i].GetComponent<PlayerController>();
-            p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
+            //p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
             p.PlayerFuryBar = ego.GetChild(5).GetComponent<Image>();
             c.LightUI = ego.GetChild(6).GetComponent<Image>();
             c.HeavyUI = ego.GetChild(8).GetComponent<Image>();

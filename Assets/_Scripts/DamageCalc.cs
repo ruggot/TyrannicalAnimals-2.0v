@@ -45,12 +45,14 @@ public class DamageCalc : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     { // Checking for any trigger collision with other objects
+
+
         Debug.Log("Player Hit");
         if (other.gameObject.tag == "Player")
         { // On the event of ANY player collision
             Debug.Log("Player Hit A Player");
             //Player Light attack damage
-            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1LightHit")
+            if (other.gameObject.name == "Chicken_P2" && gameObject.name == "LightHit")
             { // If the enemy is Player 2 and the collider that hit was Light, Deal player 1's Light damage
                 Player2HP -= P1Light;
                 Player2HPbar.fillAmount = Player2HP;
@@ -63,6 +65,7 @@ public class DamageCalc : MonoBehaviour
                 Player1HPbar.fillAmount = Player1HP;
                 Player2Fury += P2LightFuryGen;
                 Player2Furybar.fillAmount = Player2Fury;
+                Debug.Log("Lightp1");
             }
             // Player Heavy attack damage
             if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1HeavyHit")
@@ -71,6 +74,7 @@ public class DamageCalc : MonoBehaviour
                 Player2HPbar.fillAmount = Player2HP;
                 Player1Fury += P1HeavyFuryGen;
                 Player1Furybar.fillAmount = Player1Fury;
+                Debug.Log("Heavyp1");
             }
             if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2HeavyHit")
             {
@@ -78,12 +82,14 @@ public class DamageCalc : MonoBehaviour
                 Player1HPbar.fillAmount = Player1HP;
                 Player2Fury += P2HeavyFuryGen;
                 Player2Furybar.fillAmount = Player2Fury;
+                Debug.Log("Heavyp2?");
             }
             // Player Special attack damage
             if (other.gameObject.name == "Chicken_P2" && gameObject.name == "P1SpecialHit")
             { // If the enemy is Player 2 and the collider that hit was Special, Deal player 1's Special damage.
                 Player2HP -= P1Special;
                 Player2HPbar.fillAmount = Player2HP;
+                Debug.Log("specialp1");
             }
             if (other.gameObject.name == "Chicken_P1" && gameObject.name == "P2SpecialHit")
             {

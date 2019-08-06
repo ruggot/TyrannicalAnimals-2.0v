@@ -9,23 +9,27 @@ public class Player : MonoBehaviour
     [SerializeField] protected Player self;
     protected Player enemyPlayer;
 
+    // what fighter they have choicen
     [SerializeField] private int fighter;
-    [SerializeField] private Image playerHpBar;
-    [SerializeField] private Image playerFuryBar;
+    // hp and fury images for hpbar and furybar
+    [SerializeField] public Image playerHpBar;
+    [SerializeField] public Image playerFuryBar;
 
     private PlayerController controller;
-    private int playerVal;
+    [SerializeField] private int playerVal;
 
     private string pLog;
-    protected float playerHp = 1;
+    [SerializeField] protected float playerHp = 1;
     protected float playerFury = 0f;
 
+    // dmg on attacks
     private float lightDmg;
     private float heavyDmg;
     private float specialDmg;
     private float lightFury;
     private float heavyFury;
 
+    // bools that allowes the player to take actions
     private bool canJump = true;
     private bool canLight = true;
     private bool canHeavy = true;
@@ -35,7 +39,7 @@ public class Player : MonoBehaviour
     internal int Fighter { get; set; }
     internal int PlayerVal { get; set; }
     internal Player EnemyPlayer { get; set; }
-    public Image PlayerHpBar { get; set; }
+    [SerializeField] protected Image PlayerHpBar { get; set; }
     public Image PlayerFuryBar { get; set; }
 
     private void Start()
@@ -47,7 +51,7 @@ public class Player : MonoBehaviour
                 enemyPlayer = item;
             }
         }
-        Debug.Log("" + enemyPlayer);
+        Debug.Log("This is enemy" + enemyPlayer);
     }
 
     private void Awake()
@@ -60,8 +64,8 @@ public class Player : MonoBehaviour
     {
         controller = self.GetComponent<PlayerController>();
         playerVal = controller.player;
-        // playerHp = DataManager.Hp[playerVal - 1];
-        pLog = $"P{playerVal}";
+        //playerHp = DataManager.Hp[playerVal - 1];
+        //pLog = $"P{playerVal}";
         //Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
     }
 
@@ -126,16 +130,17 @@ public class Player : MonoBehaviour
 
     private void UpdateData()
     {
-        // DataManager.Hp[playerVal - 1] = playerHp;
+        //DataManager.Hp[playerVal - 1] = playerHp;
     }
 
     public void TakeDamage(string furyType, float dmg)
     {
-        print(dmg);
-        print(playerFury);
+        //print(dmg);
+        //print(playerFury);
         playerHp -= dmg;
-        PlayerHpBar.fillAmount = (1 / playerHp) * playerHp;
-        
+        playerHpBar.fillAmount = playerHp / 1;
+        //playerHpBar.fillAmount = (1 / playerHp) * playerHp;
+
         switch (furyType)
         {
             case "light": BuildFury(lightFury); break;

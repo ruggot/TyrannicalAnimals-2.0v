@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
             }
 
             /// Utility attack
-            // NOTE  Uncomment when utility added
             if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility)
             {
                 anim.SetTrigger("Mobility");
@@ -153,22 +152,21 @@ public class PlayerController : MonoBehaviour
                 if (specialUI.fillAmount >= 1) { specialUI.fillAmount = 0; canSpecial = true; }
             }
 
-            // Uncomment when utility attack is working
             if (canUtility == false)
             {
                 utilityUI.fillAmount += 1.0f / utilityCool * Time.deltaTime;
                 if (utilityUI.fillAmount >= 1) { utilityUI.fillAmount = 0; canUtility = true; }
             }
 
-            FastFall();
+            //FastFall();
             ResetAbilities();
         }
     }
 
-    private void FastFall()
-    {
-        if (rb.velocity.y < -0.01) { rb.AddForce(Vector3.down * 30, ForceMode.Acceleration); }
-    }
+    //private void FastFall()
+    //{
+    //    if (rb.velocity.y < -0.01) { rb.AddForce(Vector3.down * 30, ForceMode.Acceleration); }
+    //}
 
     private void ResetAbilities()
     {

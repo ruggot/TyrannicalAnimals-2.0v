@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CurrentChar { chicken, penguin, lion }
+
 public class Player : MonoBehaviour
 {
+    public CurrentChar currentChar;
+
     [SerializeField] protected Player self;
     protected Player enemyPlayer;
 
     // what fighter they have choicen
     [SerializeField] private int fighter;
     // hp and fury images for hpbar and furybar
-    [SerializeField] public Image playerHpBar;
+     public Image playerHpBar;
     [SerializeField] public Image playerFuryBar;
 
     private PlayerController controller;
@@ -38,32 +42,57 @@ public class Player : MonoBehaviour
 
     internal int Fighter { get; set; }
     internal int PlayerVal { get; set; }
-    internal Player EnemyPlayer { get; set; }
-    [SerializeField] protected Image PlayerHpBar { get; set; }
+    //internal Player EnemyPlayer
+    //{
+    //    get { return enemyPlayer; }
+    //    set
+    //    {
+    //        enemyPlayer = value;
+    //        Debug.Log("enemy is set");
+    //    }
+    //}
+
+    // [SerializeField] protected Image PlayerHpBar { get; set; }
     public Image PlayerFuryBar { get; set; }
 
     private void Start()
     {
-        foreach (var item in FindObjectsOfType<Player>())
-        {
-            if (item != this)
-            {
-                enemyPlayer = item;
-            }
-        }
-        Debug.Log("This is enemy" + enemyPlayer);
+        SceneScript.OnBeginLevel += SetPlayers;   
+
     }
 
-    private void Awake()
+    private void OnDestroy()
     {
-        playerVal--;
+        SceneScript.OnBeginLevel -= SetPlayers;
     }
+
+    private void SetPlayers()
+    {
+        foreach (var item in FindObjectsOfType<Player>())
+        {
+            if (item.gameObject.activeSelf)
+            {
+                if (item != this)
+                {
+                    enemyPlayer = item;
+                }
+            }            
+        }
+        Debug.Log("This is enemy" + enemyPlayer.gameObject.name + " this is player " + this.gameObject.name);
+        SetFighter();
+    }
+
+    //private void Awake()
+    //{
+    //}
 
     // Start is called before the first frame update
     void OnEnable()
     {
         controller = self.GetComponent<PlayerController>();
-        playerVal = controller.player;
+        //playerVal = controller.player;
+
+        //playerVal--;
         //playerHp = DataManager.Hp[playerVal - 1];
         //pLog = $"P{playerVal}";
         //Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
@@ -72,21 +101,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Fighter.Equals(DataManager.PlayerSelection[playerVal]))
-        {
-            Fighter = DataManager.PlayerSelection[playerVal];
-            SetFighter(Fighter);
-        }
+        //if (!Fighter.Equals(DataManager.PlayerSelection[playerVal]))
+        //{
+        //    Fighter = DataManager.PlayerSelection[playerVal];
+        //    SetFighter(Fighter);
+        //}
         UpdateData();
         ReenableHitboxes();
     }
 
-    void SetFighter(int fighter)
+    void SetFighter()
     {
         /// 1 = Chicken; 2 = Lion; 3 = Penguin
-        switch (fighter)
+        switch (currentChar)
         {
-            case 1:
+            case CurrentChar.chicken:
                 {
                     lightDmg = 0.06f;
                     heavyDmg = 0.11f;
@@ -96,7 +125,7 @@ public class Player : MonoBehaviour
                     Debug.Log(pLog + "Chicken selected");
                     break;
                 }
-            case 2:
+            case CurrentChar.lion:
                 {
                     lightDmg = 0.08f;
                     heavyDmg = 0.13f;
@@ -106,7 +135,7 @@ public class Player : MonoBehaviour
                     Debug.Log(pLog + ": Lion selected");
                     break;
                 }
-            case 3:
+            case CurrentChar.penguin:
                 {
                     lightDmg = 0.07f;
                     heavyDmg = 0.12f;
@@ -139,6 +168,7 @@ public class Player : MonoBehaviour
         //print(playerFury);
         playerHp -= dmg;
         playerHpBar.fillAmount = playerHp / 1;
+        
         //playerHpBar.fillAmount = (1 / playerHp) * playerHp;
 
         switch (furyType)
@@ -171,7 +201,7 @@ public class Player : MonoBehaviour
                     case AttackType.LightHit:
                         if (canLight)
                         {
-                            TakeDamage("light", lightDmg);
+                            enemyPlayer.TakeDamage("light", lightDmg);
                             Debug.Log($"{pLog}: Light damage taken");
                             canLight = false;
                         }
@@ -179,7 +209,7 @@ public class Player : MonoBehaviour
                     case AttackType.HeavyHit:
                         if (canHeavy)
                         {
-                            TakeDamage("heavy", heavyDmg);
+                            enemyPlayer.TakeDamage("heavy", heavyDmg);
                             Debug.Log($"{pLog}: Heavy damage taken");
                             canHeavy = false;
                         }
@@ -187,7 +217,7 @@ public class Player : MonoBehaviour
                     case AttackType.SpecialHit:
                         if (canSpecial)
                         {
-                            TakeDamage("special", specialDmg);
+                            enemyPlayer.TakeDamage("special", specialDmg);
                             Debug.Log($"{pLog}: Special damage taken");
                             canSpecial = false;
                         }

@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,8 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public UnityEvent onStartButton;
     public static bool paused = false;
     public static bool inGame = false;
+
+    public static event Action OnBeginLevel;
 
     private void Awake()
     {
@@ -78,44 +81,45 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     {
         characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);
-        FinaliseCharacterModels();
+        OnBeginLevel();
+        //FinaliseCharacterModels();
         inGame = true;
     }
 
-    private void FinaliseCharacterModels()
-    {
-        player[0] = DataManager.Player(0);
-        player[1] = DataManager.Player(1);
-        PlayerOf(0).EnemyPlayer = PlayerOf(1);
-        PlayerOf(1).EnemyPlayer = PlayerOf(0);
+    //private void FinaliseCharacterModels()
+    //{
+    //    player[0] = DataManager.Player(0);
+    //    player[1] = DataManager.Player(1);
+    //    PlayerOf(0).EnemyPlayer = PlayerOf(1);
+    //    PlayerOf(1).EnemyPlayer = PlayerOf(0);
 
-        Player[] tempList = new Player[2];
-        //foreach (var pl in player)
-        //{
-        //    foreach (var trans in ExclusiveChildrenOf(pl))
-        //    {
-        //        Player p = PlayerOf(trans.gameObject);
-        //        if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
-        //        {
-        //            trans.gameObject.SetActive(true);
-        //        }
-        //    }
-        //}
+    //    Player[] tempList = new Player[2];
+    //    //foreach (var pl in player)
+    //    //{
+    //    //    foreach (var trans in ExclusiveChildrenOf(pl))
+    //    //    {
+    //    //        Player p = PlayerOf(trans.gameObject);
+    //    //        if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
+    //    //        {
+    //    //            trans.gameObject.SetActive(true);
+    //    //        }
+    //    //    }
+    //    //}
 
-        int i = 0;
-        foreach (var ego in gui.GetComponents<Transform>().Where(t => t.name.Substring(0, 3).Equals("EGO")))
-        {
-            Player p = player[i].GetComponent<Player>();
-            PlayerController c = player[i].GetComponent<PlayerController>();
-            //p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
-            p.PlayerFuryBar = ego.GetChild(5).GetComponent<Image>();
-            c.LightUI = ego.GetChild(6).GetComponent<Image>();
-            c.HeavyUI = ego.GetChild(8).GetComponent<Image>();
-            c.SpecialUI = ego.GetChild(1).GetComponent<Image>();
-            c.UtilityUI = ego.GetChild(1).GetComponent<Image>();
-            Debug.Log($"GUI Finalised {++i} time(s)");
-        }
-    }
+    //    int i = 0;
+    //    foreach (var ego in gui.GetComponents<Transform>().Where(t => t.name.Substring(0, 3).Equals("EGO")))
+    //    {
+    //        Player p = player[i].GetComponent<Player>();
+    //        PlayerController c = player[i].GetComponent<PlayerController>();
+    //        //p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
+    //        p.PlayerFuryBar = ego.GetChild(5).GetComponent<Image>();
+    //        c.LightUI = ego.GetChild(6).GetComponent<Image>();
+    //        c.HeavyUI = ego.GetChild(8).GetComponent<Image>();
+    //        c.SpecialUI = ego.GetChild(1).GetComponent<Image>();
+    //        c.UtilityUI = ego.GetChild(1).GetComponent<Image>();
+    //        Debug.Log($"GUI Finalised {++i} time(s)");
+    //    }
+    //}
 
     void DisableCam()
     {

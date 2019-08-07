@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40079260bda69f14c80332a04d1632a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
   movementSpeed: 3
   lightHit: {fileID: 988284219958990419}
   heavyHit: {fileID: 4371495299504127071}
@@ -433,8 +434,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254c51d47eedaf247a985312027f4714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentChar: 0
   self: {fileID: 4525523519725294567}
   fighter: 1
+  playerHpBar: {fileID: 0}
+  playerFuryBar: {fileID: 0}
+  playerVal: 0
+  playerHp: 1
 --- !u!1 &589829490138865844
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +453,7 @@ GameObject:
   - component: {fileID: 4371495299504127071}
   m_Layer: 0
   m_Name: HeavyHit
-  m_TagString: Untagged
+  m_TagString: HeavyHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +497,7 @@ GameObject:
   - component: {fileID: 988284219958990419}
   m_Layer: 0
   m_Name: LightHit
-  m_TagString: Untagged
+  m_TagString: LightHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -532,7 +538,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6890231040382423240}
-  - component: {fileID: 8384647245734105419}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -557,19 +562,6 @@ Transform:
   m_Father: {fileID: 4292928448873590}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8384647245734105419
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571203927569775671}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.91, y: 0.8, z: 1}
-  m_Center: {x: -0.09, y: -0.74, z: -0.03}
 --- !u!1 &5802743960983020320
 GameObject:
   m_ObjectHideFlags: 0

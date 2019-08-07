@@ -69,9 +69,10 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 
     public void Quit() => Application.Quit();                       /// Quit application
     public void Options() => SceneManager.LoadScene("Options");     /// Load Options.unity
-    public void Level() => SceneManager.LoadScene("LevelSelect");   /// Load LevelSelect.unity
+    public void LevelSelect() => SceneManager.LoadScene("LevelSelect");   /// Load LevelSelect.unity
     public void Menu() => SceneManager.LoadScene("Menu");           /// Load Menu.unity
     public void LevelOne() => SceneManager.LoadScene("Level_1");    /// Load Level_1.unity
+    public void LevelTwo() => SceneManager.LoadScene("Level_2");    /// Load Level_2.Unity
     public void HowToPlay() => SceneManager.LoadScene("HowToPlay"); /// Load HowToPlay.unity
 
     // Access tutorial from menu

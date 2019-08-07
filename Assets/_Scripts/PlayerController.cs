@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private float heavyCool = 1.2f;
     private float utilityCool = 1.2f;
     private float specialCool = 1.2f;
+    private float timerBetweenAttack = 0.7f;
     // how long it has been since the player push that button
     internal float lastJump = 0f;
     internal float lastLight = 0f;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ControlPlayer();
+        timerBetweenAttack -= Time.deltaTime;
     }
 
 
@@ -98,39 +100,49 @@ public class PlayerController : MonoBehaviour
                 canJump = false;
             }
             //Light attack
-            if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight)
+            if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
             {
                 anim.SetTrigger("Peck");
                 lastLight = Time.time;
                 lightHit.enabled = true;
                 canLight = false;
+                //canHeavy = false;
+                //canSpecial = false;
+                //canUtility = false;
                 attackType = AttackType.LightHit;
+                timerBetweenAttack = 0.7f;
             }
             //Heavy attack
-            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy)
+            if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
             {
                 anim.SetTrigger("Heavy");
                 lastHeavy = Time.time;
                 heavyHit.enabled = true;
+                //canLight = false;
                 canHeavy = false;
+                //canSpecial = false;
+                //canUtility = false;
                 attackType = AttackType.HeavyHit;
+                timerBetweenAttack = 0.8f;
             }
 
             /// Utility attack
-            if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility)
+            if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
             {
                 anim.SetTrigger("Mobility");
                 lastUtility = Time.time;
                 canUtility = false;
+                timerBetweenAttack = 0.7f;
             }
 
-            if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial)
+            if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
             {
                 anim.SetTrigger("Special");
                 lastSpecial = Time.time;
                 //specialHit.enabled= true;
                 canSpecial = false;
                 attackType = AttackType.SpecialHit;
+                timerBetweenAttack = 0.7f;
             }
 
             // starts timer for light attack
@@ -180,5 +192,4 @@ public class PlayerController : MonoBehaviour
     {
         canJump = true;
     }
-
 }

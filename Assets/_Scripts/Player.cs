@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
                         }
                         break;
                     case AttackType.HeavyHit:
-                        if (canHeavy)
+                        if (canHeavy && other.gameObject.CompareTag("HeavyHit"))
                         {
                             enemyPlayer.TakeDamage("heavy", heavyDmg);
                             Debug.Log($"{pLog}: Heavy damage taken");

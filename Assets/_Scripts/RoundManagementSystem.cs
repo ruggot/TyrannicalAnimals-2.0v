@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class RoundManagementSystem : MonoBehaviour
 {
-    public static int player1Score = 2;
-    public static int player2Score = 1;
+    public static int player1Score;
+    public static int player2Score;
     // Current round
     public static int currentRound;
 
     // max score a player can have
     public int maxPlayerWins = 3;
-    // Max rounds that can be played
-    public int maxRound = 6;
     // Time between wincondition met and the next round starting
     public float gameRestTimer = 3;
 
@@ -25,14 +23,14 @@ public class RoundManagementSystem : MonoBehaviour
     public Image[] player1RoundUI;
     public Image[] player2RoundUI;
 
-    private bool gameFinished = false;
+    public bool gameFinished = false;
 
 
     // Update is called once per frame
     void Update()
     {
         // Test for winner
-        if (player1Health.fillAmount <= 0 && gameFinished != true)
+        if (player1Health.fillAmount <= 0 && gameFinished != true && player1Health.gameObject.activeSelf == true)
         {
             // Player 2 wins
             gameFinished = true;
@@ -40,26 +38,13 @@ public class RoundManagementSystem : MonoBehaviour
             ++currentRound;
             //winnerText.text = "Player 2 wins!";
         }
-        else if (player2Health.fillAmount <= 0 && gameFinished != true)
+        else if (player2Health.fillAmount <= 0 && gameFinished != true && player2Health.gameObject.activeSelf == true)
         {
             // Player 1 wins
             gameFinished = true;
             ++player1Score;
             ++currentRound;
             //winnerText.text = "Player 1 wins!";
-        }
-
-
-        // Test for max rounds met
-        if (currentRound > maxRound)
-        {
-            // Game finished
-            Invoke("GameOver", gameRestTimer);
-        }
-        else
-        {
-            // Round reset
-            Invoke("ResetRound", gameRestTimer);
         }
 
 

@@ -10,6 +10,7 @@ TagManager:
   - CharacterSelect
   - LightHit
   - HeavyHit
+  - Hurtbox
   layers:
   - Default
   - TransparentFX

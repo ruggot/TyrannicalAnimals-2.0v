@@ -436,7 +436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentChar: 0
   self: {fileID: 4525523519725294567}
-  fighter: 1
   playerHpBar: {fileID: 0}
   playerFuryBar: {fileID: 0}
   playerVal: 0

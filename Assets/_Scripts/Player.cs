@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CurrentChar { chicken, penguin, lion }
+public enum CurrentCharacter { chicken = 1, penguin, lion }
 
 public class Player : MonoBehaviour
 {
-    public CurrentChar currentChar;
+    // what fighter they have chosen
+    public CurrentCharacter currentChar;
 
     [SerializeField] protected Player self;
     protected Player enemyPlayer;
 
-    // what fighter they have choicen
-    [SerializeField] private int fighter;
     // hp and fury images for hpbar and furybar
      public Image playerHpBar;
     [SerializeField] public Image playerFuryBar;
@@ -90,11 +89,11 @@ public class Player : MonoBehaviour
     void OnEnable()
     {
         controller = self.GetComponent<PlayerController>();
-        //playerVal = controller.player;
+        playerVal = controller.player;
 
         //playerVal--;
         //playerHp = DataManager.Hp[playerVal - 1];
-        //pLog = $"P{playerVal}";
+        pLog = $"P{playerVal}";
         //Debug.Log($"{pLog}: enemyplayer.name = {enemyPlayer.name}");
     }
 
@@ -115,7 +114,7 @@ public class Player : MonoBehaviour
         /// 1 = Chicken; 2 = Lion; 3 = Penguin
         switch (currentChar)
         {
-            case CurrentChar.chicken:
+            case CurrentCharacter.chicken:
                 {
                     lightDmg = 0.06f;
                     heavyDmg = 0.11f;
@@ -125,7 +124,7 @@ public class Player : MonoBehaviour
                     Debug.Log(pLog + "Chicken selected");
                     break;
                 }
-            case CurrentChar.lion:
+            case CurrentCharacter.lion:
                 {
                     lightDmg = 0.08f;
                     heavyDmg = 0.13f;
@@ -135,7 +134,7 @@ public class Player : MonoBehaviour
                     Debug.Log(pLog + ": Lion selected");
                     break;
                 }
-            case CurrentChar.penguin:
+            case CurrentCharacter.penguin:
                 {
                     lightDmg = 0.07f;
                     heavyDmg = 0.12f;
@@ -190,9 +189,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
+        if (other.isTrigger && gameObject == controller.hurtBox)
         {
-            Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t" + other.name + ", " + other.tag + "\n\tgameObject:\t" + gameObject.name + ", " + gameObject.tag);
+            Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
             if (other.tag == enemyPlayer.tag)
             {
                 Debug.Log($"{pLog}: Player hit");
@@ -229,6 +229,18 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+    public void ChickenOnClick()
+    {
+        currentChar = CurrentCharacter.chicken;
+    }
+    public void LionOnClick()
+    {
+        currentChar = CurrentCharacter.lion;
+    }
+    public void PenguinOnClick()
+    {
+        currentChar = CurrentCharacter.penguin;
     }
 
     private void ReenableHitboxes()

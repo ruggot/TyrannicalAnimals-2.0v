@@ -24,7 +24,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     [SerializeField] private GameObject pausePanel;
     /// In-Game GUI
     [SerializeField] private GameObject gui;
-
+    // egos for players
     [SerializeField] private GameObject egoP1;
     [SerializeField] private GameObject egoP2;
 

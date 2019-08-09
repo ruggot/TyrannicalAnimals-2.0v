@@ -20,10 +20,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player_1_Character
+  - Player_1_Projectile
+  - Player_2_Character
+  - Player_2_Projectile
   - 
   - 
   - 

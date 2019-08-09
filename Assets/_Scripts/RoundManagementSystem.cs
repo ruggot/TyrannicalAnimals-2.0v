@@ -45,36 +45,12 @@ public class RoundManagementSystem : MonoBehaviour
     void Update()
     {
         // Set player 1 script
-        if (player1Script == null)
-        {
-            GameObject[] temp = GameObject.FindGameObjectsWithTag("Player 1");
-            {
-                for (int i = 0; i < temp.Length; i++)
-                {
-                    if (temp[i].GetComponent<Player>() != null)
-                    {
-                        player1Script = temp[i].GetComponent<Player>();
-                    }
-                }
-            }
-        }
+        SetPlayer(player1Script);
         // Set player 2 script
-        if (player2Script == null)
-        {
-            GameObject[] temp = GameObject.FindGameObjectsWithTag("Player 2");
-            {
-                for (int i = 0; i < temp.Length; i++)
-                {
-                    if (temp[i].GetComponent<Player>() != null)
-                    {
-                        player2Script = temp[i].GetComponent<Player>();
-                    }
-                }
-            }
-        }
+        SetPlayer(player2Script);
 
         // Test for winner
-        if (player1Health.fillAmount <= 0 && gameFinished != true && player1Health.gameObject.activeSelf == true)
+        if (gameFinished != true && player1Health.fillAmount <= 0 && player1Health.gameObject.activeSelf == true)
         {
             // Player 2 wins
             gameFinished = true;
@@ -82,7 +58,7 @@ public class RoundManagementSystem : MonoBehaviour
             ++currentRound;
             //winnerText.text = "Player 2 wins!";
         }
-        else if (player2Health.fillAmount <= 0 && gameFinished != true && player2Health.gameObject.activeSelf == true)
+        else if (gameFinished != true && player2Health.fillAmount <= 0 && player2Health.gameObject.activeSelf == true)
         {
             // Player 1 wins
             gameFinished = true;
@@ -90,7 +66,6 @@ public class RoundManagementSystem : MonoBehaviour
             ++currentRound;
             //winnerText.text = "Player 1 wins!";
         }
-
 
         // Test if player has reached max score
         if (gameFinished == true)
@@ -103,7 +78,7 @@ public class RoundManagementSystem : MonoBehaviour
                     guiDisabledOnWin[i].SetActive(false);
                 }
                 guiEnableOnWin.SetActive(true);
-                
+
                 // Go to win scene
                 Invoke("GameOver", gameRestTimer);
             }
@@ -133,7 +108,7 @@ public class RoundManagementSystem : MonoBehaviour
         }
 
         // Get player scripts
-        
+
         // Displaying each players score
         // Player 1
         for (int i = 0; i < player1RoundUI.Length; i++)
@@ -162,15 +137,30 @@ public class RoundManagementSystem : MonoBehaviour
         }
     }
 
-   private void ResetRound()
+    private void SetPlayer(Player player)
+    {
+        // Set player script
+        if (player == null)
+        {
+            foreach (GameObject i in GameObject.FindGameObjectsWithTag(player.tag))
+            {
+                if (i.GetComponent<Player>() != null)
+                {
+                    player = i.GetComponent<Player>();
+                }
+            }
+        }
+    }
+
+    private void ResetRound()
     {
         // Restarts the round
         // Invoke player reset methods
         // Hide/show gui
         player1Script.ResetCharacter();
         player2Script.ResetCharacter();
-        player1Health.fillAmount = 1f;
-        player2Health.fillAmount = 1f;
+        // player1Health.fillAmount = 1f;
+        // player2Health.fillAmount = 1f;
         gameFinished = false;
         print("RoundReset");
     }

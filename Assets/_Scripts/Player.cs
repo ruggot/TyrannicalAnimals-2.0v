@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Image playerFuryBar;
 
     private PlayerController controller;
-    [SerializeField] private int playerVal;
+    private int playerVal;
 
     private string pLog;
     [SerializeField] protected float playerHp = 1;

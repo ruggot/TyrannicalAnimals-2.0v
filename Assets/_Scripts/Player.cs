@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     private float specialDmg;
     private float lightFury;
     private float heavyFury;
+    private Vector3 startingPos;
+    private Quaternion startingRotation;
+
 
     // bools that allowes the player to take actions
     private bool canJump = true;
@@ -53,6 +56,12 @@ public class Player : MonoBehaviour
 
     // [SerializeField] protected Image PlayerHpBar { get; set; }
     public Image PlayerFuryBar { get; set; }
+
+    private void Awake()
+    {
+        startingPos = transform.position;
+        startingRotation = transform.rotation;
+    }
 
     private void Start()
     {
@@ -248,5 +257,12 @@ public class Player : MonoBehaviour
         if (controller.LastLight < Time.time + 0.2f) { canLight = true; }
         if (controller.LastHeavy < Time.time + 0.2f) { canHeavy = true; }
         if (controller.LastSpecial < Time.time + 0.2f) { canSpecial = true; }
+    }
+    public void ResetCharacter()
+    {
+        playerHp = 1f;
+        playerFury = 0f;
+        transform.position = startingPos;
+        transform.rotation = startingRotation;
     }
 }

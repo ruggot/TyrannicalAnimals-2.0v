@@ -40,7 +40,9 @@ public class PlayerController : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
-    [SerializeField] public int player;
+    private bool stunned = false;
+    
+    [SerializeField] internal int player;
     
     [SerializeField] public string gPad;
     [SerializeField] private Image lightUI;
@@ -56,10 +58,6 @@ public class PlayerController : MonoBehaviour
     public float LastHeavy { get => lastHeavy; set => lastHeavy = value; }
     public float LastUtility { get => lastUtility; set => lastUtility = value; }
     public float LastSpecial { get => lastSpecial; set => lastSpecial = value; }
-    public Image LightUI { get => lightUI; set => lightUI = value; }
-    public Image HeavyUI { get => heavyUI; set => heavyUI = value; }
-    public Image UtilityUI { get => utilityUI; set => utilityUI = value; }
-    public Image SpecialUI { get => specialUI; set => specialUI = value; }
 
     void Start()
     {
@@ -78,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     protected void ControlPlayer()
     {
-        if (SceneScript.inGame)
+        if (SceneScript.inGame && !stunned)
         {
             float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
             float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);

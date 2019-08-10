@@ -22,18 +22,17 @@ public class Player : MonoBehaviour
     private int playerVal;
 
     private string pLog;
-    [SerializeField] protected float playerHp = 1;
+    [SerializeField] internal float playerHp = 1;
     protected float playerFury = 0f;
 
     // dmg on attacks
     private float lightDmg;
     private float heavyDmg;
-    private float specialDmg;
+    internal float specialDmg;
     private float lightFury;
     private float heavyFury;
     private Vector3 startingPos;
     private Quaternion startingRotation;
-
 
     // bools that allowes the player to take actions
     private bool canJump = true;
@@ -199,7 +198,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
-        if (other.isTrigger && gameObject == controller.hurtBox)
+        if (other.isTrigger)
         {
             Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
             if (other.tag == enemyPlayer.tag)

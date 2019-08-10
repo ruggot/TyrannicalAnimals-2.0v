@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum AttackType { Ready, LightHit, HeavyHit, SpecialHit } // Ready = no attack
+public enum AttackType {LightHit, HeavyHit, SpecialHit } // Ready = no attack
 
 public class PlayerController : MonoBehaviour
 {
 
-    public AttackType attackType = AttackType.Ready;
+    public AttackType attackType;
 
     public float movementSpeed = 3;
     // collider for players
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected BoxCollider utilityHit;
     [SerializeField] internal BoxCollider hurtBox;
     [SerializeField] protected float jumpForce;
+    [SerializeField] GameObject egg;
 
     private Player player_script;
     // Cooldown for player ablitys
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float utilityCool = 1.2f;
     private float specialCool = 1.2f;
     internal float timerBetweenAttack = 0.7f;
+    internal float timeForSpeedUp = 0.0f;
     // how long it has been since the player push that button
     internal float lastJump = 0f;
     internal float lastLight = 0f;
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         ControlPlayer();
         timerBetweenAttack -= Time.deltaTime;
+        timeForSpeedUp -= Time.deltaTime;
     }
 
 
@@ -129,6 +132,14 @@ public class PlayerController : MonoBehaviour
             switch (player_script.currentChar)
             {
                 case CurrentCharacter.chicken:
+                    if (timeForSpeedUp > 0)
+                    {
+                        movementSpeed = 5f;
+                    }
+                    else
+                    {
+                        movementSpeed = 3f;
+                    }                  
                     //Light attack
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
@@ -156,7 +167,7 @@ public class PlayerController : MonoBehaviour
                         anim.SetTrigger("Mobility");
                         lastUtility = Time.time;
                         canUtility = false;
-
+                        timeForSpeedUp = 1f;
                         timerBetweenAttack = 0.7f;
                     }
                     // Special attack
@@ -167,6 +178,7 @@ public class PlayerController : MonoBehaviour
                         canSpecial = false;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
+                        Instantiate(egg, gameObject.transform.position + transform.up, Quaternion.identity);
                     }
                     break;
                 case CurrentCharacter.penguin:
@@ -226,10 +238,10 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAbilities()
     {
-        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; attackType = AttackType.Ready; }
-        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; attackType = AttackType.Ready; }
-        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; attackType = AttackType.Ready; }
-        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; attackType = AttackType.Ready; }
+        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true;}
+        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true;}
+        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true;}
+        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true;}
 
     }
 

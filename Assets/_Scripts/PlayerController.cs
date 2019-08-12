@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     private bool canSpecial = true;
 
     [SerializeField] private bool stunned = false;
-    
+
     [SerializeField] internal int player;
-    
+
     [SerializeField] public string gPad;
     [SerializeField] private Image lightUI;
     [SerializeField] private Image heavyUI;
@@ -82,19 +82,17 @@ public class PlayerController : MonoBehaviour
     {
         stunned = false;
     }
+    void LionNotReduceDmg()
+    {
+        player_script.lionDmgReduceActive = false;
+    }
 
     protected void ControlPlayer()
     {
-       // no work plz send help 
-        //     if (stunned == true)
-        //{
-        //    Invoke("UnStun", 1.5f);
-        //}
-
-        //if (timeForStunned <= 0)
-        //{
-        //    stunned = false;
-        //}
+        if (stunned == true)
+        {
+            Invoke("UnStun", 1.5f);
+        }
 
         if (SceneScript.inGame && !stunned)
         {
@@ -239,7 +237,11 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
                     {
-
+                        player_script.lionDmgReduceActive = true;
+                        lastUtility = Time.time;
+                        canUtility = false;
+                        Invoke("LionNotReduceDmg", 1.5f);
+                        timerBetweenAttack = 0.7f;
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {

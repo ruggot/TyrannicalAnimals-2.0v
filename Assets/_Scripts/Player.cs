@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private bool canHeavy = true;
     private bool canUtility = true;
     private bool canSpecial = true;
+    public bool lionDmgReduceActive = false;
 
     internal int Fighter { get; set; }
     internal int PlayerVal { get; set; }
@@ -173,9 +174,19 @@ public class Player : MonoBehaviour
     {
         //print(dmg);
         //print(playerFury);
-        playerHp -= dmg;
-        playerHpBar.fillAmount = playerHp / 1;
-        
+        if (lionDmgReduceActive == true)
+        {
+            playerHp -= dmg / 2;
+            playerHpBar.fillAmount = playerHp / 1;
+            Debug.Log("Lion thing");
+        }
+        else
+        {
+            playerHp -= dmg;
+            playerHpBar.fillAmount = playerHp / 1;
+            Debug.Log("Anyone else");
+        }
+
         //playerHpBar.fillAmount = (1 / playerHp) * playerHp;
 
         switch (furyType)
@@ -212,6 +223,7 @@ public class Player : MonoBehaviour
                             enemyPlayer.TakeDamage("light", lightDmg);
                             Debug.Log($"{pLog}: Light damage taken");
                             canLight = false;
+                            
                         }
                         break;
                     case AttackType.HeavyHit:

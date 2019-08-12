@@ -12,13 +12,13 @@ public class Player : MonoBehaviour
     public CurrentCharacter currentChar;
 
     [SerializeField] protected Player self;
-    protected Player enemyPlayer;
+    public Player enemyPlayer;
 
     // hp and fury images for hpbar and furybar
      public Image playerHpBar;
     [SerializeField] public Image playerFuryBar;
 
-    private PlayerController controller;
+    public PlayerController controller;
     private int playerVal;
 
     private string pLog;
@@ -197,10 +197,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
+        //Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
         if (other.isTrigger)
         {
-            Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
+            //Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
             if (other.tag == enemyPlayer.tag)
             {
                 Debug.Log($"{pLog}: Player hit");

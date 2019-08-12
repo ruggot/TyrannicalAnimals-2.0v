@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float specialCool = 1.2f;
     internal float timerBetweenAttack = 0.7f;
     internal float timeForSpeedUp = 0.0f;
+    protected float timeForStunned;
     // how long it has been since the player push that button
     internal float lastJump = 0f;
     internal float lastLight = 0f;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
 
-    private bool stunned = false;
+    [SerializeField] private bool stunned = false;
     
     [SerializeField] internal int player;
     
@@ -74,11 +75,27 @@ public class PlayerController : MonoBehaviour
         ControlPlayer();
         timerBetweenAttack -= Time.deltaTime;
         timeForSpeedUp -= Time.deltaTime;
+        timeForStunned -= Time.deltaTime;
     }
 
+    void UnStun()
+    {
+        stunned = false;
+    }
 
     protected void ControlPlayer()
     {
+       // no work plz send help 
+        //     if (stunned == true)
+        //{
+        //    Invoke("UnStun", 1.5f);
+        //}
+
+        //if (timeForStunned <= 0)
+        //{
+        //    stunned = false;
+        //}
+
         if (SceneScript.inGame && !stunned)
         {
             float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
@@ -194,7 +211,6 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
                     {
-                        movementSpeed = 5;
 
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
@@ -205,12 +221,20 @@ public class PlayerController : MonoBehaviour
                 case CurrentCharacter.lion:
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
-
+                        lastLight = Time.time;
+                        lightHit.enabled = true;
+                        canLight = false;
+                        attackType = AttackType.LightHit;
+                        timerBetweenAttack = 0.7f;
                     }
 
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
                     {
-
+                        lastHeavy = Time.time;
+                        heavyHit.enabled = true;
+                        canHeavy = false;
+                        attackType = AttackType.HeavyHit;
+                        timerBetweenAttack = 0.8f;
                     }
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
@@ -219,7 +243,11 @@ public class PlayerController : MonoBehaviour
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {
-
+                        lastSpecial = Time.time;
+                        canSpecial = false;
+                        attackType = AttackType.SpecialHit;
+                        timerBetweenAttack = 0.7f;
+                        player_script.enemyPlayer.controller.stunned = true;
                     }
                     break;
                 default:

@@ -11,6 +11,7 @@ TagManager:
   - LightHit
   - HeavyHit
   - Hurtbox
+  - Pain
   layers:
   - Default
   - TransparentFX
@@ -22,10 +23,10 @@ TagManager:
   - 
   - Player_1_Character
   - Player_1_Projectile
+  - Player_1_Hurtbox
+  - Player_2_Hurtbox
   - Player_2_Character
   - Player_2_Projectile
-  - 
-  - 
   - 
   - 
   - 

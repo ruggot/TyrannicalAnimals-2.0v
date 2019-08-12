@@ -426,6 +426,9 @@ Transform:
   - {fileID: 4900123827302472}
   - {fileID: 92855972119089361}
   - {fileID: 2952440306270663535}
+  - {fileID: 5508926448887626049}
+  - {fileID: 7273458981357408477}
+  - {fileID: 3152226505367887372}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 119.37601, z: 0}
@@ -489,13 +492,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40079260bda69f14c80332a04d1632a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
   movementSpeed: 3
-  lightHit: {fileID: 0}
-  heavyHit: {fileID: 0}
-  specialHit: {fileID: 4774949162434881761}
+  lightHit: {fileID: 1615443437699777134}
+  heavyHit: {fileID: 2121574392052986718}
+  specialHit: {fileID: 6188877990202144916}
   utilityHit: {fileID: 0}
   hurtBox: {fileID: 187426881453386075}
   jumpForce: 300
+  egg: {fileID: 0}
+  lightCool: 0.3
   player: 0
   gPad: 360
   lightUI: {fileID: 0}
@@ -514,8 +520,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254c51d47eedaf247a985312027f4714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentChar: 0
   self: {fileID: 6255043137942013529}
-  fighter: 2
+  playerHpBar: {fileID: 0}
+  playerFuryBar: {fileID: 0}
+  playerHp: 1
 --- !u!1 &1559099344501894
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 92855972119089361}
-  - component: {fileID: 4774949162434881761}
   m_Layer: 0
   m_Name: Pounce
   m_TagString: Untagged
@@ -701,19 +709,50 @@ Transform:
   m_Father: {fileID: 4886101968738366}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4774949162434881761
+--- !u!1 &4022353312038734959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7273458981357408477}
+  - component: {fileID: 2121574392052986718}
+  m_Layer: 0
+  m_Name: Heavy Hit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7273458981357408477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022353312038734959}
+  m_LocalRotation: {x: -0, y: -0.7045189, z: -0, w: 0.7096852}
+  m_LocalPosition: {x: 0.073, y: 0.48500064, z: 1.147}
+  m_LocalScale: {x: 0.5289047, y: 0.5289047, z: 0.5289047}
+  m_Children: []
+  m_Father: {fileID: 4886101968738366}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: -89.581, z: 0}
+--- !u!65 &2121574392052986718
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208075994991344189}
+  m_GameObject: {fileID: 4022353312038734959}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8685043, y: 1.2970527, z: 2.2485342}
-  m_Center: {x: -0.110462606, y: -0.76775515, z: 0.6090948}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7197069335921988776
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,3 +797,91 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.018305, y: 2.38243, z: 3.8030255}
   m_Center: {x: -0.116188504, y: -0.27169332, z: -0.117321596}
+--- !u!1 &7232717919992609214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3152226505367887372}
+  - component: {fileID: 6188877990202144916}
+  m_Layer: 0
+  m_Name: Special Hit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3152226505367887372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232717919992609214}
+  m_LocalRotation: {x: -0, y: -0.7109315, z: -0, w: 0.7032613}
+  m_LocalPosition: {x: 0.06, y: 0.54748416, z: 1.68}
+  m_LocalScale: {x: 0.5289047, y: 0.5074629, z: 0.5289047}
+  m_Children: []
+  m_Father: {fileID: 4886101968738366}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: -90.622, z: 0}
+--- !u!65 &6188877990202144916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232717919992609214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.67, y: 1, z: 2.59}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8099318354827342999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5508926448887626049}
+  - component: {fileID: 1615443437699777134}
+  m_Layer: 0
+  m_Name: Light Hit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5508926448887626049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099318354827342999}
+  m_LocalRotation: {x: -0, y: -0.7045189, z: -0, w: 0.7096852}
+  m_LocalPosition: {x: 0.161, y: 0.215, z: 0.99}
+  m_LocalScale: {x: 1.0803406, y: 0.40026975, z: 0.5289047}
+  m_Children: []
+  m_Father: {fileID: 4886101968738366}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: -89.581, z: 0}
+--- !u!65 &1615443437699777134
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099318354827342999}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

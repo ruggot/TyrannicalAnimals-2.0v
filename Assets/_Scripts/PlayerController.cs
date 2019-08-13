@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     internal float lastHeavy = 0f;
     internal float lastUtility = 0f;
     internal float lastSpecial = 0f;
+    float dashSpeed = 6;
     // bool to check if the player can do the input
     private bool canJump = true;
     internal bool canLight = true;
@@ -52,6 +53,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image heavyUI;
     [SerializeField] private Image utilityUI;
     [SerializeField] private Image specialUI;
+
+    public Vector3 moveDirection;
+    public const float maxDashTime = 1.0f;
+    public float dashDistance = 10;
+    public float dashStoppingSpeed = 0.1f;
+    float currentDashTime = maxDashTime;
 
     protected Animator anim;
     protected Rigidbody rb;
@@ -154,7 +161,7 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         movementSpeed = 3f;
-                    }                  
+                    }
                     //Light attack
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
@@ -199,12 +206,20 @@ public class PlayerController : MonoBehaviour
                 case CurrentCharacter.penguin:
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
-
+                        lastLight = Time.time;
+                        lightHit.enabled = true;
+                        canLight = false;
+                        attackType = AttackType.LightHit;
+                        timerBetweenAttack = 0.7f;
                     }
 
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
                     {
-
+                        lastHeavy = Time.time;
+                        heavyHit.enabled = true;
+                        canHeavy = false;
+                        attackType = AttackType.HeavyHit;
+                        timerBetweenAttack = 0.8f;
                     }
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
@@ -213,9 +228,13 @@ public class PlayerController : MonoBehaviour
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {
-
+                        currentDashTime = 0;
+                        lastSpecial = Time.time;
+                        canSpecial = false;
+                        attackType = AttackType.SpecialHit;
+                        timerBetweenAttack = 0.7f;
                     }
-                        break;
+                    break;
                 case CurrentCharacter.lion:
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
@@ -268,10 +287,10 @@ public class PlayerController : MonoBehaviour
 
     private void ResetAbilities()
     {
-        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true;}
-        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true;}
-        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true;}
-        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true;}
+        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; }
+        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; }
+        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; }
+        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; }
 
     }
 

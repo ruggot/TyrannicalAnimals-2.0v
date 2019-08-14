@@ -30,19 +30,24 @@ public class PlayerController : MonoBehaviour
     internal float timerBetweenAttack = 0.7f;
     internal float timeForSpeedUp = 0.0f;
     protected float timeForStunned;
+
+    float moveHorizontal;
+    float moveVertical;
     // how long it has been since the player push that button
     internal float lastJump = 0f;
     internal float lastLight = 0f;
     internal float lastHeavy = 0f;
     internal float lastUtility = 0f;
     internal float lastSpecial = 0f;
-    float dashSpeed = 6;
+    float dashSpeed = 2.5f;
+    float currentDashSpeed = 1;
     // bool to check if the player can do the input
     private bool canJump = true;
     internal bool canLight = true;
     private bool canHeavy = true;
     private bool canUtility = true;
     private bool canSpecial = true;
+    private bool isDashing = false;
 
     [SerializeField] private bool stunned = false;
 
@@ -56,8 +61,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 moveDirection;
     public const float maxDashTime = 1.0f;
-    public float dashDistance = 10;
-    public float dashStoppingSpeed = 0.1f;
+    //public float dashDistance = 10;
+    //public float dashStoppingSpeed = 0.1f;
     float currentDashTime = maxDashTime;
 
     protected Animator anim;
@@ -83,6 +88,8 @@ public class PlayerController : MonoBehaviour
         timerBetweenAttack -= Time.deltaTime;
         timeForSpeedUp -= Time.deltaTime;
         timeForStunned -= Time.deltaTime;
+
+        if (isDashing == true) Dash();
     }
 
     void UnStun()
@@ -93,11 +100,21 @@ public class PlayerController : MonoBehaviour
     {
         player_script.lionDmgReduceActive = false;
     }
-    void PenguinDash()
+    void Dash()
     {
-        // Rotate character so it slides on their belly
-
-        // Force 
+        // Increase dash speed
+        if (currentDashTime > 0)
+        {
+            currentDashTime -= Time.deltaTime;
+            currentDashSpeed = dashSpeed;
+            print("Dashing");
+        }
+        else
+        {
+            currentDashSpeed = 1;
+            isDashing = false;
+            print("Dash finished");
+        }
     }
 
     protected void ControlPlayer()
@@ -109,8 +126,12 @@ public class PlayerController : MonoBehaviour
 
         if (SceneScript.inGame && !stunned)
         {
-            float moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
-            float moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);
+            if (isDashing != true)
+            {
+                moveHorizontal = Input.GetAxisRaw("J" + player + "_Horizontal_" + gPad);
+                moveVertical = Input.GetAxisRaw("J" + player + "_Vertical_" + gPad);
+                print("Can't Change");
+            }
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
@@ -121,7 +142,7 @@ public class PlayerController : MonoBehaviour
             }
             else anim.SetInteger("Walk", 0);
 
-            rb.AddForce(movement * movementSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
+            rb.AddForce(movement * movementSpeed * currentDashSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
             // Movement ability
             if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > jumpCool && canJump)
             {
@@ -230,11 +251,16 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
                     {
-                        Invoke("PenguinDash", 0.3f);
+                        currentDashTime = maxDashTime;
+                        isDashing = true;
+                        print("Dash");
+                        lastUtility = Time.time;
+                        canUtility = false;
+                        attackType = AttackType.SpecialHit;
+                        timerBetweenAttack = 0.7f;
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {
-                        currentDashTime = 0;
                         lastSpecial = Time.time;
                         canSpecial = false;
                         attackType = AttackType.SpecialHit;
@@ -303,5 +329,12 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         canJump = true;
+        if (isDashing == true)
+        {
+            isDashing = false;
+            currentDashSpeed = 1;
+            isDashing = false;
+            print("Dash finished");
+        }
     }
 }

@@ -20,7 +20,7 @@ public class RoundManagementSystem : MonoBehaviour
     public Image player1Health;
     public Image player2Health;
     // Displays who the winner is
-    //public Text winnerText;
+    public Text winnerText;
     // Displays each players score
     public Image[] player1RoundUI;
     public Image[] player2RoundUI;
@@ -28,8 +28,8 @@ public class RoundManagementSystem : MonoBehaviour
     public GameObject[] guiDisabledOnWin;
     public GameObject guiEnableOnWin;
     // Player Scripts
-    private Player player1Script;
-    private Player player2Script;
+    public Player player1Script;
+    public Player player2Script;
 
     public bool gameFinished = false;
 
@@ -39,15 +39,16 @@ public class RoundManagementSystem : MonoBehaviour
     {
         //winnerText.text = "";
         currentResetTimer = gameResetDelay;
+        guiEnableOnWin.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         // Set player 1 script
-        if (player1Script == null) SetPlayer(player1Script, "Player 1");
+        if (player1Script == null) SetPlayer();
         // Set player 2 script
-        if (player2Script == null) SetPlayer(player2Script, "Player 2");
+        if (player2Script == null) SetPlayer();
 
         // Test for winner
 
@@ -60,7 +61,7 @@ public class RoundManagementSystem : MonoBehaviour
                 gameFinished = true;
                 ++player2Score;
                 ++currentRound;
-                //winnerText.text = "Player 2 wins!";
+                winnerText.text = "Player 2 wins!";
             }
             else if (player2Health.fillAmount <= 0 && player2Health.gameObject.activeSelf)
             {
@@ -68,7 +69,7 @@ public class RoundManagementSystem : MonoBehaviour
                 gameFinished = true;
                 ++player1Score;
                 ++currentRound;
-                //winnerText.text = "Player 1 wins!";
+                winnerText.text = "Player 1 wins!";
             }
         }
         else
@@ -129,16 +130,20 @@ public class RoundManagementSystem : MonoBehaviour
 
     public void EnsurePlayers()
     {
-        SetPlayer(player1Script, "Player 1");
-        SetPlayer(player2Script, "Player 2");
+        //SetPlayer(player1Script, "Player 1");
+        //SetPlayer(player2Script, "Player 2");
     }
 
-    private void SetPlayer(Player player, string tag)
+    private void SetPlayer()
     {
         // Set player script if player script null
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag(tag))
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 1"))
         {
-            if (i.GetComponent<Player>() != null) player = i.GetComponent<Player>();
+            if (i.GetComponent<Player>() != null) player1Script = i.GetComponent<Player>();
+        }
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 2"))
+        {
+            if (i.GetComponent<Player>() != null) player2Script = i.GetComponent<Player>();
         }
     }
 
@@ -149,8 +154,8 @@ public class RoundManagementSystem : MonoBehaviour
         // Hide/show gui
         player1Script.ResetCharacter();
         player2Script.ResetCharacter();
-        // player1Health.fillAmount = 1f;
-        // player2Health.fillAmount = 1f;
+        player1Health.fillAmount = 1f;
+        player2Health.fillAmount = 1f;
         gameFinished = false;
         print("RoundReset");
     }

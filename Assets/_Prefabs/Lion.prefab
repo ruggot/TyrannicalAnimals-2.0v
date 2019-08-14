@@ -446,7 +446,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &65306087575105876
 BoxCollider:
@@ -502,12 +502,16 @@ MonoBehaviour:
   jumpForce: 300
   egg: {fileID: 0}
   lightCool: 0.3
+  stunned: 0
   player: 0
   gPad: 360
   lightUI: {fileID: 0}
   heavyUI: {fileID: 0}
   utilityUI: {fileID: 0}
   specialUI: {fileID: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  dashDistance: 10
+  dashStoppingSpeed: 0.1
 --- !u!114 &6255043137942013529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,9 +526,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentChar: 0
   self: {fileID: 6255043137942013529}
+  enemyPlayer: {fileID: 0}
   playerHpBar: {fileID: 0}
   playerFuryBar: {fileID: 0}
+  controller: {fileID: 0}
   playerHp: 1
+  lionDmgReduceActive: 0
 --- !u!1 &1559099344501894
 GameObject:
   m_ObjectHideFlags: 0

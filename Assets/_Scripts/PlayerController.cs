@@ -93,6 +93,12 @@ public class PlayerController : MonoBehaviour
     {
         player_script.lionDmgReduceActive = false;
     }
+    void PenguinDash()
+    {
+        // Rotate character so it slides on their belly
+
+        // Force 
+    }
 
     protected void ControlPlayer()
     {
@@ -224,7 +230,7 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
                     {
-
+                        Invoke("PenguinDash", 0.3f);
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {

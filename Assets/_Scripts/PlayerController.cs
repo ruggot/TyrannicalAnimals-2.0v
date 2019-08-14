@@ -270,6 +270,7 @@ public class PlayerController : MonoBehaviour
                 case CurrentCharacter.lion:
                     if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack)
                     {
+                        anim.SetTrigger("Light");
                         lastLight = Time.time;
                         lightHit.enabled = true;
                         canLight = false;
@@ -279,6 +280,7 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
                     {
+                        anim.SetTrigger("Heavy");
                         lastHeavy = Time.time;
                         heavyHit.enabled = true;
                         canHeavy = false;
@@ -288,6 +290,7 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
                     {
+                        anim.SetTrigger("Utility");
                         player_script.lionDmgReduceActive = true;
                         lastUtility = Time.time;
                         canUtility = false;
@@ -296,6 +299,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
                     {
+                        anim.SetTrigger("Ultimate");
                         lastSpecial = Time.time;
                         canSpecial = false;
                         attackType = AttackType.SpecialHit;

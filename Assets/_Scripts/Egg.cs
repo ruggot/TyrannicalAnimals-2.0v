@@ -19,7 +19,6 @@ public class Egg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if (other.transform.CompareTag("Player 1") || other.transform.CompareTag("Player 2"))
         {
             player = other.GetComponentInParent<Player>();

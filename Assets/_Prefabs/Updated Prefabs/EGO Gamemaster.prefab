@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8087998677403297826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8087998677403297827}
+  - component: {fileID: 8087998677403298012}
+  - component: {fileID: 8087998677403298013}
+  m_Layer: 0
+  m_Name: EGO Gamemaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8087998677403297827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087998677403297826}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 237.79214, y: 282.56735, z: 36.073853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8087998677403298012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087998677403297826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deef89d82347b71419ae3a2653b14979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  characterSelectPerspective: {fileID: 0}
+  characterSelect: {fileID: 0}
+  pausePanel: {fileID: 0}
+  gui: {fileID: 0}
+  egoP1: {fileID: 0}
+  egoP2: {fileID: 0}
+  player: []
+  onStartButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8087998677403298012}
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &8087998677403298013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087998677403297826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e739387305a154fa2d83eed67353fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPlayerWins: 3
+  gameResetDelay: 3
+  player1Health: {fileID: 0}
+  player2Health: {fileID: 0}
+  winnerText: {fileID: 0}
+  player1RoundUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player2RoundUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  guiDisabledOnWin:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  guiEnableOnWin: {fileID: 0}

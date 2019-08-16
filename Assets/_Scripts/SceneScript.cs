@@ -52,7 +52,7 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         if (mainCamera.activeInHierarchy) mainCamera.SetActive(false);
         if (gui.activeInHierarchy) gui.SetActive(false);
 
-        Cursor.visible = false; // Hides the cursor upon the game opening
+        // Cursor.visible = false; // Hides the cursor upon the game opening
     }
 
     void Update()
@@ -117,14 +117,14 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
 		Time.timeScale = 1;
 		paused = false;
 	}
-
+    // Update fighters need to be called by the onclick characterselect menu system.
     public void UpdateP1Fighter(int fighter)
     {
         print(egoP1.transform.childCount);
         DataManager.PlayerSelection[0] = fighter;
         Debug.Log(egoP1.transform.GetChild(fighter-1).gameObject.ToString());
         DataManager.Players[0] = egoP1.transform.GetChild(fighter-1).gameObject;
-        print(DataManager.Players[0]);
+        print(DataManager.Players[0] + "this oneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     }
 
     public void UpdateP2Fighter(int fighter)

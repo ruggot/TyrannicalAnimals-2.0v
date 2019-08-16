@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
  [SerializeField] protected BoxCollider utilityHit;
  [SerializeField] internal BoxCollider hurtBox;
  [SerializeField] protected float jumpForce;
+ [SerializeField] protected float maxMovementSpeed = 20;
  [SerializeField] GameObject egg;
 
  private Player player_script;
@@ -155,8 +156,9 @@ public class PlayerController : MonoBehaviour {
                 anim.SetInteger("Walk", 1);
             }
             else anim.SetInteger("Walk", 0);
-
+            
             rb.AddForce(movement * movementSpeed * currentDashSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
+            
             // Movement ability
             if (Input.GetButtonDown($"J{player}_Jump_{gPad}") && Time.time > jumpCool && canJump) {
                 rb.AddForce(0, jumpForce, 0);
@@ -196,6 +198,7 @@ public class PlayerController : MonoBehaviour {
                         anim.SetTrigger("Peck");
                         lastLight = Time.time;
                         lightHit.enabled = true;
+                        lightUI.fillAmount = 0;
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
@@ -207,6 +210,7 @@ public class PlayerController : MonoBehaviour {
                         anim.SetTrigger("Heavy");
                         lastHeavy = Time.time;
                         heavyHit.enabled = true;
+                        heavyUI.fillAmount = 0;
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
@@ -217,6 +221,7 @@ public class PlayerController : MonoBehaviour {
                     if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Mobility");
                         lastUtility = Time.time;
+                        utilityUI.fillAmount = 0;
                         canUtility = false;
                         timeForSpeedUp = 1f;
                         timerBetweenAttack = 0.7f;
@@ -228,6 +233,7 @@ public class PlayerController : MonoBehaviour {
                         anim.SetTrigger("Special");
                         lastSpecial = Time.time;
                         canSpecial = false;
+                        specialUI.fillAmount = 0;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                         Instantiate(egg, gameObject.transform.position + transform.up, Quaternion.identity);
@@ -241,6 +247,7 @@ public class PlayerController : MonoBehaviour {
                     if (Input.GetButtonDown($"J{player}_Light_{gPad}") && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
                         lastLight = Time.time;
                         lightHit.enabled = true;
+                        lightUI.fillAmount = 0;
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
@@ -251,6 +258,7 @@ public class PlayerController : MonoBehaviour {
                     if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
                         lastHeavy = Time.time;
                         heavyHit.enabled = true;
+                        heavyUI.fillAmount = 0;
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
@@ -262,6 +270,7 @@ public class PlayerController : MonoBehaviour {
                         currentDashTime = maxDashTime;
                         isDashing = true;
                         lastUtility = Time.time;
+                        utilityUI.fillAmount = 0;
                         canUtility = false;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
@@ -273,6 +282,7 @@ public class PlayerController : MonoBehaviour {
                         lastSpecial = Time.time;
                         currentDashTime = maxDashTime;
                         isDashing = true;
+                        specialUI.fillAmount = 0;
                         canSpecial = false;
                         isUlting = true;
                         attackType = AttackType.SpecialHit;
@@ -288,6 +298,7 @@ public class PlayerController : MonoBehaviour {
                         anim.SetTrigger("Light");
                         lastLight = Time.time;
                         lightHit.enabled = true;
+                        lightUI.fillAmount = 0;
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
@@ -298,6 +309,7 @@ public class PlayerController : MonoBehaviour {
                     if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
                         lastHeavy = Time.time;
                         heavyHit.enabled = true;
+                        heavyUI.fillAmount = 0;
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
@@ -309,6 +321,7 @@ public class PlayerController : MonoBehaviour {
                         anim.SetTrigger("Utility");
                         Invoke("LionNotReduceDmg", 1.5f);
                         player_script.lionDmgReduceActive = true;
+                        utilityUI.fillAmount = 0;
                         lastUtility = Time.time;
                         canUtility = false;
                         timerBetweenAttack = 0.7f;
@@ -319,6 +332,7 @@ public class PlayerController : MonoBehaviour {
                     if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
                         anim.SetTrigger("Ultimate");
                         lastSpecial = Time.time;
+                        specialUI.fillAmount = 0;
                         canSpecial = false;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;

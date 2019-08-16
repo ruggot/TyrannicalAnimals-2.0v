@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
     // hp and fury images for hpbar and furybar
     public Image playerHpBar;
-    [SerializeField] public Image playerFuryBar;
+    public Image playerFuryBar;
 
     internal PlayerController controller;
     private int playerVal;

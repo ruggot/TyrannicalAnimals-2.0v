@@ -3658,14 +3658,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_Name
-      value: LionP1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4886101968738366, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
       propertyPath: m_LocalPosition.x
       value: -673.3313
@@ -3722,9 +3714,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
-        type: 3}
-      propertyPath: m_PlayOnAwake
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_Name
+      value: LionP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 181760175387326883, guid: d2edcf95960b81249bf3f4a30ad1a908,
@@ -3732,12 +3727,17 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
+    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527170638204051268, guid: d2edcf95960b81249bf3f4a30ad1a908,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3873,6 +3873,11 @@ PrefabInstance:
       propertyPath: specialSound
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1966276005346687567, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: currentChar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c494ade567655e4b9abce1c4474532e, type: 3}
 --- !u!4 &3923508493052172485 stripped
@@ -3906,10 +3911,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
-    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
-      propertyPath: m_Name
-      value: ChickenP1
-      objectReference: {fileID: 0}
     - target: {fileID: 4292928448873590, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -673.3313
@@ -3966,12 +3967,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
+      propertyPath: m_Name
+      value: ChickenP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -4002,10 +4007,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
-    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
-      propertyPath: m_Name
-      value: ChickenP2
-      objectReference: {fileID: 0}
     - target: {fileID: 4292928448873590, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -676.86
@@ -4062,12 +4063,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
+      propertyPath: m_Name
+      value: ChickenP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -4183,11 +4188,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8129852731785881774}
     m_Modifications:
-    - target: {fileID: 8436764688291278303, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: m_Name
-      value: EGO P2 Spawnpoint
-      objectReference: {fileID: 0}
     - target: {fileID: 8436764688291278302, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4243,6 +4243,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8436764688291278303, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: m_Name
+      value: EGO P2 Spawnpoint
+      objectReference: {fileID: 0}
     - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalRotation.z
@@ -4287,6 +4292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 237.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465271397597242888, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: currentChar
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b4908fd57365ad48a52cace15e834ee, type: 3}
@@ -4406,11 +4416,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8275151526598693289}
     m_Modifications:
-    - target: {fileID: 7750610576809524687, guid: 1cc6e890103c3104c9720d77eac22c61,
-        type: 3}
-      propertyPath: m_Name
-      value: EGO Input_P1
-      objectReference: {fileID: 0}
     - target: {fileID: 7750610576809524672, guid: 1cc6e890103c3104c9720d77eac22c61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4471,6 +4476,11 @@ PrefabInstance:
       propertyPath: m_FirstSelected
       value: 
       objectReference: {fileID: 1586758771720649799}
+    - target: {fileID: 7750610576809524687, guid: 1cc6e890103c3104c9720d77eac22c61,
+        type: 3}
+      propertyPath: m_Name
+      value: EGO Input_P1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc6e890103c3104c9720d77eac22c61, type: 3}
 --- !u!4 &891353151456755638 stripped
@@ -4498,14 +4508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_Name
-      value: LionP2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4886101968738366, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
       propertyPath: m_LocalPosition.x
       value: -676.86
@@ -4562,9 +4564,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
-        type: 3}
-      propertyPath: m_PlayOnAwake
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_Name
+      value: LionP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 181760175387326883, guid: d2edcf95960b81249bf3f4a30ad1a908,
@@ -4572,12 +4577,17 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
+    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527170638204051268, guid: d2edcf95960b81249bf3f4a30ad1a908,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

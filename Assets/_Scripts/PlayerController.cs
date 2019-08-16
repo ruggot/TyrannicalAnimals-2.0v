@@ -64,7 +64,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image utilityUI;
     [SerializeField] private Image specialUI;
 
-    public Vector3 moveDirection;
+	[SerializeField] private AudioSource lightChicken;
+	[SerializeField] private AudioSource heavyChicken;
+	[SerializeField] private AudioSource utilityChicken;
+	[SerializeField] private AudioSource specialChicken;
+	[SerializeField] private AudioSource lightLion;
+	[SerializeField] private AudioSource heavyLion;
+	[SerializeField] private AudioSource utilityLion;
+	[SerializeField] private AudioSource specialLion;
+	[SerializeField] private AudioSource lightPenguin;
+	[SerializeField] private AudioSource heavyPenguin;
+	[SerializeField] private AudioSource utilityPenguin;
+	[SerializeField] private AudioSource specialPenguin;
+
+	public Vector3 moveDirection;
     public const float maxDashTime = 1.0f;
     //public float dashDistance = 10;
     //public float dashStoppingSpeed = 0.1f;
@@ -230,6 +243,7 @@ public class PlayerController : MonoBehaviour
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
+						lightChicken.Play();
                     }
                     // Heavy attack
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
@@ -240,6 +254,7 @@ public class PlayerController : MonoBehaviour
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
+						heavyChicken.Play();
                     }
                     // Utility attack
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
@@ -249,6 +264,7 @@ public class PlayerController : MonoBehaviour
                         canUtility = false;
                         timeForSpeedUp = 1f;
                         timerBetweenAttack = 0.7f;
+						utilityChicken.Play();
                     }
                     // Special attack
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
@@ -260,6 +276,7 @@ public class PlayerController : MonoBehaviour
                         timerBetweenAttack = 0.7f;
                         Instantiate(egg, gameObject.transform.position + transform.up, Quaternion.identity);
                         player_script.playerFuryBar.fillAmount = 0f;
+						specialChicken.Play();
                     }
                     break;
                 case CurrentCharacter.penguin:
@@ -271,6 +288,7 @@ public class PlayerController : MonoBehaviour
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
+						lightPenguin.Play();
                     }
                     // Heavy attack
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
@@ -280,6 +298,7 @@ public class PlayerController : MonoBehaviour
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
+						heavyPenguin.Play();
                     }
                     // Utility attack
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
@@ -290,6 +309,7 @@ public class PlayerController : MonoBehaviour
                         canUtility = false;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
+						utilityPenguin.Play();
                     }
                     // Special attack
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
@@ -302,6 +322,7 @@ public class PlayerController : MonoBehaviour
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                         player_script.playerFuryBar.fillAmount = 0f;
+						specialPenguin.Play();
                     }
                     break;
                 case CurrentCharacter.lion:
@@ -314,6 +335,7 @@ public class PlayerController : MonoBehaviour
                         canLight = false;
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
+						lightLion.Play();
                     }
                     // Heavy attack
                     if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack)
@@ -324,6 +346,7 @@ public class PlayerController : MonoBehaviour
                         canHeavy = false;
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
+						heavyLion.Play();
                     }
                     // Utility attack
                     if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack)
@@ -334,6 +357,7 @@ public class PlayerController : MonoBehaviour
                         canUtility = false;
                         Invoke("LionNotReduceDmg", 1.5f);
                         timerBetweenAttack = 0.7f;
+						utilityLion.Play();
                     }
                     // Special attack
                     if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
@@ -345,6 +369,7 @@ public class PlayerController : MonoBehaviour
                         timerBetweenAttack = 0.7f;
                         player_script.enemyPlayer.controller.stunned = true;
                         player_script.playerFuryBar.fillAmount = 0f;
+						specialLion.Play();
                     }
                     break;
                 default:

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class RoundManagementSystem : MonoBehaviour
-{
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class RoundManagementSystem : MonoBehaviour {
     // Players current scores
     public static int player1Score;
     public static int player2Score;
@@ -33,18 +33,15 @@ public class RoundManagementSystem : MonoBehaviour
 
     private bool gameFinished = false;
 
-
     // Hide win text
-    private void Start()
-    {
+    private void Start() {
         //winnerText.text = "";
         currentResetTimer = gameResetDelay;
         guiEnableOnWin.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // Set player 1 script
         if (player1Script == null) SetPlayer();
         // Set player 2 script
@@ -53,18 +50,15 @@ public class RoundManagementSystem : MonoBehaviour
         // Test for winner
 
         // Test if player has reached max score
-        if (!gameFinished)
-        {
-            if (player1Health.fillAmount <= 0 && player1Health.gameObject.activeSelf)
-            {
+        if (!gameFinished) {
+            if (player1Health.fillAmount <= 0 && player1Health.gameObject.activeSelf) {
                 // Player 2 wins
                 gameFinished = true;
                 ++player2Score;
                 ++currentRound;
                 winnerText.text = "Player 2 wins!";
             }
-            else if (player2Health.fillAmount <= 0 && player2Health.gameObject.activeSelf)
-            {
+            else if (player2Health.fillAmount <= 0 && player2Health.gameObject.activeSelf) {
                 // Player 1 wins
                 gameFinished = true;
                 ++player1Score;
@@ -72,38 +66,13 @@ public class RoundManagementSystem : MonoBehaviour
                 winnerText.text = "Player 1 wins!";
             }
         }
-        else
-        {
-            if (player1Score >= maxPlayerWins) // Game finished
-            {
-                // Enable/disable gui objects
-                for (int i = 0; i < guiDisabledOnWin.Length; i++)
-                {
-                    guiDisabledOnWin[i].SetActive(false);
-                }
-                guiEnableOnWin.SetActive(true);
-
-                // Go to win scene
-                Invoke("GameOver", gameResetDelay * 2);
-            }
-            else if (player2Score >= maxPlayerWins) // Game finished
-            {
-                // Enable/disable gui objects
-                for (int i = 0; i < guiDisabledOnWin.Length; i++)
-                {
-                    guiDisabledOnWin[i].SetActive(false);
-                }
-                guiEnableOnWin.SetActive(true);
-
-                // Go to win scene
-                Invoke("GameOver", gameResetDelay * 2);
-            }
-            else // Round finished
-            {
+        else {
+            if (player1Score >= maxPlayerWins) EndgameGUIReset();
+            else if (player2Score >= maxPlayerWins) EndgameGUIReset();// Game finished
+            else { // Round finished
                 // Round reset
                 currentResetTimer -= Time.deltaTime;
-                if (currentResetTimer < 0)
-                {
+                if (currentResetTimer < 0) {
                     ResetRound();
                     currentResetTimer = gameResetDelay;
                 }
@@ -114,41 +83,41 @@ public class RoundManagementSystem : MonoBehaviour
 
         // Displaying each players score
         // Player 1
-        for (int i = 0; i < player1RoundUI.Length; i++)
-        {
+        for (int i = 0; i < player1RoundUI.Length; i++) {
             if (player1Score > i) player1RoundUI[i].color = new Color(0, 1, 0);
             else player1RoundUI[i].color = new Color(1, 1, 1);
         }
 
         // Player 2
-        for (int i = 0; i < player2RoundUI.Length; i++)
-        {
+        for (int i = 0; i < player2RoundUI.Length; i++) {
             if (player2Score > i) player2RoundUI[i].color = new Color(0, 1, 0);
             else player2RoundUI[i].color = new Color(1, 1, 1);
         }
     }
+    void EndgameGUIReset() {
+        // Enable/disable gui objects
+        for (int i = 0; i < guiDisabledOnWin.Length; i++) guiDisabledOnWin[i].SetActive(false);
+        guiEnableOnWin.SetActive(true);
+        // Go to win scene
+        Invoke("GameOver", gameResetDelay * 2);
+    }
 
-    public void EnsurePlayers()
-    {
+    public void EnsurePlayers() {
         //SetPlayer(player1Script, "Player 1");
         //SetPlayer(player2Script, "Player 2");
     }
 
-    private void SetPlayer()
-    {
+    private void SetPlayer() {
         // Set player script if player script null
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 1"))
-        {
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 1")) {
             if (i.GetComponent<Player>() != null) player1Script = i.GetComponent<Player>();
         }
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 2"))
-        {
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player 2")) {
             if (i.GetComponent<Player>() != null) player2Script = i.GetComponent<Player>();
         }
     }
 
-    private void ResetRound()
-    {
+    private void ResetRound() {
         // Restarts the round
         // Invoke player reset methods
         // Hide/show gui
@@ -160,8 +129,7 @@ public class RoundManagementSystem : MonoBehaviour
         print("RoundReset");
     }
 
-    private void GameOver()
-    {
+    private void GameOver() {
         SceneManager.LoadScene("Menu"); // Gameover scene could just be the menu again
     }
 }

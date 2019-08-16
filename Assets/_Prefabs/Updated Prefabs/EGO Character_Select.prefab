@@ -3853,6 +3853,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 235.01
       objectReference: {fileID: 0}
+    - target: {fileID: 2598949973075863647, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: lightSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598949973075863647, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: heavySound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598949973075863647, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: utilitySound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598949973075863647, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: specialSound
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c494ade567655e4b9abce1c4474532e, type: 3}
 --- !u!4 &3923508493052172485 stripped

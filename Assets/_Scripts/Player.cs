@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
     // hp and fury images for hpbar and furybar
     public Image playerHpBar;
-    [SerializeField] public Image playerFuryBar;
+    public Image playerFuryBar;
 
     internal PlayerController controller;
     private int playerVal;
@@ -163,7 +163,7 @@ public class Player : MonoBehaviour {
     private void BuildFury(float fury) => playerFuryBar.fillAmount = playerFury += fury;
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
+        Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}\n other.parent: {other.GetComponentInParent<Transform>().name}");
         if (other.isTrigger && gameObject == controller.hurtBox) {
             Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
             if (other.tag == enemyPlayer.tag) {

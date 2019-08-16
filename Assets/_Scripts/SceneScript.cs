@@ -88,41 +88,6 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         inGame = true;
     }
 
-    //private void FinaliseCharacterModels()
-    //{
-    //    player[0] = DataManager.Player(0);
-    //    player[1] = DataManager.Player(1);
-    //    PlayerOf(0).EnemyPlayer = PlayerOf(1);
-    //    PlayerOf(1).EnemyPlayer = PlayerOf(0);
-
-    //    Player[] tempList = new Player[2];
-    //    //foreach (var pl in player)
-    //    //{
-    //    //    foreach (var trans in ExclusiveChildrenOf(pl))
-    //    //    {
-    //    //        Player p = PlayerOf(trans.gameObject);
-    //    //        if (p.Fighter == DataManager.PlayerSelection[p.PlayerVal])
-    //    //        {
-    //    //            trans.gameObject.SetActive(true);
-    //    //        }
-    //    //    }
-    //    //}
-
-    //    int i = 0;
-    //    foreach (var ego in gui.GetComponents<Transform>().Where(t => t.name.Substring(0, 3).Equals("EGO")))
-    //    {
-    //        Player p = player[i].GetComponent<Player>();
-    //        PlayerController c = player[i].GetComponent<PlayerController>();
-    //        //p.PlayerHpBar = ego.GetChild(2).GetComponent<Image>();
-    //        p.PlayerFuryBar = ego.GetChild(5).GetComponent<Image>();
-    //        c.LightUI = ego.GetChild(6).GetComponent<Image>();
-    //        c.HeavyUI = ego.GetChild(8).GetComponent<Image>();
-    //        c.SpecialUI = ego.GetChild(1).GetComponent<Image>();
-    //        c.UtilityUI = ego.GetChild(1).GetComponent<Image>();
-    //        Debug.Log($"GUI Finalised {++i} time(s)");
-    //    }
-    //}
-
     void DisableCam()
     {
         mainCamera.SetActive(false);
@@ -165,16 +130,8 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     /// Toggle Pause state between <see cref="Pause"/> and <see cref="Unpause"/> 
     public void TogglePause()
     {
-        if (paused)
-        {
-            paused = false;
-            Resume();
-        }
-        else
-        {
-            paused = true;
-            Pause();
-        }
+        if (paused) { paused = false; Resume(); }
+        else { paused = true; Pause(); }
     }
 
     Player PlayerOf(int p)

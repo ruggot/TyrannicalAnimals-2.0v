@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Acid
+  m_Name: Acid flowing
   m_Shader: {fileID: -6465566751694194690, guid: deb7074dacde424428622158930380d2,
     type: 3}
   m_ShaderKeywords: 
@@ -21,15 +21,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_160C1F86: 0
-    - Vector1_1A951458: 0
+    - Vector1_160C1F86: 0.32
+    - Vector1_1A951458: 2.75
     - Vector1_2222AE1A: 0
     - Vector1_2B7060A1: 31.62
-    - Vector1_2E20734F: 0.8
+    - Vector1_2E20734F: 8.48
     - Vector1_6AA3A2CC: 5
     - Vector1_7A74993D: 1
     - Vector1_8DBF5684: 0
-    - Vector1_ADE198CB: 1.2
+    - Vector1_ADE198CB: 1
     - Vector1_B2F80337: 0.1
     - Vector1_BAD4275B: 1
     m_Colors:

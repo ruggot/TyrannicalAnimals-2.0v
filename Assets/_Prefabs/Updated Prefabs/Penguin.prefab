@@ -272,9 +272,10 @@ MonoBehaviour:
   heavyUI: {fileID: 0}
   utilityUI: {fileID: 0}
   specialUI: {fileID: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  dashDistance: 10
-  dashStoppingSpeed: 0.1
+  lightSound: {fileID: 0}
+  heavySound: {fileID: 0}
+  utilitySound: {fileID: 0}
+  specialSound: {fileID: 0}
 --- !u!114 &5676290314556890877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,12 +290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentChar: 0
   self: {fileID: 5676290314556890877}
-  enemyPlayer: {fileID: 0}
   playerHpBar: {fileID: 0}
   playerFuryBar: {fileID: 0}
-  controller: {fileID: 0}
-  playerHp: 1
-  lionDmgReduceActive: 0
 --- !u!1 &1855729412434242
 GameObject:
   m_ObjectHideFlags: 0

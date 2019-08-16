@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour {
  [SerializeField] private AudioSource utilitySound;
  [SerializeField] private AudioSource specialSound;
 
- public Vector3 moveDirection;
  public const float maxDashTime = 1.0f;
  //public float dashDistance = 10;
  //public float dashStoppingSpeed = 0.1f;

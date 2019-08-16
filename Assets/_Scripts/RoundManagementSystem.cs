@@ -28,10 +28,10 @@ public class RoundManagementSystem : MonoBehaviour
     public GameObject[] guiDisabledOnWin;
     public GameObject guiEnableOnWin;
     // Player Scripts
-    public Player player1Script;
-    public Player player2Script;
+    private Player player1Script;
+    private Player player2Script;
 
-    public bool gameFinished = false;
+    private bool gameFinished = false;
 
 
     // Hide win text

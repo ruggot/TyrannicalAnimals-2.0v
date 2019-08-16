@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1496,7 +1496,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[7].m_Target
       value: 
-      objectReference: {fileID: 4416708443717623506}
+      objectReference: {fileID: 1395786584}
     - target: {fileID: 1586758771521471258, guid: 865912a94cb7047448e4d7404c3f9120,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[8].m_MethodName
@@ -1506,6 +1506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586758771521471258, guid: 865912a94cb7047448e4d7404c3f9120,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 250802683055545663, guid: 865912a94cb7047448e4d7404c3f9120,
         type: 3}
@@ -1732,6 +1737,16 @@ PrefabInstance:
       propertyPath: playerFuryBar
       value: 
       objectReference: {fileID: 2119423310}
+    - target: {fileID: 2775360901732682112, guid: 865912a94cb7047448e4d7404c3f9120,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473238552578829134, guid: 865912a94cb7047448e4d7404c3f9120,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7903449289181287644, guid: 865912a94cb7047448e4d7404c3f9120, type: 3}
     - {fileID: 7203810560779540654, guid: 865912a94cb7047448e4d7404c3f9120, type: 3}
@@ -1753,6 +1768,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8087998677403297826, guid: 257e5a2b9bab39c40b46fba42848e296,
+        type: 3}
+      propertyPath: m_Name
+      value: EGO Gamemaster
+      objectReference: {fileID: 0}
     - target: {fileID: 8087998677403298012, guid: 257e5a2b9bab39c40b46fba42848e296,
         type: 3}
       propertyPath: mainCamera
@@ -1788,11 +1808,6 @@ PrefabInstance:
       propertyPath: egoP2
       value: 
       objectReference: {fileID: 3293418381775570231}
-    - target: {fileID: 8087998677403297826, guid: 257e5a2b9bab39c40b46fba42848e296,
-        type: 3}
-      propertyPath: m_Name
-      value: EGO Gamemaster
-      objectReference: {fileID: 0}
     - target: {fileID: 8087998677403298012, guid: 257e5a2b9bab39c40b46fba42848e296,
         type: 3}
       propertyPath: mainCamera

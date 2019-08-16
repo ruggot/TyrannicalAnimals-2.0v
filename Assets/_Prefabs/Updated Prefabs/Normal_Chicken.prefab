@@ -422,7 +422,6 @@ MonoBehaviour:
   jumpForce: 300
   egg: {fileID: 0}
   lightCool: 0.3
-  stunned: 0
   player: 0
   gPad: 360
   lightUI: {fileID: 0}
@@ -433,7 +432,6 @@ MonoBehaviour:
   heavySound: {fileID: 3698751744904768907}
   utilitySound: {fileID: 1859253013621333452}
   specialSound: {fileID: 7668040827565667499}
-  moveDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &4525523519725294567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254c51d47eedaf247a985312027f4714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChar: 0
+  currentChar: 1
   self: {fileID: 4525523519725294567}
   playerHpBar: {fileID: 0}
   playerFuryBar: {fileID: 0}

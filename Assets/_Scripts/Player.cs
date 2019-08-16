@@ -103,7 +103,7 @@ public class Player : MonoBehaviour {
                 specialDmg = 0.08f;
                 lightFury = 0.35f;
                 heavyFury = 0.60f;
-                Debug.Log($"{pLog}Chicken selected");
+                Debug.Log($"{pLog}: Chicken selected");
                 break;
             case CurrentCharacter.lion:
                 lightDmg = 0.08f;
@@ -137,12 +137,10 @@ public class Player : MonoBehaviour {
     public void TakeDamage(string furyType, float dmg) {
         //print(dmg);
         //print(playerFury);
-        if (currentChar == CurrentCharacter.lion && lionDmgReduceActive) {
+        if (currentChar == CurrentCharacter.lion && lionDmgReduceActive)
             playerHp -= dmg * dmgReductionFactor;
-        }
-        else {
+        else
             playerHp -= dmg;
-        }
         //playerHpBar.fillAmount = (1 / playerHp) * playerHp;
 
         switch (furyType) {
@@ -164,7 +162,8 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
-        if (other.isTrigger && gameObject == controller.hurtBox) {
+        Debug.Log($"gameObject: {gameObject}\ncontroller.hurtBox.gameObject: {controller.gameObject}");
+        if (other.isTrigger && gameObject == controller.gameObject) {
             Debug.Log($"{pLog}: Hitbox triggered.\n\tother:\t\t{other.name}, {other.tag}\n\tgameObject:\t{gameObject.name}, {gameObject.tag}");
             if (other.tag == enemyPlayer.tag) {
                 Debug.Log($"{pLog}: Player hit");
@@ -172,27 +171,29 @@ public class Player : MonoBehaviour {
                     case AttackType.LightHit:
                         if (canLight) {
                             enemyPlayer.TakeDamage("light", lightDmg);
-                            Debug.Log($"{pLog}: Light damage taken");
+                            Debug.Log($"{pLog}: Light damage given");
                             canLight = false;
                         }
                         break;
                     case AttackType.HeavyHit:
                         if (canHeavy && other.gameObject.CompareTag("HeavyHit")) {
                             enemyPlayer.TakeDamage("heavy", heavyDmg);
-                            Debug.Log($"{pLog}: Heavy damage taken");
+                            Debug.Log($"{pLog}: Heavy damage given");
                             canHeavy = false;
                         }
                         break;
                     case AttackType.SpecialHit:
                         if (canSpecial) {
                             enemyPlayer.TakeDamage("special", specialDmg);
-                            Debug.Log($"{pLog}: Special damage taken");
+                            Debug.Log($"{pLog}: Special damage given");
                             canSpecial = false;
                         }
                         break;
+                    case AttackType.Ready:
+                        Debug.Log($"{pLog}: No attack input");
+                        break;
                     default:
-                        Debug.Log($"{pLog}: Not a damage dealing hitbox");
-                        Debug.Log("" + other.tag);
+                        Debug.Log($"{pLog}: Not a damage dealing hitbox\n{other.tag}");
                         break;
                 }
             }

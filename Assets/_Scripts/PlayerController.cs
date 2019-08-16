@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum AttackType { LightHit, HeavyHit, SpecialHit } // Ready = no attack
+public enum AttackType { LightHit, HeavyHit, SpecialHit, Ready } // Ready = no attack
 
 public class PlayerController : MonoBehaviour {
 
@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour {
     public float LastHeavy { get => lastHeavy; set => lastHeavy = value; }
     public float LastUtility { get => lastUtility; set => lastUtility = value; }
     public float LastSpecial { get => lastSpecial; set => lastSpecial = value; }
+    public AttackType AttackType { get; set; }
 
     void Start() {
         player_script = GetComponent<Player>();
@@ -166,22 +167,22 @@ public class PlayerController : MonoBehaviour {
             // starts timer for attacks
             if (!canLight) {
                 lightUI.fillAmount += 1f / lightCool * Time.deltaTime;
-                if (lightUI.fillAmount >= 1) { lightUI.fillAmount = 0; canLight = true; }
+                if (lightUI.fillAmount >= 1) { canLight = true; }
             }
 
             if (!canHeavy) {
                 heavyUI.fillAmount += 1f / heavyCool * Time.deltaTime;
-                if (heavyUI.fillAmount >= 1) { heavyUI.fillAmount = 0; canHeavy = true; }
+                if (heavyUI.fillAmount >= 1) { canHeavy = true; }
             }
 
             if (!canSpecial) {
                 specialUI.fillAmount += 1f / specialCool * Time.deltaTime;
-                if (specialUI.fillAmount >= 1) { specialUI.fillAmount = 0; canSpecial = true; }
+                if (specialUI.fillAmount >= 1) { canSpecial = true; }
             }
 
             if (!canUtility) {
                 utilityUI.fillAmount += 1.0f / utilityCool * Time.deltaTime;
-                if (utilityUI.fillAmount >= 1) { utilityUI.fillAmount = 0; canUtility = true; }
+                if (utilityUI.fillAmount >= 1) { canUtility = true; }
             }
 
             switch (player_script.currentChar) {
@@ -199,6 +200,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
                         lightSound.Play();
+                        lightUI.fillAmount = 0;
                     }
                     // Heavy attack
                     if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
@@ -209,6 +211,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
                         heavySound.Play();
+                        heavyUI.fillAmount = 0;
                     }
                     // Utility attack
                     if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
@@ -218,6 +221,7 @@ public class PlayerController : MonoBehaviour {
                         timeForSpeedUp = 1f;
                         timerBetweenAttack = 0.7f;
                         utilitySound.Play();
+                        utilityUI.fillAmount = 0;
                     }
                     // Special attack
                     if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
@@ -229,6 +233,7 @@ public class PlayerController : MonoBehaviour {
                         Instantiate(egg, gameObject.transform.position + transform.up, Quaternion.identity);
                         player_script.playerFuryBar.fillAmount = 0f;
                         specialSound.Play();
+                        utilityUI.fillAmount = 0;
                     }
                     break;
                 case CurrentCharacter.penguin:
@@ -240,6 +245,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
                         lightSound.Play();
+                        lightUI.fillAmount = 0;
                     }
                     // Heavy attack
                     if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
@@ -249,6 +255,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
                         heavySound.Play();
+                        heavyUI.fillAmount = 0;
                     }
                     // Utility attack
                     if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
@@ -259,6 +266,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                         utilitySound.Play();
+                        utilityUI.fillAmount = 0;
                     }
                     // Special attack
                     if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
@@ -271,6 +279,7 @@ public class PlayerController : MonoBehaviour {
                         timerBetweenAttack = 0.7f;
                         player_script.playerFuryBar.fillAmount = 0f;
                         specialSound.Play();
+                        specialUI.fillAmount = 0;
                     }
                     break;
                 case CurrentCharacter.lion:
@@ -283,6 +292,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.LightHit;
                         timerBetweenAttack = 0.7f;
                         lightSound.Play();
+                        lightUI.fillAmount = 0;
                     }
                     // Heavy attack
                     if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
@@ -292,6 +302,7 @@ public class PlayerController : MonoBehaviour {
                         attackType = AttackType.HeavyHit;
                         timerBetweenAttack = 0.8f;
                         heavySound.Play();
+                        heavyUI.fillAmount = 0;
                     }
                     // Utility attack
                     if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
@@ -302,6 +313,7 @@ public class PlayerController : MonoBehaviour {
                         canUtility = false;
                         timerBetweenAttack = 0.7f;
                         utilitySound.Play();
+                        utilityUI.fillAmount = 0;
                     }
                     // Special attack
                     if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
@@ -313,6 +325,7 @@ public class PlayerController : MonoBehaviour {
                         player_script.enemyPlayer.controller.stunned = true;
                         player_script.playerFuryBar.fillAmount = 0f;
                         specialSound.Play();
+                        utilityUI.fillAmount = 0;
                     }
                     break;
                 default:
@@ -330,10 +343,10 @@ public class PlayerController : MonoBehaviour {
     //}
 
     private void ResetAbilities() {
-        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; }
-        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; }
-        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; }
-        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; }
+        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; attackType = AttackType.Ready;}
+        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; attackType = AttackType.Ready;}
+        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; attackType = AttackType.Ready;}
+        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; attackType = AttackType.Ready;}
 
     }
 

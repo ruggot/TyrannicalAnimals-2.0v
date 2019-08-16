@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
  private bool isDashing = false;
  private bool isUlting = false;
 
- [SerializeField] private bool stunned = false;
+ private bool stunned = false;
 
  [SerializeField] internal int player;
 
@@ -323,8 +323,6 @@ public class PlayerController : MonoBehaviour {
             ResetAbilities();
         }
     }
-
-    
 
     //private void FastFall()
     //{

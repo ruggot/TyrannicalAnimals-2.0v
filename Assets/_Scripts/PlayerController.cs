@@ -145,7 +145,6 @@ public class PlayerController : MonoBehaviour {
             if (isDashing != true) {
                 moveHorizontal = Input.GetAxisRaw($"J{player}_Horizontal_{gPad}");
                 moveVertical = Input.GetAxisRaw($"J{player}_Vertical_{gPad}");
-                print("Can't Change");
             }
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
@@ -158,13 +157,12 @@ public class PlayerController : MonoBehaviour {
 
             rb.AddForce(movement * movementSpeed * currentDashSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
             // Movement ability
-            if (Input.GetButtonDown("J" + player + "_Jump_" + gPad) && Time.time > jumpCool && canJump) {
+            if (Input.GetButtonDown($"J{player}_Jump_{gPad}") && Time.time > jumpCool && canJump) {
                 rb.AddForce(0, jumpForce, 0);
                 lastJump = Time.time;
                 anim.SetTrigger("Jump");
                 canJump = false;
             }
-
             // starts timer for attacks
             if (!canLight) {
                 lightUI.fillAmount += 1f / lightCool * Time.deltaTime;
@@ -193,22 +191,36 @@ public class PlayerController : MonoBehaviour {
                     else movementSpeed = 3f;
 
                     // Light attack
-                    if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
+                    if (Input.GetButtonDown($"J{player}_Light_{gPad}") && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Peck");
-                        LightAttack();
+                        lastLight = Time.time;
+                        lightHit.enabled = true;
+                        canLight = false;
+                        attackType = AttackType.LightHit;
+                        timerBetweenAttack = 0.7f;
+                        lightSound.Play();
                     }
                     // Heavy attack
-                    if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
+                    if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Heavy");
-                        HeavyAttack();
+                        lastHeavy = Time.time;
+                        heavyHit.enabled = true;
+                        canHeavy = false;
+                        attackType = AttackType.HeavyHit;
+                        timerBetweenAttack = 0.8f;
+                        heavySound.Play();
                     }
                     // Utility attack
-                    if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
+                    if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Mobility");
-                        UtilityAttack();
+                        lastUtility = Time.time;
+                        canUtility = false;
+                        timeForSpeedUp = 1f;
+                        timerBetweenAttack = 0.7f;
+                        utilitySound.Play();
                     }
                     // Special attack
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
+                    if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
                         anim.SetTrigger("Special");
                         lastSpecial = Time.time;
                         canSpecial = false;
@@ -221,16 +233,25 @@ public class PlayerController : MonoBehaviour {
                     break;
                 case CurrentCharacter.penguin:
                     // Light attack
-                    if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
-                        //anim.set("Light");
-                        LightAttack();
+                    if (Input.GetButtonDown($"J{player}_Light_{gPad}") && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
+                        lastLight = Time.time;
+                        lightHit.enabled = true;
+                        canLight = false;
+                        attackType = AttackType.LightHit;
+                        timerBetweenAttack = 0.7f;
+                        lightSound.Play();
                     }
                     // Heavy attack
-                    if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
-                        HeavyAttack();
+                    if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
+                        lastHeavy = Time.time;
+                        heavyHit.enabled = true;
+                        canHeavy = false;
+                        attackType = AttackType.HeavyHit;
+                        timerBetweenAttack = 0.8f;
+                        heavySound.Play();
                     }
                     // Utility attack
-                    if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
+                    if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
                         currentDashTime = maxDashTime;
                         isDashing = true;
                         lastUtility = Time.time;
@@ -240,7 +261,7 @@ public class PlayerController : MonoBehaviour {
                         utilitySound.Play();
                     }
                     // Special attack
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
+                    if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
                         lastSpecial = Time.time;
                         currentDashTime = maxDashTime;
                         isDashing = true;
@@ -254,7 +275,7 @@ public class PlayerController : MonoBehaviour {
                     break;
                 case CurrentCharacter.lion:
                     // Light attack
-                    if (Input.GetButtonDown("J" + player + "_Light_" + gPad) && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
+                    if (Input.GetButtonDown($"J{player}_Light_{gPad}") && Time.time > lightCool && canLight && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Light");
                         lastLight = Time.time;
                         lightHit.enabled = true;
@@ -264,21 +285,26 @@ public class PlayerController : MonoBehaviour {
                         lightSound.Play();
                     }
                     // Heavy attack
-                    if (Input.GetButtonDown("J" + player + "_Heavy_" + gPad) && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
-                        HeavyAttack();
+                    if (Input.GetButtonDown($"J{player}_Heavy_{gPad}") && Time.time > heavyCool && canHeavy && 0 >= timerBetweenAttack) {
+                        lastHeavy = Time.time;
+                        heavyHit.enabled = true;
+                        canHeavy = false;
+                        attackType = AttackType.HeavyHit;
+                        timerBetweenAttack = 0.8f;
+                        heavySound.Play();
                     }
                     // Utility attack
-                    if (Input.GetAxisRaw("J" + player + "_Mobility_" + gPad) > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
+                    if (Input.GetAxisRaw($"J{player}_Mobility_{gPad}") > 0.3 && Time.time > utilityCool && canUtility && 0 >= timerBetweenAttack) {
                         anim.SetTrigger("Utility");
+                        Invoke("LionNotReduceDmg", 1.5f);
                         player_script.lionDmgReduceActive = true;
                         lastUtility = Time.time;
                         canUtility = false;
-                        Invoke("LionNotReduceDmg", 1.5f);
                         timerBetweenAttack = 0.7f;
                         utilitySound.Play();
                     }
                     // Special attack
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
+                    if (Input.GetButtonDown($"J{player}_Special_{gPad}") && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f) {
                         anim.SetTrigger("Ultimate");
                         lastSpecial = Time.time;
                         canSpecial = false;
@@ -298,31 +324,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void LightAttack() {
-        lastLight = Time.time;
-        lightHit.enabled = true;
-        canLight = false;
-        attackType = AttackType.LightHit;
-        timerBetweenAttack = 0.7f;
-        lightSound.Play();
-    }
-
-    void HeavyAttack() {
-        lastHeavy = Time.time;
-        heavyHit.enabled = true;
-        canHeavy = false;
-        attackType = AttackType.HeavyHit;
-        timerBetweenAttack = 0.8f;
-        heavySound.Play();
-    }
-
-    void UtilityAttack() {
-        lastUtility = Time.time;
-        canUtility = false;
-        timeForSpeedUp = 1f;
-        timerBetweenAttack = 0.7f;
-        utilitySound.Play();
-    }
+    
 
     //private void FastFall()
     //{

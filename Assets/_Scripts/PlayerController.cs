@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum AttackType {LightHit, HeavyHit, SpecialHit } // Ready = no attack
+public enum AttackType { LightHit, HeavyHit, SpecialHit } // Ready = no attack
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,7 +40,11 @@ public class PlayerController : MonoBehaviour
     internal float lastUtility = 0f;
     internal float lastSpecial = 0f;
     float dashSpeed = 2.5f;
+    float ultSpeed = 4f;
     float currentDashSpeed = 1;
+    float ultTimer = 0;
+    float fury;
+
     // bool to check if the player can do the input
     private bool canJump = true;
     internal bool canLight = true;
@@ -48,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private bool canUtility = true;
     private bool canSpecial = true;
     private bool isDashing = false;
+    private bool isUlting = false;
 
     [SerializeField] private bool stunned = false;
 
@@ -90,6 +95,7 @@ public class PlayerController : MonoBehaviour
         timeForStunned -= Time.deltaTime;
 
         if (isDashing == true) Dash();
+        fury = player_script.playerFuryBar.fillAmount;
     }
 
     void UnStun()
@@ -102,19 +108,45 @@ public class PlayerController : MonoBehaviour
     }
     void Dash()
     {
+
         // Increase dash speed
         if (currentDashTime > 0)
         {
             currentDashTime -= Time.deltaTime;
-            currentDashSpeed = dashSpeed;
-            print("Dashing");
+
+            if (isDashing == true)
+            {
+                currentDashSpeed = ultSpeed;
+            }
+            else
+            {
+                currentDashSpeed = dashSpeed;
+            }
         }
         else
         {
             currentDashSpeed = 1;
             isDashing = false;
-            print("Dash finished");
         }
+    }
+
+    void PenguinUlt()
+    {
+        float attackTime = 0.3f;
+        while (ultTimer > 0)
+        {
+            ultTimer -= Time.deltaTime;
+            attackTime -= Time.deltaTime;
+            if (attackTime < 0)
+            {
+                // Deal damage
+                // Stun
+                player_script.enemyPlayer.controller.stunned = true;
+                print("Stunned");
+            }
+        }
+        isUlting = false;
+        currentDashSpeed = 1;
     }
 
     protected void ControlPlayer()
@@ -220,7 +252,7 @@ public class PlayerController : MonoBehaviour
                         timerBetweenAttack = 0.7f;
                     }
                     // Special attack
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
+                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
                     {
                         anim.SetTrigger("Special");
                         lastSpecial = Time.time;
@@ -228,6 +260,7 @@ public class PlayerController : MonoBehaviour
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                         Instantiate(egg, gameObject.transform.position + transform.up, Quaternion.identity);
+                        player_script.playerFuryBar.fillAmount = 0f;
                     }
                     break;
                 case CurrentCharacter.penguin:
@@ -253,18 +286,21 @@ public class PlayerController : MonoBehaviour
                     {
                         currentDashTime = maxDashTime;
                         isDashing = true;
-                        print("Dash");
                         lastUtility = Time.time;
                         canUtility = false;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                     }
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
+                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
                     {
                         lastSpecial = Time.time;
+                        currentDashTime = maxDashTime;
+                        isDashing = true;
                         canSpecial = false;
+                        isUlting = true;
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
+                        player_script.playerFuryBar.fillAmount = 0f;
                     }
                     break;
                 case CurrentCharacter.lion:
@@ -297,7 +333,7 @@ public class PlayerController : MonoBehaviour
                         Invoke("LionNotReduceDmg", 1.5f);
                         timerBetweenAttack = 0.7f;
                     }
-                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack)
+                    if (Input.GetButtonDown("J" + player + "_Special_" + gPad) && Time.time > specialCool && canSpecial && 0 >= timerBetweenAttack && fury >= 1f)
                     {
                         anim.SetTrigger("Ultimate");
                         lastSpecial = Time.time;
@@ -305,6 +341,7 @@ public class PlayerController : MonoBehaviour
                         attackType = AttackType.SpecialHit;
                         timerBetweenAttack = 0.7f;
                         player_script.enemyPlayer.controller.stunned = true;
+                        player_script.playerFuryBar.fillAmount = 0f;
                     }
                     break;
                 default:
@@ -335,10 +372,18 @@ public class PlayerController : MonoBehaviour
         canJump = true;
         if (isDashing == true)
         {
-            isDashing = false;
-            currentDashSpeed = 1;
-            isDashing = false;
-            print("Dash finished");
+            if (isUlting == true)
+            {
+                isDashing = false;
+                currentDashSpeed = 0;
+                PenguinUlt();
+                ultTimer = 1.5f;
+            }
+            else
+            {
+                currentDashSpeed = 1;
+                isDashing = false;
+            }
         }
     }
 }

@@ -84,7 +84,7 @@ public class RoundManagementSystem : MonoBehaviour
                 guiEnableOnWin.SetActive(true);
 
                 // Go to win scene
-                Invoke("GameOver", gameResetDelay);
+                Invoke("GameOver", gameResetDelay * 2);
             }
             else if (player2Score >= maxPlayerWins) // Game finished
             {
@@ -96,7 +96,7 @@ public class RoundManagementSystem : MonoBehaviour
                 guiEnableOnWin.SetActive(true);
 
                 // Go to win scene
-                Invoke("GameOver", gameResetDelay);
+                Invoke("GameOver", gameResetDelay * 2);
             }
             else // Round finished
             {
@@ -162,6 +162,6 @@ public class RoundManagementSystem : MonoBehaviour
 
     private void GameOver()
     {
-        SceneManager.LoadScene("NAME OF GAMEOVER SCENE"); // Gameover scene could just be the menu again
+        SceneManager.LoadScene("Menu"); // Gameover scene could just be the menu again
     }
 }

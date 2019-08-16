@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
 
     internal bool lionDmgReduceActive;
     private float dmgReductionFactor = 0.4f;
+    private float inputDelay = 0.2f;
 
     // bools that allowes the player to take actions
     private bool canJump = true;
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour {
                 specialDmg = 0.08f;
                 lightFury = 0.35f;
                 heavyFury = 0.60f;
-                Debug.Log(pLog + "Chicken selected");
+                Debug.Log($"{pLog}Chicken selected");
                 break;
             case CurrentCharacter.lion:
                 lightDmg = 0.08f;
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour {
                 specialDmg = 0.00f;
                 lightFury = 0.20f;
                 heavyFury = 0.25f;
-                Debug.Log(pLog + ": Lion selected");
+                Debug.Log($"{pLog}: Lion selected");
                 break;
             case CurrentCharacter.penguin:
                 lightDmg = 0.07f;
@@ -118,10 +119,10 @@ public class Player : MonoBehaviour {
                 specialDmg = 0.10f;
                 lightFury = 0.25f;
                 heavyFury = 0.35f;
-                Debug.Log(pLog + ": Penguin selected");
+                Debug.Log($"{pLog}: Penguin selected");
                 break;
             default:
-                Debug.Log(pLog + ": Player must be constructed with a fighter value;");
+                Debug.Log($"{pLog}: Player must be constructed with a fighter value;");
                 lightDmg = 0f;
                 heavyDmg = 0f;
                 specialDmg = 0f;
@@ -131,9 +132,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void UpdateData() {
-        playerHpBar.fillAmount = playerHp;
-    }
+    private void UpdateData() => playerHpBar.fillAmount = playerHp;
 
     public void TakeDamage(string furyType, float dmg) {
         //print(dmg);
@@ -161,10 +160,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void BuildFury(float fury) {
-        playerFury += fury;
-        playerFuryBar.fillAmount = playerFury;
-    }
+    private void BuildFury(float fury) => playerFuryBar.fillAmount = playerFury += fury;
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log($"{pLog}: controller.hurtBox = {controller.hurtBox}\ngameobject = {gameObject}\ngameobject.name = {gameObject.name}\nother.name = {other.name}");
@@ -204,10 +200,11 @@ public class Player : MonoBehaviour {
     }
 
     private void ReenableAbilities() {
-        if (controller.LastLight < Time.time + 0.2f) { canLight = true; }
-        if (controller.LastHeavy < Time.time + 0.2f) { canHeavy = true; }
-        if (controller.LastSpecial < Time.time + 0.2f) { canSpecial = true; }
+        if (controller.LastLight < Time.time + inputDelay) { canLight = true; }
+        if (controller.LastHeavy < Time.time + inputDelay) { canHeavy = true; }
+        if (controller.LastSpecial < Time.time + inputDelay) { canSpecial = true; }
     }
+
     public void ResetCharacter() {
         playerHp = 1f;
         playerFury = 0f;
@@ -216,8 +213,6 @@ public class Player : MonoBehaviour {
     }
 
     public void ChickenOnClick() => currentChar = CurrentCharacter.chicken;
-
     public void LionOnClick() => currentChar = CurrentCharacter.lion;
-
     public void PenguinOnClick() => currentChar = CurrentCharacter.penguin;
 }

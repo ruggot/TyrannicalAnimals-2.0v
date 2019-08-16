@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public static class DataManager
-{
+public static class DataManager {
     private static int killsP1, killsP2, deathsP1, deathsP2, round;
     // HEAD:Assets/My Scripts/CharacterManager.cs
 
@@ -20,11 +20,11 @@ public static class DataManager
     public static int Round { get; set; }
 
     /// 1 = Chicken, 2 = Lion, 3 = Penguin
-    public static int[] PlayerSelection = new int[2] { 0,0};
+    public static int[] PlayerSelection = new int[2] { 0, 0 };
     public static string[] PlayerGamepad { get; set; }
     public static float[] Hp { get; set; }
     public static GameObject[] Players { get; set; }
 
-    //public static GameObject Player(int p) => Players[p].GetComponent<Transform>().GetChild(playerSelection[p]).gameObject;
+    // public static GameObject Player(int p) => Players[p].GetComponent<Transform>().GetChild(playerSelection[p]).gameObject;
     public static GameObject Player(int p) => Players[p];
 }

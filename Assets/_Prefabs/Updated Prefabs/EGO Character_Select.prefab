@@ -187,7 +187,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 7091483039988908924}
         m_MethodName: SetActive
         m_Mode: 6
@@ -198,7 +198,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -206,6 +206,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP2Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -444,10 +455,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 8087998677403298012, guid: 257e5a2b9bab39c40b46fba42848e296,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_MethodName: BeginLevel
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -466,30 +487,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6598987607644720027, guid: f86b8323352464f47976108be3441b62,
-          type: 3}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1586758771521471236}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   eventSystem: {fileID: 891353151456755639}
@@ -1098,7 +1096,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924499459689889965}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1109,7 +1107,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924085460972214202}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1120,7 +1118,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586308989440779194}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1131,7 +1129,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 209694405790982649}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1142,7 +1140,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 4987441585771882499}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1153,7 +1151,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1161,6 +1159,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP1Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -1782,7 +1791,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924499459689889965}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1793,7 +1802,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924085460972214202}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1804,7 +1813,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586308989440779194}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1815,7 +1824,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 209694405790982649}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1826,7 +1835,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 4987441585771882499}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1837,7 +1846,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1845,6 +1854,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP1Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2514,7 +2534,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 7091483039988908924}
         m_MethodName: SetActive
         m_Mode: 6
@@ -2525,7 +2545,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -2533,6 +2553,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP2Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2727,7 +2758,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 7091483039988908924}
         m_MethodName: SetActive
         m_Mode: 6
@@ -2738,7 +2769,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -2746,6 +2777,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP2Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -3053,7 +3095,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924499459689889965}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3064,7 +3106,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 3924085460972214202}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3075,7 +3117,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586308989440779194}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3086,7 +3128,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 209694405790982649}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3097,7 +3139,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 4987441585771882499}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3108,7 +3150,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1586758771521471236}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3116,6 +3158,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateP1Fighter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -3518,11 +3571,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EGO Input_P2
       objectReference: {fileID: 0}
-    - target: {fileID: 5805641824500485441, guid: 719109c4849461f49952e274dba05a74,
-        type: 3}
-      propertyPath: m_FirstSelected
-      value: 
-      objectReference: {fileID: 1586758772976395006}
     - target: {fileID: 5805641824500485454, guid: 719109c4849461f49952e274dba05a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3578,6 +3626,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5805641824500485441, guid: 719109c4849461f49952e274dba05a74,
+        type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 1586758772976395006}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719109c4849461f49952e274dba05a74, type: 3}
 --- !u!114 &5785326785923473128 stripped
@@ -3605,6 +3658,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_Name
+      value: LionP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4886101968738366, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
       propertyPath: m_LocalPosition.x
       value: -673.3313
@@ -3661,12 +3722,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_Name
-      value: LionP1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 181760175387326883, guid: d2edcf95960b81249bf3f4a30ad1a908,
@@ -3674,17 +3732,12 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
+    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527170638204051268, guid: d2edcf95960b81249bf3f4a30ad1a908,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3770,16 +3823,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2705324545921461726, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -459.04004
-      objectReference: {fileID: 0}
-    - target: {fileID: 2705324545921461726, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 235.01
-      objectReference: {fileID: 0}
     - target: {fileID: 2708112327941293302, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3796,6 +3839,16 @@ PrefabInstance:
       value: -459.04
       objectReference: {fileID: 0}
     - target: {fileID: 2708343425204690627, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 235.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705324545921461726, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -459.04004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705324545921461726, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 235.01
@@ -3833,6 +3886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
+    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
+      propertyPath: m_Name
+      value: ChickenP1
+      objectReference: {fileID: 0}
     - target: {fileID: 4292928448873590, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -673.3313
@@ -3889,16 +3946,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
-      propertyPath: m_Name
-      value: ChickenP1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3929,6 +3982,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
+    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
+      propertyPath: m_Name
+      value: ChickenP2
+      objectReference: {fileID: 0}
     - target: {fileID: 4292928448873590, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -676.86
@@ -3985,16 +4042,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1969419073538870, guid: 61f8e874efcf4374f991fb4646216ccd, type: 3}
-      propertyPath: m_Name
-      value: ChickenP2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1859253013621333452, guid: 61f8e874efcf4374f991fb4646216ccd,
+    - target: {fileID: 3698751744904768907, guid: 61f8e874efcf4374f991fb4646216ccd,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -4170,17 +4223,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -432.75
       objectReference: {fileID: 0}
-    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 237.02
@@ -4200,17 +4253,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 237.02
       objectReference: {fileID: 0}
-    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -432.75
       objectReference: {fileID: 0}
-    - target: {fileID: 8432111810803840515, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 8438101577511334297, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 237.02
@@ -4338,11 +4391,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EGO Input_P1
       objectReference: {fileID: 0}
-    - target: {fileID: 7750610576809524673, guid: 1cc6e890103c3104c9720d77eac22c61,
-        type: 3}
-      propertyPath: m_FirstSelected
-      value: 
-      objectReference: {fileID: 1586758771720649799}
     - target: {fileID: 7750610576809524672, guid: 1cc6e890103c3104c9720d77eac22c61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4398,6 +4446,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7750610576809524673, guid: 1cc6e890103c3104c9720d77eac22c61,
+        type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 1586758771720649799}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc6e890103c3104c9720d77eac22c61, type: 3}
 --- !u!4 &891353151456755638 stripped
@@ -4425,6 +4478,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707120476728364615}
     m_Modifications:
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_Name
+      value: LionP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4886101968738366, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
       propertyPath: m_LocalPosition.x
       value: -676.86
@@ -4481,12 +4542,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1076453
       objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_Name
-      value: LionP2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1553991042791506, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 181760175387326883, guid: d2edcf95960b81249bf3f4a30ad1a908,
@@ -4494,17 +4552,12 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7810016940740714705, guid: d2edcf95960b81249bf3f4a30ad1a908,
+    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527170638204051268, guid: d2edcf95960b81249bf3f4a30ad1a908,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 642663174787596013, guid: d2edcf95960b81249bf3f4a30ad1a908,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

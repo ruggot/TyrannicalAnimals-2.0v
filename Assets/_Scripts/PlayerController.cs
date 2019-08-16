@@ -145,7 +145,6 @@ public class PlayerController : MonoBehaviour {
             if (isDashing != true) {
                 moveHorizontal = Input.GetAxisRaw($"J{player}_Horizontal_{gPad}");
                 moveVertical = Input.GetAxisRaw($"J{player}_Vertical_{gPad}");
-                //print("Can't Change");
             }
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);

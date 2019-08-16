@@ -111,6 +111,13 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
         paused = false;
     }
 
+	public void MenuReset()
+	{
+		//Resumes the timescale when entering a level after using 'Return to Menu' in the pause menu
+		Time.timeScale = 1;
+		paused = false;
+	}
+
     public void UpdateP1Fighter(int fighter)
     {
         print(egoP1.transform.childCount);

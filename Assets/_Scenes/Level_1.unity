@@ -1135,7 +1135,37 @@ PrefabInstance:
         type: 3}
       propertyPath: utilityChicken
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2119423307}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: specialUI
+      value: 
+      objectReference: {fileID: 2119423306}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: lightUI
+      value: 
+      objectReference: {fileID: 2119423309}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: lightLion
+      value: 
+      objectReference: {fileID: 719557375}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: heavyLion
+      value: 
+      objectReference: {fileID: 719557374}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: utilityLion
+      value: 
+      objectReference: {fileID: 719557373}
+    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+        type: 3}
+      propertyPath: specialLion
+      value: 
+      objectReference: {fileID: 719557372}
     - target: {fileID: 29331409429103582, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: specialChicken
@@ -1155,52 +1185,22 @@ PrefabInstance:
         type: 3}
       propertyPath: specialUI
       value: 
-      objectReference: {fileID: 2119423306}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: lightUI
-      value: 
-      objectReference: {fileID: 2119423309}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+      objectReference: {fileID: 719557376}
+    - target: {fileID: 29331409429103582, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: heavyUI
       value: 
       objectReference: {fileID: 2119423308}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+    - target: {fileID: 29331409429103582, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: utilityUI
       value: 
       objectReference: {fileID: 2119423307}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
+    - target: {fileID: 29331409429103582, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: specialUI
       value: 
       objectReference: {fileID: 2119423306}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: lightUI
-      value: 
-      objectReference: {fileID: 2119423309}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: lightLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: heavyLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: utilityLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599147836717619292, guid: 2c494ade567655e4b9abce1c4474532e,
-        type: 3}
-      propertyPath: specialLion
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2598949973075863647, guid: 2c494ade567655e4b9abce1c4474532e,
         type: 3}
       propertyPath: heavyUI
@@ -1491,9 +1491,39 @@ PrefabInstance:
       objectReference: {fileID: 480637824}
     - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 480637824}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 480637824}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: MenuReset
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235292593239609789, guid: e48c71c83075c9148a70ff96c70fb3c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48c71c83075c9148a70ff96c70fb3c8, type: 3}
 --- !u!1001 &5392928490694172285
@@ -2575,7 +2605,37 @@ PrefabInstance:
         type: 3}
       propertyPath: utilityChicken
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2119423313}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: specialUI
+      value: 
+      objectReference: {fileID: 2119423312}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: lightUI
+      value: 
+      objectReference: {fileID: 2119423315}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: lightLion
+      value: 
+      objectReference: {fileID: 719557375}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: heavyLion
+      value: 
+      objectReference: {fileID: 719557374}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: utilityLion
+      value: 
+      objectReference: {fileID: 719557373}
+    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+        type: 3}
+      propertyPath: specialLion
+      value: 
+      objectReference: {fileID: 719557372}
     - target: {fileID: 5834732417159159705, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: specialChicken
@@ -2595,52 +2655,22 @@ PrefabInstance:
         type: 3}
       propertyPath: specialUI
       value: 
-      objectReference: {fileID: 2119423312}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: lightUI
-      value: 
-      objectReference: {fileID: 2119423315}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+      objectReference: {fileID: 719557376}
+    - target: {fileID: 5834732417159159705, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: heavyUI
       value: 
       objectReference: {fileID: 2119423314}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 5834732417159159705, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: utilityUI
       value: 
       objectReference: {fileID: 2119423313}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
+    - target: {fileID: 5834732417159159705, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: specialUI
       value: 
       objectReference: {fileID: 2119423312}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: lightUI
-      value: 
-      objectReference: {fileID: 2119423315}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: lightLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: heavyLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: utilityLion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8395573737578611397, guid: 9b4908fd57365ad48a52cace15e834ee,
-        type: 3}
-      propertyPath: specialLion
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8394786403442163871, guid: 9b4908fd57365ad48a52cace15e834ee,
         type: 3}
       propertyPath: heavyUI

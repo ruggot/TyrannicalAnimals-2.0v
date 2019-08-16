@@ -74,11 +74,12 @@ public class SceneScript : MonoBehaviour // English -- spelling mistake: SceneSc
     public void LevelOne() => SceneManager.LoadScene("Level_1");    /// Load Level_1.unity
     public void LevelTwo() => SceneManager.LoadScene("Level_2");    /// Load Level_2.Unity
     public void HowToPlay() => SceneManager.LoadScene("HowToPlay"); /// Load HowToPlay.unity
+	public void Controls() => SceneManager.LoadScene("Controls"); /// Load HowToPlay.unity
 
-    // Access tutorial from menu
+	// Access tutorial from menu
 
-    /// End Character Selection and begin the level  
-    public void BeginLevel()
+	/// End Character Selection and begin the level  
+	public void BeginLevel()
     {
         characterSelectPerspective.SetActive(false);
         mainCamera.SetActive(true);

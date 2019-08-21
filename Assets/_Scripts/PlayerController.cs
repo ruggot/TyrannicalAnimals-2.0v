@@ -139,12 +139,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     protected void ControlPlayer() {
-        if (stunned == true) {
+        if (stunned) {
             Invoke("UnStun", 1.5f);
         }
 
         if (SceneScript.inGame && !stunned) {
-            if (isDashing != true) {
+            if (!isDashing) {
                 moveHorizontal = Input.GetAxisRaw($"J{player}_Horizontal_{gPad}");
                 moveVertical = Input.GetAxisRaw($"J{player}_Vertical_{gPad}");
             }
@@ -156,9 +156,9 @@ public class PlayerController : MonoBehaviour {
                 anim.SetInteger("Walk", 1);
             }
             else anim.SetInteger("Walk", 0);
-            
+
             rb.AddForce(movement * movementSpeed * currentDashSpeed * Time.deltaTime * 10, ForceMode.VelocityChange);
-            
+
             // Movement ability
             if (Input.GetButtonDown($"J{player}_Jump_{gPad}") && Time.time > jumpCool && canJump) {
                 rb.AddForce(0, jumpForce, 0);
@@ -357,10 +357,10 @@ public class PlayerController : MonoBehaviour {
     //}
 
     private void ResetAbilities() {
-        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; attackType = AttackType.Ready;}
-        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; attackType = AttackType.Ready;}
-        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; attackType = AttackType.Ready;}
-        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; attackType = AttackType.Ready;}
+        if (Time.time >= lastLight + lightCool && lightHit != null) { lightHit.enabled = false; canLight = true; attackType = AttackType.Ready; }
+        if (Time.time >= lastHeavy + heavyCool && heavyHit != null) { heavyHit.enabled = false; canHeavy = true; attackType = AttackType.Ready; }
+        if (Time.time >= lastSpecial + specialCool && specialHit != null) { specialHit.enabled = false; canSpecial = true; attackType = AttackType.Ready; }
+        if (Time.time >= lastUtility + utilityCool && utilityHit != null) { utilityHit.enabled = false; canUtility = true; attackType = AttackType.Ready; }
 
     }
 

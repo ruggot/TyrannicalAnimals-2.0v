@@ -1,8 +1,8 @@
-﻿using UnityEngine.EventSystems;
+﻿using System.Collections;
+
 using UnityEngine;
-using System.Collections;
- 
-public class MyEventSystemProvider : MonoBehaviour
-{
+using UnityEngine.EventSystems;
+
+public class MyEventSystemProvider : MonoBehaviour {
     public EventSystem eventSystem;
 }

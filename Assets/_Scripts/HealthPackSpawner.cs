@@ -13,7 +13,7 @@ public class HealthPackSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (healthSpawned != true)
+        if (!healthSpawned)
         {
             currentTimer = heathTimer;
         }
@@ -25,7 +25,7 @@ public class HealthPackSpawner : MonoBehaviour
         // Activated healthpack
         healthPack.SetActive(healthSpawned);
 
-        if (healthSpawned == false)
+        if (!healthSpawned)
         {
             currentTimer -= Time.deltaTime;
 
@@ -43,7 +43,7 @@ public class HealthPackSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (healthSpawned == true)
+        if (healthSpawned)
         {
             // Add health to the player ("other")
             //other.GetComponent<Player>()."Health" += healthAdded;

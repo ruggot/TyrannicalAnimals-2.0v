@@ -1,18 +1,15 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BetterButton : Button
-{
+public class BetterButton : Button {
     public EventSystem eventSystem;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
         eventSystem = GetComponent<MyEventSystemProvider>().eventSystem;
     }
 
-    public override void OnPointerDown(PointerEventData eventData)
-    {
+    public override void OnPointerDown(PointerEventData eventData) {
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
@@ -23,8 +20,7 @@ public class BetterButton : Button
         base.OnPointerDown(eventData);
     }
 
-    public override void Select()
-    {
+    public override void Select() {
         if (eventSystem.alreadySelecting)
             return;
 
